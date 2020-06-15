@@ -9,7 +9,6 @@ $(function () {
     $('#contact-form').validator();
 
     var contactFormSubmit = function(){
-        alert('here');
     }
     // when the form is submitted
     $('#contact-form').on('submit', function (e) {
@@ -26,7 +25,6 @@ $(function () {
                 dataType: 'jsonp',
                 success: function (data)
                 {
-                    alert('success...');
                     var messageAlert = data.status?'success':'danger';
                     var messageText = data.message;
 
