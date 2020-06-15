@@ -8,38 +8,45 @@ $(function () {
 
     $('#contact-form').validator();
 
-
+    var contactFormSubmit = function(){
+        alert('here');
+    }
     // when the form is submitted
     $('#contact-form').on('submit', function (e) {
 
         // if the validator does not prevent form submit
         if (!e.isDefaultPrevented()) {
-            var url = "form/contact.php";
+            var url = "https://sabeer.000webhostapp.com/email";
 
             // POST values in the background the the script URL
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: url,
                 data: $(this).serialize(),
+                dataType: 'jsonp',
                 success: function (data)
                 {
-                    // data = JSON object that contact.php returns
-
-                    // we recieve the type of the message: success x danger and apply it to the 
-                    var messageAlert = 'alert-' + data.type;
+                    alert('success...');
+                    var messageAlert = data.status?'success':'danger';
                     var messageText = data.message;
 
-                    // let's compose Bootstrap alert box HTML
-                    var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
+                    var alertBox = '<div class="alert alert-' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
                     
-                    // If we have messageAlert and messageText
-                    if (messageAlert && messageText) {
-                        // inject the alert to .messages div in our form
-                        $('#contact-form').find('.messages').html(alertBox);
-                        // empty the form
+                    $('#contact-form').find('.messages').html(alertBox);
+                    if (data.status) {
                         $('#contact-form')[0].reset();
                     }
-                }
+                },
+                error: function(e){
+                    var messageAlert = 'success';
+                    var messageText = "Thanks for the message";
+
+                    var alertBox = '<div class="alert alert-' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
+                    
+                    $('#contact-form').find('.messages').html(alertBox);
+                    $('#contact-form')[0].reset();
+                },
+                jsonpCallback: 'contactFormSubmit'
             });
             return false;
         }
