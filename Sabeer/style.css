@@ -1076,24 +1076,26 @@ section.home.light .social-icons li a:hover {
 }
 
 select.portfolio-filter-mobile {
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 10px;
   outline: 0;
   margin-bottom: 30px;
   position: relative;
   width: 100%;
+  box-shadow: 0px 5px 20px 0px rgba(69, 67, 96, 0.1);
+  display: block;
+  height: 40px;
+  padding: 10px 30px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #454360;
+  background-color: #FFF;
+  background-image: none;
+  border: 0;
 }
 
 .pf-filter-wrapper {
   position: relative;
-}
-.pf-filter-wrapper:after {
-  content: "";
-  font-family: "FontAwesome";
-  position: absolute;
-  top: 0;
-  right: 20px;
-  color: #000;
 }
 
 /*=================================================================*/
