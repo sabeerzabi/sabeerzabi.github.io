@@ -2464,6 +2464,11 @@ body {
     max-width: 920px;
   }
 }
+@media (max-width: 477px) {
+  .parallax {
+    display: none;
+  }
+}
 @media (min-width: 1366px) {
   .container {
     max-width: 1080px;
@@ -2471,6 +2476,9 @@ body {
 }
 @media only screen and (max-height: 500px) {
   .scroll-down {
+    display: none;
+  }
+  .parallax {
     display: none;
   }
 }
