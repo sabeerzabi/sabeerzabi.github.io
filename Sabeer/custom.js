@@ -396,17 +396,17 @@ window.addEventListener("load", function() {
   var webp_status;
   // PARSE USER AGENT
   if (navigator.userAgent.indexOf("Chrome") != -1) {
-      console.log("Google Chrome");
+      //console.log("Google Chrome");
       webp_status = "enabled";
   }
   // FIREFOX
   else if (navigator.userAgent.indexOf("Firefox") != -1) {
-      console.log("Mozilla Firefox");
+      //console.log("Mozilla Firefox");
       webp_status = "enabled";
   }
   // INTERNET EXPLORER
   else if (navigator.userAgent.indexOf("MSIE") != -1) {
-      console.log("Internet Exploder");
+      //console.log("Internet Exploder");
       webp_status = "disabled";
   }
   // EDGE
@@ -415,22 +415,22 @@ window.addEventListener("load", function() {
   }
   // SAFARI
   else if (navigator.userAgent.indexOf("Safari") != -1) {
-      console.log("Safari");
+      //console.log("Safari");
       webp_status = "disabled";
   }
   // OPERA
   else if (navigator.userAgent.indexOf("Opera") != -1) {
-      console.log("Opera");
+      //console.log("Opera");
       webp_status = "enabled";
   }
   // YANDEX BROWSER
   else if (navigator.userAgent.indexOf("YaBrowser") != -1) {
-      console.log("YaBrowser");
+      //console.log("YaBrowser");
       webp_status = "disabled";
   }
   // OTHERS
   else {
-      console.log("Others");
+      //console.log("Others");
       webp_status = "disabled";
   }
  
@@ -439,6 +439,6 @@ window.addEventListener("load", function() {
     $("img.webp-image").each(function(index, img){
       $(img).attr('src',$(img).attr('src').replace('.webp', '.'+$(img).data('image')));
     });
-    $(".webp-css").addClass("nowebp")
+    $(".webp-css").addClass("nowebp");
   }
 });
