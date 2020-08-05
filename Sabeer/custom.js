@@ -391,3 +391,53 @@ $(function(){
     });
 
 });
+
+window.addEventListener("load", function() {
+  var webp_status;
+  // PARSE USER AGENT
+  if (navigator.userAgent.indexOf("Chrome") != -1) {
+      console.log("Google Chrome");
+      webp_status = "enabled";
+  }
+  // FIREFOX
+  else if (navigator.userAgent.indexOf("Firefox") != -1) {
+      console.log("Mozilla Firefox");
+      webp_status = "enabled";
+  }
+  // INTERNET EXPLORER
+  else if (navigator.userAgent.indexOf("MSIE") != -1) {
+      console.log("Internet Exploder");
+      webp_status = "disabled";
+  }
+  // EDGE
+  else if (navigator.userAgent.indexOf("Edge") != -1) {
+      webp_status = "enabled";
+  }
+  // SAFARI
+  else if (navigator.userAgent.indexOf("Safari") != -1) {
+      console.log("Safari");
+      webp_status = "disabled";
+  }
+  // OPERA
+  else if (navigator.userAgent.indexOf("Opera") != -1) {
+      console.log("Opera");
+      webp_status = "enabled";
+  }
+  // YANDEX BROWSER
+  else if (navigator.userAgent.indexOf("YaBrowser") != -1) {
+      console.log("YaBrowser");
+      webp_status = "disabled";
+  }
+  // OTHERS
+  else {
+      console.log("Others");
+      webp_status = "disabled";
+  }
+ 
+
+  if (webp_status == "disabled") {
+    $("img.webp-image").each(function(index, img){
+      $(img).attr('src',$(img).attr('src').replace('.webp', '.'+$(img).data('image')));
+    });
+  }
+});
