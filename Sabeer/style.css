@@ -1508,8 +1508,11 @@ body.dark .blog-item .details h4.title a {
 body.dark .blog-item .details h4.title a:hover {
   color: #FF4C60;
 }
+body.dark .contact-info.nowebp{
+  background-image: url("../images/map-light.png") !important;
+}
 body.dark .contact-info {
-  background-image: url("../images/map-light.png");
+  background-image: url("../images/map-light.webp");
 }
 body.dark .white-popup {
   background: #302f4e;
@@ -2262,9 +2265,12 @@ section.home{
   background-color: #6441a5; /* fallback for old browsers */
   background-color: -webkit-linear-gradient(to right, #6441a5, #2a0845); /* Chrome 10-25, Safari 5.1-6 */
   background-color: linear-gradient(to right, #6441a5, #2a0845); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: #6441a5 url('../images/sabeer-banner-07op.png') no-repeat;/* 
+  background: #6441a5 url('../images/sabeer-banner-07op.webp') no-repeat;/* 
   background-size: 100%; */
   background-position: bottom left;
+}
+section.home.nowebp{
+  background: #6441a5 url('../images/sabeer-banner-07op.png') no-repeat !important;
 }
 .navbar-brand {
   margin-right: 0rem;

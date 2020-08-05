@@ -439,5 +439,6 @@ window.addEventListener("load", function() {
     $("img.webp-image").each(function(index, img){
       $(img).attr('src',$(img).attr('src').replace('.webp', '.'+$(img).data('image')));
     });
+    $(".webp-css").addClass("nowebp")
   }
 });
