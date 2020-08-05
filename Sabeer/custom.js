@@ -224,21 +224,6 @@ $(window).on('load', function() {
     };
 });
 
-$(document).on('ready', function() {
-    "use strict";
-
-    /*=========================================================================
-                Slick Slider
-    =========================================================================*/
-    $('.testimonials-wrapper').slick({
-      dots: true,
-      arrows: false,
-      autoplay: true,
-      autoplaySpeed: 3000
-    });
-
-});
-
 $(function(){
     "use strict";
 
