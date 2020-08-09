@@ -1711,9 +1711,16 @@ body.dark footer.footer {
 }
 
 .timeline.edu .timeline-container::after {
-  content: "";
+  content: "\f19d";
   background: #FFF;
-  font-family: "simple-line-icons";
+  font-family: "Font Awesome 5 Free";
+  webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-weight: 900;
   font-display: swap;
   font-size: 24px;
   color: #FF4C60;
@@ -1724,9 +1731,16 @@ body.dark footer.footer {
 }
 
 .timeline.exp .timeline-container::after {
-  content: "";
+  content: "\f0b1";
   background: #FFF;
-  font-family: "simple-line-icons";
+  font-family: "Font Awesome 5 Free";
+  webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-weight: 900;
   font-display: swap;
   font-size: 24px;
   color: #FF4C60;
