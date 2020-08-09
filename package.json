@@ -1,0 +1,31 @@
+{
+  "name": "sabeer_zabi",
+  "version": "1.0.0",
+  "description": "Sabeer C A Portfolio",
+  "main": "webmix.config.js",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "webmix": "^0.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp --gulpfile='node_modules/webmix/src/gulpfile.js'",
+    "prod": "cross-env NODE_ENV=production gulp --gulpfile='node_modules/webmix/src/gulpfile.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabeerzabi/sabeerzabi.github.io.git"
+  },
+  "keywords": [
+    "Sabeer",
+    "Zabi",
+    "Portfolio"
+  ],
+  "author": "Sabeer C A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sabeerzabi/sabeerzabi.github.io/issues"
+  },
+  "homepage": "https://github.com/sabeerzabi/sabeerzabi.github.io#readme"
+}

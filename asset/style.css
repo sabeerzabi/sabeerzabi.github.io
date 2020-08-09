@@ -585,6 +585,11 @@ header.mobile-header-2 .site-logo img {
   max-height: 30px;
 }
 
+header img.site-logo {
+  width: 139px;
+  height: 34px;
+}
+
 .desktop-header-3 {
   background: #5f3fa0;
   padding: 20px 0;
@@ -804,6 +809,14 @@ section.home.light .social-icons li a:hover {
 }
 
 /*=================================================================*/
+/*                      ABOUT                              
+/*=================================================================*/
+section#about img.about-image{
+  width: 200px;
+  height: 200px;
+}
+
+/*=================================================================*/
 /*                      SKILLS                              
 /*=================================================================*/
 .skill-item .skill-info h4 {
@@ -830,6 +843,8 @@ section.home.light .social-icons li a:hover {
 }
 .service-box img {
   margin-bottom: 22px;
+  width: 91px;
+  height: 79px;
 }
 .service-box:hover {
   -webkit-transform: translateY(-10px);
@@ -855,6 +870,10 @@ section.home.light .social-icons li a:hover {
 }
 .portfolio-item .thumb {
   overflow: hidden;
+}
+.portfolio-item .thumb img {
+  width: 330px;
+  height: 268px;
 }
 .portfolio-item .details {
   color: #FFF;
@@ -1054,6 +1073,18 @@ select.portfolio-filter-mobile {
   border-bottom-right-radius: 0;
 }
 
+section.achievements img.second-rank{
+  width: 233px;
+  height: 282px;
+}
+section.achievements img.hall-of-fame{
+  width: 280px;
+  height: 280px;
+}
+section.achievements img.project-completion{
+  width: 242px;
+  height: 280px;
+}
 /*=================================================================*/
 /*                      TESTIMONIALS                              
 /*=================================================================*/
@@ -2383,7 +2414,3 @@ body {
 }
 
 /*# sourceMappingURL=style.css.map */
-.portfolio-item .thumb img.webp-image {
-  width: 330px;
-  height: 268px;
-}
