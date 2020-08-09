@@ -586,8 +586,8 @@ header.mobile-header-2 .site-logo img {
 }
 
 header img.site-logo {
-  width: 139px;
-  height: 34px;
+  width: 100%;
+  height: 100%;
 }
 
 .desktop-header-3 {
