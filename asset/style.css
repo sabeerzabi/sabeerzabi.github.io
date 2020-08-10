@@ -61,6 +61,13 @@ img {
   height: auto;
 }
 
+img.lazy {
+  background: #F1F1FA;
+  display: block;
+  margin: 10px auto;
+  border: 0;
+}
+
 .text-center {
   text-align: center;
 }
