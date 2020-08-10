@@ -1218,10 +1218,13 @@ section.achievements img.project-completion{
 /*                      CONTACT                              
 /*=================================================================*/
 .contact-info {
-  background-image: url("../images/map.svg");
+  background-image: url("../images/map.webp");
   background-repeat: no-repeat;
   background-size: contain;
   min-height: 200px;
+}
+.contact-info.nowebp{
+  background-image: url("../images/map.png") !important;
 }
 .contact-info h3 {
   font-size: 23px;
