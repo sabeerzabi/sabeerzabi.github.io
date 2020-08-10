@@ -4,7 +4,7 @@ $(window).on('load', function() {
     /*=========================================================================
         Preloader
     =========================================================================*/
-    $("#preloader").delay(350).fadeOut('slow');
+    $(".module-loading").delay(350).removeClass('d-none');
     // Because only Chrome supports offset-path, feGaussianBlur for now
     var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
