@@ -16,28 +16,28 @@
 
 
  /* Hide the default scrollbar */
-.content::-webkit-scrollbar {
+body::-webkit-scrollbar {
     width: 0.5em;
     background-color: transparent;
 }
 
 /* Create the custom scrollbar track */
-.content::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
     background-color: transparent;
 }
 
 /* Style the scrollbar thumb */
-.content::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
     background-color: #5f3fa0;
     border-radius: 0.25em;
 }
 
 /* Hover effect for the scrollbar thumb */
-.content::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
     background-color: #9897a7;
 }
 
 /* Custom scrollbar corner */
-.content::-webkit-scrollbar-corner {
+body::-webkit-scrollbar-corner {
     background-color: transparent;
 }
