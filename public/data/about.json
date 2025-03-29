@@ -1,0 +1,43 @@
+{
+    "success": true,
+    "data": {
+        "name": "Sabeer C A",
+        "description": "I am a software engineer with a passion for building scalable and efficient systems. I have a strong foundation in PHP, Laravel, and MySQL. I am also proficient in Python, Docker, and Git. I am a quick learner and I am always looking for new challenges.",
+        "image": "/images/sabeer.webp",
+        "roles": [
+            "Software Engineer",
+            "Backend Developer",
+            "Full-Stack Developer in Progress",
+            "Project Lead for Two Projects",
+            "AWS Kinesis & Elasticsearch User",
+            "Laravel Developer",
+            "Python Developer",
+            "Problem Solver in Software Development",
+            "AWS Lambda & S3 User",
+            "Docker Enthusiast",
+            "Git User",
+            "CodeIgniter Developer (past experience, needs refreshing)",
+            "WordPress Developer (past experience, needs refreshing)",
+            "Core PHP Developer",
+            "MySQL Developer"
+        ],
+        "projects": {
+            "laravel": {
+                "count": 4,
+                "icon": "/icons/skills/laravel.png"
+            }   ,
+            "codeiginter": {
+                "count": 6,
+                "icon": "/icons/skills/codeiginter.svg"
+            },
+            "core-php": {
+                "count": 12,
+                "icon": "/icons/skills/php.svg"
+            },
+            "wordpress": {
+                "count": 3,
+                "icon": "/icons/skills/wordpress.svg"
+            }
+        }
+    }
+}   
