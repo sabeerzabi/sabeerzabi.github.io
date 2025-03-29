@@ -1,36 +1,27 @@
 {
-  "name": "sabeer_zabi",
-  "version": "1.0.0",
-  "description": "Sabeer C A Portfolio",
-  "main": "webmix.config.js",
-  "dependencies": {
-    "gulp": "^4.0.2",
-    "laravel-mix": "^5.0.4"
-  },
-  "devDependencies": {},
+  "name": "portfolio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "npm run development -- --watch",
-    "watch-poll": "npm run watch -- --watch-poll",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sabeerzabi/sabeerzabi.github.io.git"
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
-  "keywords": [
-    "Sabeer",
-    "Zabi",
-    "Portfolio"
-  ],
-  "author": "Sabeer C A",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sabeerzabi/sabeerzabi.github.io/issues"
-  },
-  "homepage": "https://github.com/sabeerzabi/sabeerzabi.github.io#readme"
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "vite": "^6.2.0"
+  }
 }
