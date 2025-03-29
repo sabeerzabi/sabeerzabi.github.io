@@ -1,14 +1,19 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import "@fontsource/rubik"; // Defaults to weight 400
+import "@fontsource/rubik/300.css"; // Lighter weight
+import "@fontsource/rubik/700.css"; // Bolder weight
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Homepage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

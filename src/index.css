@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  --color-brand-header-bg: #5f3fa0;
+  --color-brand-primary-bg: #f9f9ff;
+  --color-font-color: #5e5c7f;
+  --color-brand-header-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  color: var(--color-font-color);
+  background-color: var(--color-brand-primary-bg);
+  font-family: Rubik, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

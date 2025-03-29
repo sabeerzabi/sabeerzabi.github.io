@@ -1,0 +1,39 @@
+.header {
+  padding: 17px 0;
+  background: var(--color-brand-header-bg);
+  border-bottom: solid 1px var(--color-brand-header-border);
+}
+
+.headerFixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+@media (min-width: 1366px) {
+  .container {
+    max-width: 1080px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 920px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .container {
+    max-width: 1080px;
+  }
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
