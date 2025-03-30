@@ -132,7 +132,7 @@ export default function About() {
 
         <div className="h-10"></div>
         <AbountProjects aboutProjects={about.projects} />
-        <div className="h-20"></div>
+        <div className="h-10"></div>
       </div>
     </section>
   );

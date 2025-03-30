@@ -1,6 +1,7 @@
 import AppLayout from "../ui/AppLayout";
 import Home from "../components/sections/Home";
 import About from "../components/sections/About";
+import Services from "../components/sections/Services";
 
 export default function Homepage() {
   return (
@@ -8,6 +9,7 @@ export default function Homepage() {
       <AppLayout>
         <Home />
         <About />
+        <Services />
       </AppLayout>
     </>
   );

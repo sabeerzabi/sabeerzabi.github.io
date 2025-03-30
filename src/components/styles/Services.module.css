@@ -1,0 +1,25 @@
+.service {
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.service:hover {
+  -webkit-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.service h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.image {
+  width: 91px;
+  height: 79px;
+  margin-bottom: 22px;
+  max-width: 100%;
+  vertical-align: middle;
+}
