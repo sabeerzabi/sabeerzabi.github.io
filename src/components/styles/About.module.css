@@ -1,0 +1,46 @@
+.aboutImg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(100%);
+}
+
+.aboutImg:hover {
+  filter: grayscale(0%);
+}
+
+@media only screen and (min-width: 768px) {
+  .triangleLeftMd:before {
+    content: "";
+    display: block;
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 15px solid #fff;
+    position: relative;
+    left: -34px;
+    top: 20%;
+    box-shadow: 0 -1px 1px -1px var(--tw-shadow-color, rgb(0 0 0/0.11)),
+      0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0/0.1));
+  }
+}
+
+.barActive {
+  border-radius: 0.25rem;
+  transition: width 5s ease-in-out 1s;
+}
+
+.projectItem h3 {
+  font-weight: 700;
+  font-size: 39px;
+}
+
+.projectIcon {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.projectIcon:hover {
+  color: #000;
+}

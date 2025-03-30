@@ -3,10 +3,36 @@
 :root {
   --color-brand-bg-dark: #5f3fa0;
   --color-brand-bg-light: #6441a5;
-  --color-brand-primary-bg: #f9f9ff;
+  --color-brand-primary-bg: #eee8f3;
   --color-font-color: #5e5c7f;
   --color-brand-button: #ff4c60;
   --color-brand-border: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 body {
@@ -43,4 +69,35 @@ body {
 
 .brand-primary-bg {
   background-color: var(--color-brand-primary-bg);
+}
+
+.section-title {
+  font-size: 36px;
+  margin: 0;
+  margin-left: 14px;
+  position: relative;
+  font-weight: 700;
+  visibility: visible;
+}
+
+section .container.handle-margin {
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  padding-top: 110px;
+  position: relative;
+}
+
+.section-title:before {
+  content: "";
+  background-image: url(/icons/dots-bg.svg);
+  display: block;
+  height: 37px;
+  left: -14px;
+  top: -14px;
+  position: absolute;
+  width: 37px;
 }

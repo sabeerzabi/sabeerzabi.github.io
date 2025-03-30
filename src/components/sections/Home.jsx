@@ -34,10 +34,8 @@ function HireMeButton() {
   return <button className={styles.hireMeButton}>Hire Me</button>;
 }
 
-function Roles() {
+function Roles({ roles }) {
   const [index, setIndex] = useState(0);
-  const { about } = useProfile();
-  const roles = about.roles;
 
   useEffect(() => {
     if (roles.length === 0) return;
@@ -56,10 +54,13 @@ function Roles() {
 }
 
 function Intro() {
+  const { about } = useProfile();
+  const name = about.name;
+  const roles = about.roles;
   return (
     <div className={styles.intro}>
-      <h1>Sabeer C A</h1>
-      <Roles />
+      <h1>{name}</h1>
+      <Roles roles={roles} />
       <SocialLinks />
       <HireMeButton />
     </div>
@@ -82,7 +83,7 @@ function ScrollDownButton() {
 export default function Home() {
   return (
     <section id="home" className={`${styles.home} items-center flex`}>
-      <div className="container mx-auto mb-15">
+      <div className="container mb-15">
         <Intro />
         <ScrollDownButton />
       </div>
