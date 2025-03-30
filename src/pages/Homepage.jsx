@@ -1,9 +1,11 @@
-import Navbar from "../components/Navbar";
-
+import AppLayout from "../ui/AppLayout";
+import Home from "../components/sections/Home";
 export default function Homepage() {
   return (
     <>
-      <Navbar />
+      <AppLayout>
+        <Home />
+      </AppLayout>
     </>
   );
 }

@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --color-brand-header-bg: #5f3fa0;
+  --color-brand-bg-dark: #5f3fa0;
+  --color-brand-bg-light: #6441a5;
   --color-brand-primary-bg: #f9f9ff;
   --color-font-color: #5e5c7f;
-  --color-brand-header-border: rgba(255, 255, 255, 0.1);
+  --color-brand-button: #ff4c60;
+  --color-brand-border: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -16,4 +18,29 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-bg-dark); /* Blue-500 */
+  border-radius: 4px;
+}
+
+.brand-bg-light {
+  background-color: var(--color-brand-bg-light);
+}
+
+.brand-bg-dark {
+  background-color: var(--color-brand-bg-dark);
+}
+
+.brand-primary-bg {
+  background-color: var(--color-brand-primary-bg);
 }

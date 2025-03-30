@@ -1,55 +1,55 @@
 {
-    "success": true,
-    "data": [
-        {
-            "name": "LinkedIn",
-            "url": "https://www.linkedin.com/in/sabeer-zabi-02125097",
-            "icon-class": "fa-linkedin"
-        },
-        {
-            "name": "WhatsApp",
-            "url": "https://wa.me/919633743391",
-            "icon-class": "fa-whatsapp"
-        },
-        {
-            "name": "X",
-            "url": "https://x.com/sabeerzabi",
-            "icon-class": "fa-x"
-        },
-        {
-            "name": "Instagram",
-            "url": "https://www.instagram.com/sabeerzabi",
-            "icon-class": "fa-instagram"
-        },
-        {
-            "name": "Facebook",
-            "url": "https://www.facebook.com/sabeer.zabi",
-            "icon-class": "fa-facebook"
-        },
-        {
-            "name": "Pinterest",
-            "url": "https://in.pinterest.com/sabeerzabi",
-            "icon-class": "fa-pinterest"
-        },
-        {
-            "name": "Github",
-            "url": "https://github.com/sabeerzabi",
-            "icon-class": "fa-github"
-        },
-        {
-            "name": "Medium",
-            "url": "https://medium.com/@sabeerzabi",
-            "icon-class": "fa-medium"
-        },
-        {
-            "name": "Stack Overflow",
-            "url": "https://stackoverflow.com/users/8893659/sabeerzabi",
-            "icon-class": "fa-stack-overflow"
-        },
-        {
-            "name": "Stack Exchange",
-            "url": "https://stackexchange.com/users/12182672/sabeerzabi?tab=accounts",
-            "icon-class": "fa-stack-exchange"
-        }
-    ]
+  "success": true,
+  "data": [
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/sabeer-zabi-02125097",
+      "icon_class": "fa-linkedin"
+    },
+    {
+      "name": "WhatsApp",
+      "url": "https://wa.me/919633743391",
+      "icon_class": "fa-whatsapp"
+    },
+    {
+      "name": "X",
+      "url": "https://x.com/sabeerzabi",
+      "icon_class": "fa-x"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/sabeerzabi",
+      "icon_class": "fa-instagram"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/sabeer.zabi",
+      "icon_class": "fa-facebook"
+    },
+    {
+      "name": "Pinterest",
+      "url": "https://in.pinterest.com/sabeerzabi",
+      "icon_class": "fa-pinterest"
+    },
+    {
+      "name": "Github",
+      "url": "https://github.com/sabeerzabi",
+      "icon_class": "fa-github"
+    },
+    {
+      "name": "Medium",
+      "url": "https://medium.com/@sabeerzabi",
+      "icon_class": "fa-medium"
+    },
+    {
+      "name": "Stack Overflow",
+      "url": "https://stackoverflow.com/users/8893659/sabeerzabi",
+      "icon_class": "fa-stack-overflow"
+    },
+    {
+      "name": "Stack Exchange",
+      "url": "https://stackexchange.com/users/12182672/sabeerzabi?tab=accounts",
+      "icon_class": "fa-stack-exchange"
+    }
+  ]
 }
