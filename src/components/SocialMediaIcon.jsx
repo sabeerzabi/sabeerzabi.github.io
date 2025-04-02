@@ -24,7 +24,7 @@ const iconMap = {
   "fa-stack-exchange": FaStackExchange,
 };
 
-const SocialMediaLink = ({ url, icon }) => {
+const SocialMediaIcon = ({ url, icon }) => {
   const IconComponent = iconMap[icon];
   return (
     <a
@@ -38,4 +38,4 @@ const SocialMediaLink = ({ url, icon }) => {
   );
 };
 
-export default SocialMediaLink;
+export default SocialMediaIcon;

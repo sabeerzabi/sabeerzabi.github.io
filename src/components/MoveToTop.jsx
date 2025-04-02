@@ -33,7 +33,7 @@ export default function MoveToTop() {
         <button // Changed from <a> to <button> and using onClick
           onClick={scrollToTop}
           id="return-to-top"
-          className="fixed bottom-4 right-4 bg-violet-600 text-white rounded-full p-3 hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+          className="fixed bottom-4 right-4 bg-violet-600 text-white rounded-full p-3 hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 z-10"
         >
           <FaArrowUp className="w-6 h-6" />
         </button>

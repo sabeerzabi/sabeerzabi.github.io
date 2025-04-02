@@ -28,7 +28,7 @@
 
 .barActive {
   border-radius: 0.25rem;
-  transition: width 5s ease-in-out 1s;
+  transition: width 1s ease-in-out;
 }
 
 .projectItem h3 {

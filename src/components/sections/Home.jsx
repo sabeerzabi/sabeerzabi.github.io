@@ -1,24 +1,19 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
-import SocailMediaIcon from "../SocailMediaIcon";
+import SocialMediaIcon from "../SocialMediaIcon";
 import { useProfile } from "../../contexts/Profile";
 
 function SocialLinks() {
   const { socialMedias } = useProfile(); // State to store social media data
 
   return (
-    <ul className={styles.socialIcons}>
-      {socialMedias.map(
-        (
-          social,
-          index // Map through socialMediaLinks
-        ) => (
-          <li className={styles.socialIcon} key={index}>
-            <SocailMediaIcon icon={social.icon_class} url={social.url} />
-          </li>
-        )
-      )}
-    </ul>
+    <div className="flex flex-wrap gap-2 justify-center">
+      {socialMedias.map((social, index) => (
+        <span className="p-1" key={index}>
+          <SocialMediaIcon icon={social.icon_class} url={social.url} />
+        </span>
+      ))}
+    </div>
   );
 }
 
@@ -31,7 +26,11 @@ function TextTransition({ roleIndex, roles }) {
 }
 
 function HireMeButton() {
-  return <button className={styles.hireMeButton}>Hire Me</button>;
+  return (
+    <a href="#contact" className={styles.hireMeButton}>
+      Hire Me
+    </a>
+  );
 }
 
 function Roles({ roles }) {

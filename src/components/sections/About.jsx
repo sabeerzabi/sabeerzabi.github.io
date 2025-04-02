@@ -1,6 +1,8 @@
 import styles from "../styles/About.module.css";
 import { useProfile } from "../../contexts/Profile";
 import { useEffect, useState } from "react";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 const colorClasses = {
   blue: "bg-blue-500",
@@ -11,38 +13,29 @@ const colorClasses = {
   orange: "bg-orange-500",
 };
 
-function AbountImage({ aboutImg }) {
+function AboutImage({ aboutImg }) {
   return (
-    <div className="col-span-3">
-      <div
-        className={`${styles.aboutImg} h-50 w-50 brand-bg-light rounded-full`}
-        style={{
-          backgroundImage: `url(${aboutImg})`,
-        }}
-      ></div>
-    </div>
+    <div
+      className={`${styles.aboutImg} h-40 w-40 brand-bg-light mx-auto mb-5 rounded-full`}
+      style={{
+        backgroundImage: `url(${aboutImg})`,
+      }}
+    ></div>
   );
 }
 
-const ProgressBar = ({ name, progress, color }) => {
+function ProgressBar({ name, progress, color }) {
   const [currentProgress, setCurrentProgress] = useState(0);
+  const { ref, inView } = useInView({ triggerOnce: true });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentProgress((prev) => {
-        if (prev >= progress) {
-          clearInterval(interval);
-          return progress;
-        }
-        return prev + 1;
-      });
-    }, 10); // Adjust timing for smooth animation
-
-    return () => clearInterval(interval);
-  }, [progress]);
+    if (inView) {
+      setCurrentProgress(progress);
+    }
+  }, [inView, progress]);
 
   return (
-    <div className="mb-6">
+    <div ref={ref} className="mb-6">
       <div className="flex justify-between">
         <span className="text-sm font-semibold">{name}</span>
         <span className="text-sm">{currentProgress}%</span>
@@ -51,13 +44,13 @@ const ProgressBar = ({ name, progress, color }) => {
         <div
           className={`absolute top-0 left-0 h-full transition-all duration-300 ease-in-out ${
             colorClasses[color] || "bg-blue-500"
-          }`}
+          } ${styles.barActive}`}
           style={{ width: `${currentProgress}%` }}
         ></div>
       </div>
     </div>
   );
-};
+}
 
 function Services() {
   const { services } = useProfile();
@@ -71,15 +64,17 @@ function Services() {
   ));
 }
 
-function AbountDetails({ aboutDescription }) {
+function AboutDetails({ aboutDescription }) {
   return (
-    <div className="col-span-9">
+    <div className="col-span-3">
       <div
         className={`${styles.triangleLeftMd} bg-white shadow-gray-300 shadow-md p-5 rounded-2xl`}
       >
-        <div className="grid grid-flow-col grid-rows-1 grid-cols-2 gap-4">
-          <p className="grid-cols-1">{aboutDescription}</p>
-          <div className="grid-cols-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 ">
+          <div className="grid-cols-1 order-last md:order-first mr-5">
+            {aboutDescription}
+          </div>
+          <div className="grid-cols-1 order-first md:order-last">
             <Services />
           </div>
         </div>
@@ -88,23 +83,27 @@ function AbountDetails({ aboutDescription }) {
   );
 }
 
-function AbountProjects({ aboutProjects }) {
+function AboutProjects({ aboutProjects }) {
+  const { ref, inView } = useInView({ triggerOnce: true });
+
   return (
     <div
-      className={`grid grid-flow-col grid-rows-1 grid-cols-${
-        Object.keys(aboutProjects).length
-      } gap-4`}
+      ref={ref}
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-10"
     >
       {Object.entries(aboutProjects).map(([projectName, details]) => (
-        <div
-          key={projectName}
-          className={`${styles.projectItem} col-span-1 flex`}
-        >
-          <span className={`${styles.projectIcon} flex items-center`}>
-            <img src={details.icon} alt={projectName} />
+        <div key={projectName} className={`${styles.projectItem} flex p-4`}>
+          <span className="flex items-center">
+            <img src={details.icon} alt={projectName} className="w-10 h-10" />
           </span>
           <span className="text-left ml-5">
-            <h3 className="text-lg">{details.count} </h3>
+            <h3 className="text-lg">
+              {inView ? (
+                <CountUp start={0} end={details.count} duration={2} />
+              ) : (
+                0
+              )}
+            </h3>
             <p className="text-sm text-gray-500">
               {projectName.charAt(0).toUpperCase() + projectName.slice(1)}{" "}
               Projects
@@ -120,19 +119,18 @@ export default function About() {
   const { about } = useProfile();
   return (
     <section id="about" className="items-center flex">
-      <div className="container mx-auto max-w-5xl handle-margin">
+      <div className="container mx-auto max-w-5xl  px-2 md:px-6 lg:px-8 handle-margin">
         <h2 className="section-title animate fadeInUp">About Me</h2>
         <div className="h-10"></div>
         <div className="flex flex-wrap">
-          <div className="grid grid-flow-col grid-rows-1 grid-cols-12 gap-6">
-            <AbountImage aboutImg={about.image} />
-            <AbountDetails aboutDescription={about.description} />
+          <div className="grid grid-cols-1 md:grid-cols-4">
+            <AboutImage aboutImg={about.image} />
+            <AboutDetails aboutDescription={about.description} />
           </div>
         </div>
 
         <div className="h-10"></div>
-        <AbountProjects aboutProjects={about.projects} />
-        <div className="h-10"></div>
+        <AboutProjects aboutProjects={about.projects} />
       </div>
     </section>
   );

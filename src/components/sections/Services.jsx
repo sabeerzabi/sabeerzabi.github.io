@@ -52,17 +52,16 @@ export default function Services() {
   const { services } = useProfile();
   return (
     <section id="services" className="items-center flex">
-      <div className="container mx-auto max-w-5xl handle-margin">
+      <div className="container mx-auto max-w-5xl px-2 md:px-6 lg:px-8 handle-margin">
         <h2 className="section-title animate fadeInUp">Services</h2>
         <div className="h-10"></div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {services
             .filter((service) => service.visible)
             .map((service) => (
               <Service service={service} key={service.name} />
             ))}
         </div>
-        <div className="h-20"></div>
       </div>
     </section>
   );
