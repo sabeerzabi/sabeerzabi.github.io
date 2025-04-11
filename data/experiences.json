@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "data": [
+    {
+      "period": "Feb, 2021 - Mar, 2025",
+      "company": "Litebreeze Infotech",
+      "designation": "Senior Software Engineer",
+      "location": "SmartCity Kochi, Infopark road, Kakkand, Kerala, India.",
+      "experience": "4.1 years",
+      "tags": [
+        "laravel",
+        "aws lambda",
+        "python",
+        "docker",
+        "elasticsearch",
+        "redis",
+        "mysql"
+      ],
+      "description": ""
+    },
+    {
+      "period": "Aug, 2018 - Feb, 2021",
+      "company": "2Base Technologies",
+      "designation": "Project Lead",
+      "location": "Palakkad, Kerala, India",
+      "experience": "2.5 years",
+      "tags": ["laravel", "scrapy", "python", "git"],
+      "description": ""
+    },
+    {
+      "period": "Jul, 2017 - Aug, 2018",
+      "company": "Fortius Technologies",
+      "designation": "Software Engineer",
+      "location": "Ayyathol, Thrissur, Kerala, India",
+      "experience": "1 year",
+      "tags": ["core-php", "codeigniter", "wordpress", "mysql"],
+      "description": ""
+    }
+  ]
+}

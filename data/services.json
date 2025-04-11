@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "data": [
+    {
+      "name": "Project Management",
+      "description": "A hard working Team Leader who performs and delegates all his multiple duties in a respectful and professional manner.",
+      "icon": "/icons/services/project-management.svg",
+      "bg_color": "violet",
+      "visible": true,
+      "color": "white",
+      "percentage": 80
+    },
+    {
+      "name": "Web Development",
+      "description": "Creative web developers dedicated to developing and optimizing interactive, user-friendly, and feature-rich websites.",
+      "icon": "/icons/services/web-development.svg",
+      "bg_color": "yellow",
+      "visible": true,
+      "color": "black",
+      "percentage": 95
+    },
+    {
+      "name": "HTML Conversion",
+      "description": "Remarkable experience using JavaScript, HTML, Ajax, CSS, and XML. Proficient with JavaScript/ AJAX and front end frameworks.",
+      "icon": "/icons/services/html-conversion.svg",
+      "bg_color": "red",
+      "visible": true,
+      "color": "white",
+      "percentage": 60
+    },
+    {
+      "name": "Team Management",
+      "description": "A hard working Team Leader who performs and delegates all his multiple duties in a respectful and professional manner.",
+      "icon": "/icons/services/team-management.svg",
+      "bg_color": "green",
+      "visible": false,
+      "color": "white",
+      "percentage": 80
+    },
+    {
+      "name": "Client Management",
+      "description": "A hard working Team Leader who performs and delegates all his multiple duties in a respectful and professional manner.",
+      "icon": "/icons/services/client-management.svg",
+      "bg_color": "blue",
+      "visible": false,
+      "color": "white ",
+      "percentage": 75
+    }
+  ]
+}
