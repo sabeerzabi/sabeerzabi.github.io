@@ -1,5 +1,5 @@
 
-import { ChevronDown, Facebook, Twitter, Linkedin, GitHub, Instagram, Mail } from 'lucide-react';
+import { ChevronDown, Facebook, Twitter, Linkedin, Github, Instagram, Mail } from 'lucide-react';
 
 const HeroSection = () => {
   return (
@@ -42,7 +42,7 @@ const HeroSection = () => {
             <Linkedin size={18} />
           </a>
           <a href="#" className="social-icon">
-            <GitHub size={18} />
+            <Github size={18} />
           </a>
           <a href="#" className="social-icon">
             <Instagram size={18} />

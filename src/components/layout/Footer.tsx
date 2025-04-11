@@ -1,5 +1,5 @@
 
-import { Facebook, Twitter, Linkedin, GitHub, Instagram, Mail } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Github, Instagram, Mail } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,7 +24,7 @@ const Footer = () => {
               <Linkedin size={18} />
             </a>
             <a href="#" className="social-icon">
-              <GitHub size={18} />
+              <Github size={18} />
             </a>
             <a href="#" className="social-icon">
               <Instagram size={18} />
