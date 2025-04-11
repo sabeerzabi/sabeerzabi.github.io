@@ -1,10 +1,20 @@
 
-import { 
-  FigmaIcon, FileJson2, Server, Database, 
-  Code, MonitorSmartphone, Layers, TerminalSquare 
-} from 'lucide-react';
+import { useFetchData } from '@/hooks/useFetchData';
+import { Skeleton } from '@/components/ui/skeleton';
+
+interface Skill {
+  name: string;
+  image: string;
+}
+
+interface SkillsResponse {
+  success: boolean;
+  data: Skill[];
+}
 
 const SkillsSection = () => {
+  const { data: skillsData, status } = useFetchData<SkillsResponse>('/data/skills.json');
+  
   const skills = [
     { name: "HTML5", level: 95 },
     { name: "CSS3", level: 90 },
@@ -14,34 +24,38 @@ const SkillsSection = () => {
     { name: "Node.js", level: 70 },
   ];
 
-  const technicalIcons = [
-    { icon: <FileJson2 size={28} />, label: "HTML/CSS" },
-    { icon: <Code size={28} />, label: "JavaScript" },
-    { icon: <FigmaIcon size={28} />, label: "Figma" },
-    { icon: <MonitorSmartphone size={28} />, label: "Responsive Design" },
-    { icon: <Layers size={28} />, label: "React" },
-    { icon: <Server size={28} />, label: "Node.js" },
-    { icon: <Database size={28} />, label: "MongoDB" },
-    { icon: <TerminalSquare size={28} />, label: "Git" },
-  ];
-
   return (
     <section id="skills" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="section-title">Technical Skills</h2>
         
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {technicalIcons.map((item, index) => (
-            <div 
-              key={index} 
-              className="flex flex-col items-center justify-center p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div className="text-portfolio-purple mb-3">
-                {item.icon}
+          {status === 'loading' ? (
+            Array(8).fill(0).map((_, index) => (
+              <div key={index} className="flex flex-col items-center justify-center p-5 bg-white rounded-xl shadow-sm">
+                <Skeleton className="h-10 w-10 rounded-full mb-3" />
+                <Skeleton className="h-4 w-20" />
               </div>
-              <p className="font-medium">{item.label}</p>
+            ))
+          ) : status === 'error' ? (
+            <div className="col-span-full text-center text-red-500">
+              Failed to load skills. Please try again later.
             </div>
-          ))}
+          ) : (
+            skillsData?.data.map((skill, index) => (
+              <div 
+                key={index} 
+                className="flex flex-col items-center justify-center p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              >
+                <img 
+                  src={skill.image} 
+                  alt={skill.name} 
+                  className="w-10 h-10 object-contain mb-3" 
+                />
+                <p className="font-medium">{skill.name}</p>
+              </div>
+            ))
+          )}
         </div>
         
         <div className="mt-14">
