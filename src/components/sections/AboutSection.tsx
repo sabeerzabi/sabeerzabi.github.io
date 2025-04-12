@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Clock, MapPin, Mail, Phone } from 'lucide-react';
 import { useFetchData } from '@/hooks/useFetchData';
-import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useInView } from 'react-intersection-observer';
@@ -24,24 +23,9 @@ interface AboutData {
   };
 }
 
-interface ServiceData {
-  name: string;
-  description: string;
-  icon: string;
-  bg_color: string;
-  visible: boolean;
-  color: string;
-  percentage: number;
-}
-
 interface AboutResponse {
   success: boolean;
   data: AboutData;
-}
-
-interface ServicesResponse {
-  success: boolean;
-  data: ServiceData[];
 }
 
 interface ConfigResponse {
@@ -50,13 +34,16 @@ interface ConfigResponse {
     paths: {
       dotsBg: string;
     };
+    colors: {
+      primary: string;
+    };
   };
 }
 
 const AboutSection = () => {
   const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>('/data/about.json');
   const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
-  const { ref: sectionRef, inView } = useInView({ threshold: 0.1, triggerOnce: false });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   
   // For animated counters
   const [counts, setCounts] = useState({
@@ -82,19 +69,26 @@ const AboutSection = () => {
       const interval = setInterval(() => {
         setCounts(prev => {
           const newCounts = { ...prev };
+          let allComplete = true;
           
-          if (newCounts.laravel < laravel.count) newCounts.laravel += 1;
-          if (newCounts.codeiginter < codeiginter.count) newCounts.codeiginter += 1;
-          if (newCounts['core-php'] < corePhp.count) newCounts['core-php'] += 1;
-          if (newCounts.wordpress < wordpress.count) newCounts.wordpress += 1;
+          if (newCounts.laravel < laravel.count) {
+            newCounts.laravel += 1;
+            allComplete = false;
+          }
+          if (newCounts.codeiginter < codeiginter.count) {
+            newCounts.codeiginter += 1;
+            allComplete = false;
+          }
+          if (newCounts['core-php'] < corePhp.count) {
+            newCounts['core-php'] += 1;
+            allComplete = false;
+          }
+          if (newCounts.wordpress < wordpress.count) {
+            newCounts.wordpress += 1;
+            allComplete = false;
+          }
           
-          // If all counts reached their targets, clear interval
-          if (
-            newCounts.laravel === laravel.count &&
-            newCounts.codeiginter === codeiginter.count &&
-            newCounts['core-php'] === corePhp.count &&
-            newCounts.wordpress === wordpress.count
-          ) {
+          if (allComplete) {
             clearInterval(interval);
           }
           
@@ -106,14 +100,21 @@ const AboutSection = () => {
     }
   }, [inView, aboutData]);
 
+  const primaryColor = configData?.data?.colors?.primary || '#7E5FEC';
+
   return (
-    <section id="about" className="py-20 bg-white" ref={sectionRef}>
+    <section id="about" className="py-20 bg-white" ref={ref}>
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple relative flex items-center">
-          <span className="relative w-8 h-8 mr-3">
-            <span className="absolute -left-1 -top-1 w-full h-full" style={{ background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, backgroundSize: 'cover' }}></span>
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple">
+          <span className="relative mr-3">
+            <span className="absolute -left-1 -top-1 w-8 h-8" style={{ 
+              background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, 
+              backgroundSize: 'cover',
+              zIndex: -1
+            }}></span>
+            A
           </span>
-          About Me
+          bout Me
         </h2>
         
         <div className="flex flex-col md:flex-row gap-10 mt-12">
@@ -122,7 +123,7 @@ const AboutSection = () => {
             {aboutStatus === 'loading' ? (
               <Skeleton className="rounded-full w-64 h-64" />
             ) : (
-              <div className="rounded-full overflow-hidden border-4 border-portfolio-purple/20 w-64 h-64 bg-portfolio-purple">
+              <div className="rounded-full overflow-hidden border-4 border-portfolio-purple/20 w-64 h-64" style={{ backgroundColor: primaryColor }}>
                 <img 
                   src={aboutData?.data?.image || "/lovable-uploads/4247e634-839f-43bf-bb4f-ccd4688dd08b.png"} 
                   alt={aboutData?.data?.name || "Profile image"}

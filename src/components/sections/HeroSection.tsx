@@ -65,7 +65,18 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen bg-portfolio-purple flex items-center justify-center overflow-hidden pt-16">
+    <section id="hero" className="relative min-h-screen bg-portfolio-purple flex items-center pt-16 overflow-hidden">
+      {/* Background image */}
+      <div 
+        className="absolute top-0 right-0 bottom-0 w-1/2 hidden md:block" 
+        style={{ 
+          backgroundImage: `url('/images/sabeer-banner.webp')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
+
       {/* Decorative Shapes */}
       <div className="shape shape-1 animate-float">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,13 +99,13 @@ const HeroSection = () => {
         </svg>
       </div>
       
-      <div className="container mx-auto px-4 text-center text-white relative z-10">
+      <div className="container mx-auto px-4 text-white relative z-10 md:w-1/2">
         <h2 className="text-2xl md:text-3xl font-light mb-2">Hello, I'm</h2>
         <h1 className="text-5xl md:text-7xl font-bold mb-6">Sabeer C A</h1>
         
-        <div className="h-16 flex items-center justify-center">
+        <div className="h-16 flex items-center justify-center md:justify-start">
           {aboutStatus === 'loading' ? (
-            <Skeleton className="h-8 w-48 mx-auto" />
+            <Skeleton className="h-8 w-48 mx-auto md:mx-0" />
           ) : aboutData?.data?.roles ? (
             <p className={`text-xl md:text-2xl font-light text-white/90 mb-8 transition-opacity duration-500 ${isChanging ? 'opacity-0' : 'opacity-100'}`}>
               {aboutData.data.roles[currentRoleIndex]}
@@ -104,7 +115,7 @@ const HeroSection = () => {
           )}
         </div>
         
-        <div className="flex flex-wrap justify-center gap-4 mb-10">
+        <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-10">
           {socialStatus === 'loading' ? (
             Array(6).fill(0).map((_, index) => (
               <Skeleton key={index} className="w-10 h-10 rounded-full" />
@@ -129,7 +140,7 @@ const HeroSection = () => {
         
         <a href="#contact" className="btn-primary inline-block">Hire Me</a>
         
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/80 animate-bounce">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 md:left-1/4 md:-translate-x-1/4 text-white/80 animate-bounce">
           <a href="#about">
             <ChevronDown size={30} />
           </a>

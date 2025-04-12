@@ -51,11 +51,16 @@ const ExperienceSection = () => {
   return (
     <section id="experience" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple relative flex items-center">
-          <span className="relative w-8 h-8 mr-3">
-            <span className="absolute -left-1 -top-1 w-full h-full" style={{ background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, backgroundSize: 'cover' }}></span>
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple">
+          <span className="relative mr-3">
+            <span className="absolute -left-1 -top-1 w-8 h-8" style={{ 
+              background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, 
+              backgroundSize: 'cover',
+              zIndex: -1
+            }}></span>
+            E
           </span>
-          Education & Experience
+          ducation & Experience
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12">
@@ -89,24 +94,28 @@ const ExperienceSection = () => {
                     Failed to load education data. Please try again later.
                   </div>
                 ) : (
-                  educationsData?.data.map((education, index) => (
-                    <div key={index} className="flex gap-3 relative">
-                      <div className="mt-1 relative">
-                        <GraduationCap className="text-portfolio-purple" size={16} />
-                        {index < educationsData.data.length - 1 && (
-                          <div className="absolute left-1.5 top-5 w-0.5 h-24 bg-red-500"></div>
-                        )}
+                  <div className="relative">
+                    {educationsData?.data.map((education, index) => (
+                      <div key={index} className="flex gap-3 relative pb-8">
+                        <div className="relative">
+                          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-portfolio-purple z-10 relative">
+                            <GraduationCap className="text-white" size={16} />
+                          </div>
+                          {index < (educationsData.data.length - 1) && (
+                            <div className="absolute left-4 top-8 w-0.5 h-full bg-red-500"></div>
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <span className="inline-block px-3 py-1 bg-portfolio-pink text-white text-xs rounded-full mb-2">
+                            {education.period}
+                          </span>
+                          <h4 className="text-xl font-semibold">{education.cource}</h4>
+                          <p className="text-gray-600">{education.institute}</p>
+                          <p className="mt-2 text-gray-700">{education.location}</p>
+                        </div>
                       </div>
-                      <div>
-                        <span className="inline-block px-3 py-1 bg-portfolio-pink text-white text-xs rounded-full mb-2">
-                          {education.period}
-                        </span>
-                        <h4 className="text-xl font-semibold">{education.cource}</h4>
-                        <p className="text-gray-600">{education.institute}</p>
-                        <p className="mt-2 text-gray-700">{education.location}</p>
-                      </div>
-                    </div>
-                  ))
+                    ))}
+                  </div>
                 )}
               </div>
             </CardContent>
@@ -142,34 +151,38 @@ const ExperienceSection = () => {
                     Failed to load experience data. Please try again later.
                   </div>
                 ) : (
-                  experiencesData?.data.map((experience, index) => (
-                    <div key={index} className="flex gap-3 relative">
-                      <div className="mt-1 relative">
-                        <Briefcase className="text-portfolio-purple" size={16} />
-                        {index < experiencesData.data.length - 1 && (
-                          <div className="absolute left-1.5 top-5 w-0.5 h-24 bg-red-500"></div>
-                        )}
-                      </div>
-                      <div>
-                        <span className="inline-block px-3 py-1 bg-portfolio-pink text-white text-xs rounded-full mb-2">
-                          {experience.period}
-                        </span>
-                        <h4 className="text-xl font-semibold">{experience.designation}</h4>
-                        <p className="text-gray-600">{experience.company}</p>
-                        <p className="mt-2 text-gray-700">{experience.location}</p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {experience.tags.map((tag, tagIndex) => (
-                            <span 
-                              key={tagIndex}
-                              className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                  <div className="relative">
+                    {experiencesData?.data.map((experience, index) => (
+                      <div key={index} className="flex gap-3 relative pb-8">
+                        <div className="relative">
+                          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-portfolio-purple z-10 relative">
+                            <Briefcase className="text-white" size={16} />
+                          </div>
+                          {index < (experiencesData.data.length - 1) && (
+                            <div className="absolute left-4 top-8 w-0.5 h-full bg-red-500"></div>
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <span className="inline-block px-3 py-1 bg-portfolio-pink text-white text-xs rounded-full mb-2">
+                            {experience.period}
+                          </span>
+                          <h4 className="text-xl font-semibold">{experience.designation}</h4>
+                          <p className="text-gray-600">{experience.company}</p>
+                          <p className="mt-2 text-gray-700">{experience.location}</p>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {experience.tags.map((tag, tagIndex) => (
+                              <span 
+                                key={tagIndex}
+                                className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))
+                    ))}
+                  </div>
                 )}
               </div>
             </CardContent>
