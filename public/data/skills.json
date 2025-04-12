@@ -2,10 +2,6 @@
     "success": true,
     "data": [
         {
-            "name": "Core PHP",
-            "image": "/icons/skills/php.svg"
-        },
-        {
             "name": "CodeIgniter",
             "image": "/icons/skills/codeiginter.svg"
         },
