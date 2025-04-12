@@ -3,7 +3,7 @@
     "data": [
         {
             "name": "Core PHP",
-            "image": "/icons/skills/php.png"
+            "image": "/icons/skills/php.svg"
         },
         {
             "name": "CodeIgniter",
@@ -31,7 +31,7 @@
         },
         {
             "name": "Laravel",
-            "image": "/icons/skills/laravel.png"
+            "image": "/icons/skills/laravel.svg"
         },
         {
             "name": "MySQL",
