@@ -1,7 +1,22 @@
 
-import { ChevronDown, Facebook, Twitter, Linkedin, Github, Instagram, Mail } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import { useFetchData } from '@/hooks/useFetchData';
+import { Skeleton } from '@/components/ui/skeleton';
+
+interface SocialMedia {
+  name: string;
+  url: string;
+  icon_class: string;
+}
+
+interface SocialMediaResponse {
+  success: boolean;
+  data: SocialMedia[];
+}
 
 const HeroSection = () => {
+  const { data: socialMediasData, status } = useFetchData<SocialMediaResponse>('/data/social-medias.json');
+  
   return (
     <section id="hero" className="relative min-h-screen bg-portfolio-purple flex items-center justify-center overflow-hidden pt-16">
       {/* Decorative Shapes */}
@@ -28,28 +43,28 @@ const HeroSection = () => {
       
       <div className="container mx-auto px-4 text-center text-white relative z-10">
         <h2 className="text-2xl md:text-3xl font-light mb-2">Hello, I'm</h2>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6">Sabeer D A</h1>
-        <p className="text-xl md:text-2xl font-light text-white/90 mb-8">Web Developer & UI Designer</p>
+        <h1 className="text-5xl md:text-7xl font-bold mb-6">Sabeer C A</h1>
+        <p className="text-xl md:text-2xl font-light text-white/90 mb-8">Web Developer & Software Engineer</p>
         
-        <div className="flex justify-center space-x-4 mb-10">
-          <a href="#" className="social-icon">
-            <Facebook size={18} />
-          </a>
-          <a href="#" className="social-icon">
-            <Twitter size={18} />
-          </a>
-          <a href="#" className="social-icon">
-            <Linkedin size={18} />
-          </a>
-          <a href="#" className="social-icon">
-            <Github size={18} />
-          </a>
-          <a href="#" className="social-icon">
-            <Instagram size={18} />
-          </a>
-          <a href="#" className="social-icon">
-            <Mail size={18} />
-          </a>
+        <div className="flex flex-wrap justify-center gap-4 mb-10">
+          {status === 'loading' ? (
+            Array(6).fill(0).map((_, index) => (
+              <Skeleton key={index} className="w-10 h-10 rounded-full" />
+            ))
+          ) : (
+            socialMediasData?.data.slice(0, 6).map((socialMedia, index) => (
+              <a 
+                key={index} 
+                href={socialMedia.url} 
+                target="_blank"
+                rel="noopener noreferrer" 
+                className="social-icon"
+                title={socialMedia.name}
+              >
+                <i className={`fa ${socialMedia.icon_class}`}></i>
+              </a>
+            ))
+          )}
         </div>
         
         <a href="#contact" className="btn-primary inline-block">Hire Me</a>
