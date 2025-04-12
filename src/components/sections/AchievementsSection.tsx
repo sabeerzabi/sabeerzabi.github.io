@@ -23,17 +23,22 @@ const AchievementsSection = () => {
   return (
     <section id="achievements" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="section-title">Achievements</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple relative flex items-center">
+          <span className="relative w-8 h-8 mr-3">
+            <img src="/icons/dots-bg.svg" alt="dots" className="absolute -left-1 -top-1 w-full h-full" />
+          </span>
+          Achievements
+        </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
           {status === 'loading' ? (
             Array(3).fill(0).map((_, index) => (
-              <Card key={index} className="shadow-lg">
-                <CardContent className="p-8 text-center">
+              <Card key={index} className="shadow-lg h-full">
+                <CardContent className="p-8 text-center h-full flex flex-col">
                   <Skeleton className="w-24 h-24 mx-auto mb-6 rounded-full" />
                   <Skeleton className="h-6 w-3/4 mx-auto mb-2" />
                   <Skeleton className="h-4 w-1/2 mx-auto mb-4" />
-                  <Skeleton className="h-10 w-28 mx-auto rounded" />
+                  <Skeleton className="h-10 w-28 mx-auto rounded mt-auto" />
                 </CardContent>
               </Card>
             ))
@@ -43,10 +48,10 @@ const AchievementsSection = () => {
             </div>
           ) : (
             achievementsData?.data.map((achievement, index) => (
-              <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <CardContent className="p-8 text-center">
-                  <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center bg-portfolio-purple/10 rounded-full group-hover:scale-110 transition-transform duration-300">
-                    <img src={achievement.image} alt={achievement.title} className="w-14 h-14 object-contain" />
+              <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 group h-full">
+                <CardContent className="p-8 text-center h-full flex flex-col">
+                  <div className="w-full aspect-square mx-auto mb-6 flex items-center justify-center bg-portfolio-purple/10 rounded-lg overflow-hidden">
+                    <img src={achievement.image} alt={achievement.title} className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <h3 className="text-2xl font-bold mb-2 text-portfolio-purple">{achievement.title}</h3>
                   <p className="text-gray-600 mb-4 text-lg">{achievement['sub-title']}</p>
@@ -63,7 +68,7 @@ const AchievementsSection = () => {
                       href={achievement.link} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="inline-block px-4 py-2 bg-portfolio-purple text-white rounded-md hover:bg-portfolio-purple/80 transition-colors"
+                      className="inline-block px-4 py-2 bg-portfolio-purple text-white rounded-md hover:bg-portfolio-purple/80 transition-colors mt-auto"
                     >
                       View More
                     </a>

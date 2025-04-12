@@ -5,11 +5,15 @@ import { useFetchData } from '@/hooks/useFetchData';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useInView } from '@/hooks/useInView';
 
 interface AboutData {
   name: string;
   description: string;
   image: string;
+  adress: string;
+  email: string;
+  phone: string;
   roles: string[];
   projects: {
     laravel: { count: number; icon: string };
@@ -42,6 +46,7 @@ interface ServicesResponse {
 const AboutSection = () => {
   const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>('/data/about.json');
   const { data: servicesData, status: servicesStatus } = useFetchData<ServicesResponse>('/data/services.json');
+  const { ref: sectionRef, isInView } = useInView({ threshold: 0.1 });
   
   // For animated counters
   const [counts, setCounts] = useState({
@@ -52,8 +57,16 @@ const AboutSection = () => {
   });
 
   useEffect(() => {
-    if (aboutData?.data?.projects) {
+    if (isInView && aboutData?.data?.projects) {
       const { laravel, codeiginter, 'core-php': corePhp, wordpress } = aboutData.data.projects;
+      
+      // Reset counts when coming into view
+      setCounts({
+        laravel: 0,
+        codeiginter: 0,
+        'core-php': 0,
+        wordpress: 0,
+      });
       
       // Animate counts from 0 to target
       const interval = setInterval(() => {
@@ -81,12 +94,17 @@ const AboutSection = () => {
       
       return () => clearInterval(interval);
     }
-  }, [aboutData]);
+  }, [isInView, aboutData]);
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-20 bg-white" ref={sectionRef}>
       <div className="container mx-auto px-4">
-        <h2 className="section-title">About Me</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple relative flex items-center">
+          <span className="relative w-8 h-8 mr-3">
+            <img src="/icons/dots-bg.svg" alt="dots" className="absolute -left-1 -top-1 w-full h-full" />
+          </span>
+          About Me
+        </h2>
         
         <div className="flex flex-col md:flex-row gap-10 mt-12">
           {/* Profile Image */}
@@ -94,7 +112,7 @@ const AboutSection = () => {
             {aboutStatus === 'loading' ? (
               <Skeleton className="rounded-full w-64 h-64" />
             ) : (
-              <div className="rounded-full overflow-hidden border-4 border-portfolio-purple/20 w-64 h-64">
+              <div className="rounded-full overflow-hidden border-4 border-portfolio-purple/20 w-64 h-64 bg-portfolio-purple/10">
                 <img 
                   src={aboutData?.data?.image || "/lovable-uploads/4247e634-839f-43bf-bb4f-ccd4688dd08b.png"} 
                   alt={aboutData?.data?.name || "Profile image"}
@@ -131,7 +149,7 @@ const AboutSection = () => {
                   <Card key={key} className="hover:shadow-lg transition-shadow">
                     <CardContent className="p-4 text-center">
                       <img src={value.icon} alt={key} className="w-10 h-10 mx-auto mb-2" />
-                      <p className="text-2xl font-bold text-portfolio-purple">{counts[key as keyof typeof counts]}</p>
+                      <p className="text-2xl font-bold text-portfolio-purple">{isInView ? counts[key as keyof typeof counts] : 0}</p>
                       <p className="text-sm text-gray-500">{key.replace('-', ' ')} projects</p>
                     </CardContent>
                   </Card>
@@ -152,62 +170,24 @@ const AboutSection = () => {
                 <MapPin className="text-portfolio-purple" />
                 <div>
                   <h4 className="font-semibold">Location</h4>
-                  <p className="text-gray-600">Kerala, India</p>
+                  <p className="text-gray-600">{aboutData?.data?.adress || "Kerala, India"}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="text-portfolio-purple" />
                 <div>
                   <h4 className="font-semibold">Email</h4>
-                  <p className="text-gray-600">sabeer@example.com</p>
+                  <p className="text-gray-600">{aboutData?.data?.email || "sabeer@example.com"}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="text-portfolio-purple" />
                 <div>
                   <h4 className="font-semibold">Phone</h4>
-                  <p className="text-gray-600">+91 963 374 3391</p>
+                  <p className="text-gray-600">{aboutData?.data?.phone || "+91 963 374 3391"}</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Services Progress Bars */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold mb-8 text-center text-portfolio-purple">Services & Skills</h3>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {servicesStatus === 'loading' ? (
-              Array(4).fill(0).map((_, i) => (
-                <div key={i} className="bg-white p-4 rounded-lg shadow-md">
-                  <Skeleton className="h-6 w-1/3 mb-2" />
-                  <Skeleton className="h-4 w-full mb-4" />
-                  <Skeleton className="h-4 rounded-full" />
-                </div>
-              ))
-            ) : servicesData?.data ? (
-              servicesData.data
-                .filter(service => service.visible)
-                .map((service, index) => (
-                  <div key={index} className="bg-white p-4 rounded-lg shadow-md">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className={`w-8 h-8 flex items-center justify-center rounded-full bg-${service.bg_color}-500`}>
-                        <img src={service.icon} alt={service.name} className="w-4 h-4" />
-                      </div>
-                      <h4 className="font-bold">{service.name}</h4>
-                    </div>
-                    <p className="text-gray-600 text-sm mb-3">{service.description}</p>
-                    <div className="flex items-center gap-2">
-                      <Progress 
-                        value={service.percentage} 
-                        className="h-2" 
-                      />
-                      <span className="text-xs font-medium">{service.percentage}%</span>
-                    </div>
-                  </div>
-                ))
-            ) : null}
           </div>
         </div>
       </div>

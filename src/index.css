@@ -78,7 +78,7 @@
   }
   
   .nav-link {
-    @apply px-4 py-2 text-white/90 hover:text-white transition-colors;
+    @apply px-4 py-2 text-white/90 hover:text-yellow-300 transition-colors font-bold;
   }
   
   .social-icon {
@@ -130,3 +130,9 @@
   bottom: 20%;
   right: 5%;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+

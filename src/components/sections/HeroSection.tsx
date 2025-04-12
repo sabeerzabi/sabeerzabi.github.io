@@ -1,7 +1,9 @@
 
+import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useFetchData } from '@/hooks/useFetchData';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useInView } from '@/hooks/useInView';
 
 interface SocialMedia {
   name: string;
@@ -14,8 +16,32 @@ interface SocialMediaResponse {
   data: SocialMedia[];
 }
 
+interface AboutResponse {
+  success: boolean;
+  data: {
+    roles: string[];
+  };
+}
+
 const HeroSection = () => {
-  const { data: socialMediasData, status } = useFetchData<SocialMediaResponse>('/data/social-medias.json');
+  const { data: socialMediasData, status: socialStatus } = useFetchData<SocialMediaResponse>('/data/social-medias.json');
+  const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>('/data/about.json');
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [isChanging, setIsChanging] = useState(false);
+  
+  useEffect(() => {
+    if (aboutData?.data?.roles) {
+      const interval = setInterval(() => {
+        setIsChanging(true);
+        setTimeout(() => {
+          setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % aboutData.data.roles.length);
+          setIsChanging(false);
+        }, 500); // time for fade out
+      }, 3000); // change every 3 seconds
+      
+      return () => clearInterval(interval);
+    }
+  }, [aboutData]);
   
   return (
     <section id="hero" className="relative min-h-screen bg-portfolio-purple flex items-center justify-center overflow-hidden pt-16">
@@ -44,15 +70,26 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 text-center text-white relative z-10">
         <h2 className="text-2xl md:text-3xl font-light mb-2">Hello, I'm</h2>
         <h1 className="text-5xl md:text-7xl font-bold mb-6">Sabeer C A</h1>
-        <p className="text-xl md:text-2xl font-light text-white/90 mb-8">Web Developer & Software Engineer</p>
+        
+        <div className="h-16 flex items-center justify-center">
+          {aboutStatus === 'loading' ? (
+            <Skeleton className="h-8 w-48 mx-auto" />
+          ) : aboutData?.data?.roles ? (
+            <p className={`text-xl md:text-2xl font-light text-white/90 mb-8 transition-opacity duration-500 ${isChanging ? 'opacity-0' : 'opacity-100'}`}>
+              {aboutData.data.roles[currentRoleIndex]}
+            </p>
+          ) : (
+            <p className="text-xl md:text-2xl font-light text-white/90 mb-8">Web Developer & Software Engineer</p>
+          )}
+        </div>
         
         <div className="flex flex-wrap justify-center gap-4 mb-10">
-          {status === 'loading' ? (
+          {socialStatus === 'loading' ? (
             Array(6).fill(0).map((_, index) => (
               <Skeleton key={index} className="w-10 h-10 rounded-full" />
             ))
-          ) : (
-            socialMediasData?.data.slice(0, 6).map((socialMedia, index) => (
+          ) : socialMediasData?.data ? (
+            socialMediasData.data.slice(0, 6).map((socialMedia, index) => (
               <a 
                 key={index} 
                 href={socialMedia.url} 
@@ -64,6 +101,8 @@ const HeroSection = () => {
                 <i className={`fa ${socialMedia.icon_class}`}></i>
               </a>
             ))
+          ) : (
+            <div className="text-white/80">Social media links unavailable</div>
           )}
         </div>
         
