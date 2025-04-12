@@ -8,7 +8,9 @@
       "bg_color": "violet",
       "visible": true,
       "color": "white",
-      "percentage": 80
+      "percentage": 80,
+      "progress_color": "blue",
+      "progress_bg_color": "grey"
     },
     {
       "name": "Web Development",
@@ -17,7 +19,9 @@
       "bg_color": "yellow",
       "visible": true,
       "color": "black",
-      "percentage": 95
+      "percentage": 95,
+      "progress_color": "green",
+      "progress_bg_color": "grey"
     },
     {
       "name": "HTML Conversion",
@@ -26,7 +30,9 @@
       "bg_color": "red",
       "visible": true,
       "color": "white",
-      "percentage": 60
+      "percentage": 60,
+      "progress_color": "pink",
+      "progress_bg_color": "grey"
     },
     {
       "name": "Team Management",
@@ -35,7 +41,9 @@
       "bg_color": "green",
       "visible": false,
       "color": "white",
-      "percentage": 80
+      "percentage": 80,
+      "progress_color": "yellow",
+      "progress_bg_color": "grey"
     },
     {
       "name": "Client Management",
@@ -44,7 +52,9 @@
       "bg_color": "blue",
       "visible": false,
       "color": "white ",
-      "percentage": 75
+      "percentage": 75,
+      "progress_color": "violet",
+      "progress_bg_color": "grey"
     }
   ]
 }
