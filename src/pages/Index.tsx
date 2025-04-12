@@ -10,8 +10,10 @@ import ProjectsSection from '@/components/sections/ProjectsSection';
 import AchievementsSection from '@/components/sections/AchievementsSection';
 import SkillsSection from '@/components/sections/SkillsSection';
 import ContactSection from '@/components/sections/ContactSection';
+import BackToTop from '@/components/ui/back-to-top';
 import Loader from '@/components/ui/loader';
 import { useFetchData } from '@/hooks/useFetchData';
+import { useLanguage } from '@/context/LanguageContext';
 
 // Update the favicon
 const updateFavicon = (path: string) => {
@@ -24,6 +26,7 @@ const updateFavicon = (path: string) => {
 const Index = () => {
   const { data: configData } = useFetchData<any>('/data/config.json');
   const [isLoading, setIsLoading] = useState(true);
+  const { isRtl } = useLanguage();
 
   useEffect(() => {
     if (configData?.data?.paths?.favicon) {
@@ -38,7 +41,7 @@ const Index = () => {
   }, [configData]);
 
   return (
-    <div className="min-h-screen">
+    <div className={`min-h-screen ${isRtl ? 'rtl' : ''}`}>
       <Loader />
       <Navbar />
       <HeroSection />
@@ -49,6 +52,7 @@ const Index = () => {
       <AchievementsSection />
       <SkillsSection />
       <ContactSection />
+      <BackToTop />
       <Footer />
     </div>
   );

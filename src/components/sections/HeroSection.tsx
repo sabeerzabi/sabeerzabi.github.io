@@ -8,6 +8,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { useLanguage } from '@/context/LanguageContext';
 
 library.add(fab, far, fas);
 
@@ -43,6 +44,7 @@ const HeroSection = () => {
   const { data: socialMediasData, status: socialStatus } = useFetchData<SocialMediaResponse>('/data/social-medias.json');
   const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>('/data/about.json');
   const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
+  const { translations } = useLanguage();
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   
@@ -63,6 +65,8 @@ const HeroSection = () => {
   const getIconClass = (iconClass: string) => {
     return iconClass.replace('fa-', '');
   };
+
+  const t = translations?.hero || {};
 
   return (
     <section id="hero" className="relative min-h-screen bg-portfolio-purple flex items-center pt-16 overflow-hidden">
@@ -100,8 +104,8 @@ const HeroSection = () => {
       </div>
       
       <div className="container mx-auto px-4 text-white relative z-10 md:w-1/2">
-        <h2 className="text-2xl md:text-3xl font-light mb-2">Hello, I'm</h2>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6">Sabeer C A</h1>
+        <h2 className="text-2xl md:text-3xl font-light mb-2">{t.hello || "Hello, I'm"}</h2>
+        <h1 className="text-5xl md:text-7xl font-bold mb-6">{t.name || "Sabeer C A"}</h1>
         
         <div className="h-16 flex items-center justify-center md:justify-start">
           {aboutStatus === 'loading' ? (
@@ -138,9 +142,9 @@ const HeroSection = () => {
           )}
         </div>
         
-        <a href="#contact" className="btn-primary inline-block">Hire Me</a>
+        <a href="#contact" className="btn-primary inline-block">{t.hire_me || "Hire Me"}</a>
         
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 md:left-1/4 md:-translate-x-1/4 text-white/80 animate-bounce">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/80 animate-bounce">
           <a href="#about">
             <ChevronDown size={30} />
           </a>

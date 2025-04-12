@@ -1,9 +1,9 @@
 
 import { useFetchData } from '@/hooks/useFetchData';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Progress } from '@/components/ui/progress';
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ServiceData {
   name: string;
@@ -43,8 +43,13 @@ interface ConfigResponse {
 const ServicesSection = () => {
   const { data: servicesData, status } = useFetchData<ServicesResponse>('/data/services.json');
   const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
+  const { translations } = useLanguage();
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [progressValues, setProgressValues] = useState<{ [key: string]: number }>({});
+  const [sectionRef, sectionInView] = useInView({ 
+    threshold: 0.1, 
+    triggerOnce: true 
+  });
   
   // Get only the visible services
   const visibleServices = servicesData?.data.filter(service => service.visible) || [];
@@ -103,19 +108,16 @@ const ServicesSection = () => {
     }
   };
 
+  const t = translations?.services || {};
+
   return (
     <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="section-title">
-          <span className="relative mr-3">
-            <span className="absolute -left-1 -top-1 w-8 h-8" style={{ 
-              background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, 
-              backgroundSize: 'cover',
-              zIndex: -1 
-            }}></span>
-            S
-          </span>
-          ervices
+        <h2 
+          ref={sectionRef}
+          className={`section-title fade-up ${sectionInView ? 'visible' : ''}`}
+        >
+          {t.title || 'Services'}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10" ref={ref}>

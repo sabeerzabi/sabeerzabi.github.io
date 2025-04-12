@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,18 +45,31 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: 'Rubik', sans-serif;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
   }
 }
 
 @layer components {
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple;
+    @apply relative text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple;
   }
   
-  .section-title::after {
+  .section-title::before {
     content: "";
-    @apply absolute left-1/2 -translate-x-1/2 -bottom-3 w-20 h-1 bg-portfolio-pink rounded-full;
+    @apply absolute bg-no-repeat bg-cover;
+    height: 37px;
+    width: 37px;
+    left: -14px;
+    top: -14px;
+    z-index: -1;
+    background-image: url('/icons/dots-bg.svg');
   }
   
   .service-card {
@@ -104,6 +119,45 @@
   .project-filters button.active {
     @apply bg-portfolio-purple text-white;
   }
+
+  .language-switcher {
+    @apply relative;
+  }
+
+  .language-menu {
+    @apply absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg p-2 z-50;
+  }
+
+  .language-item {
+    @apply flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded cursor-pointer;
+  }
+
+  .language-flag {
+    @apply w-5 h-5;
+  }
+
+  .dummy-image {
+    filter: grayscale(100%);
+  }
+
+  .back-to-top {
+    @apply fixed bottom-8 right-8 w-12 h-12 bg-portfolio-purple text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-portfolio-pink transition-colors;
+  }
+
+  .rtl {
+    direction: rtl;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .shape {
@@ -150,11 +204,18 @@
   animation: float 5s ease-in-out infinite;
 }
 
-/* Ensure first letter of section title is on top of dots background */
-h2 [class*="absolute"] {
-  z-index: -1;
+/* Make sure the container has padding */
+.container {
+  @apply px-4 sm:px-6 lg:px-8;
 }
 
-.dummy-image {
-  filter: grayscale(100%);
+/* RTL support */
+.rtl .section-title::before {
+  left: auto;
+  right: -14px;
+}
+
+[dir="rtl"] .section-title::before {
+  left: auto;
+  right: -14px;
 }

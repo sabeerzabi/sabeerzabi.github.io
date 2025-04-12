@@ -6,7 +6,8 @@
       "logo": "/icons/logo.svg",
       "favicon": "/favicon.ico",
       "resume": "/sabeer.pdf",
-      "dotsBg": "/icons/dots-bg.svg"
+      "dotsBg": "/icons/dots-bg.svg",
+      "mapBg": "/icons/map.svg"
     },
     "colors": {
       "primary": "#7E5FEC",
@@ -26,6 +27,29 @@
     "loader": {
       "background": "#7E5FEC",
       "spinner": "#FFFFFF"
+    },
+    "languages": {
+      "en": {
+        "name": "English",
+        "code": "en",
+        "flag": "/icons/flags/en.svg",
+        "enabled": true,
+        "default": true
+      },
+      "ar": {
+        "name": "Arabic",
+        "code": "ar",
+        "flag": "/icons/flags/ar.svg",
+        "enabled": true,
+        "default": false
+      },
+      "ml": {
+        "name": "Malayalam",
+        "code": "ml",
+        "flag": "/icons/flags/ml.svg",
+        "enabled": true,
+        "default": false
+      }
     }
   }
 }

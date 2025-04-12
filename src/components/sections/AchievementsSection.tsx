@@ -2,6 +2,8 @@
 import { useFetchData } from '@/hooks/useFetchData';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent } from '@/components/ui/card';
+import { useInView } from 'react-intersection-observer';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Achievement {
   title: string;
@@ -30,20 +32,19 @@ interface ConfigResponse {
 const AchievementsSection = () => {
   const { data: achievementsData, status } = useFetchData<AchievementsResponse>('/data/achivements.json');
   const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
+  const { translations } = useLanguage();
+  const [sectionRef, sectionInView] = useInView({ threshold: 0.1, triggerOnce: true });
+
+  const t = translations?.achievements || {};
 
   return (
     <section id="achievements" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple">
-          <span className="relative mr-3">
-            <span className="absolute -left-1 -top-1 w-8 h-8" style={{ 
-              background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, 
-              backgroundSize: 'cover',
-              zIndex: -1
-            }}></span>
-            A
-          </span>
-          chievements
+        <h2 
+          ref={sectionRef}
+          className={`section-title fade-up ${sectionInView ? 'visible' : ''}`}
+        >
+          {t.title || 'Achievements'}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
@@ -66,11 +67,11 @@ const AchievementsSection = () => {
             achievementsData?.data.map((achievement, index) => (
               <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 group h-full">
                 <CardContent className="p-8 text-center h-full flex flex-col">
-                  <div className="w-full mb-6 flex items-center justify-center bg-portfolio-purple/10 rounded-lg overflow-hidden">
+                  <div className="w-full mb-6 flex items-center justify-center">
                     <img 
                       src={achievement.image} 
                       alt={achievement.title} 
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" 
+                      className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300" 
                     />
                   </div>
                   <h3 className="text-2xl font-bold mb-2 text-portfolio-purple">{achievement.title}</h3>
@@ -88,9 +89,9 @@ const AchievementsSection = () => {
                       href={achievement.link} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="inline-block px-4 py-2 bg-portfolio-purple text-white rounded-md hover:bg-portfolio-purple/80 transition-colors mt-auto"
+                      className="btn-primary inline-block mt-auto"
                     >
-                      View More
+                      {t.view_more || 'View More'}
                     </a>
                   )}
                 </CardContent>
@@ -100,7 +101,9 @@ const AchievementsSection = () => {
         </div>
         
         <div className="text-center mt-10">
-          <a href={configData?.data?.paths?.resume || "/sabeer.pdf"} target="_blank" rel="noopener noreferrer" className="btn-primary">Download Resume</a>
+          <a href={configData?.data?.paths?.resume || "/sabeer.pdf"} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            {t.download_resume || 'Download Resume'}
+          </a>
         </div>
       </div>
     </section>

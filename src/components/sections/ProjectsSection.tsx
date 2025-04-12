@@ -2,7 +2,9 @@
 import { useState, useEffect } from 'react';
 import { useFetchData } from '@/hooks/useFetchData';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { useInView } from 'react-intersection-observer';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Project {
   type: string;
@@ -34,12 +36,15 @@ interface ConfigResponse {
 const ProjectsSection = () => {
   const { data: projectsData, status } = useFetchData<ProjectsResponse>('/data/projects.json');
   const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
+  const { translations } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
   const [displayedProjects, setDisplayedProjects] = useState<Project[]>([]);
   const [filters, setFilters] = useState<string[]>(['all']);
+  const [filterCounts, setFilterCounts] = useState<Record<string, number>>({});
   const [visibleCount, setVisibleCount] = useState(6);
   const [showViewAll, setShowViewAll] = useState(false);
   const [showLess, setShowLess] = useState(false);
+  const [sectionRef, sectionInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
   // Set up filters and initial projects
   useEffect(() => {
@@ -48,11 +53,18 @@ const ProjectsSection = () => {
       const allTags = new Set<string>();
       allTags.add('all');
       
+      // Count projects per filter
+      const counts: Record<string, number> = { all: projectsData.data.length };
+      
       projectsData.data.forEach(project => {
-        project.tags.forEach(tag => allTags.add(tag));
+        project.tags.forEach(tag => {
+          allTags.add(tag);
+          counts[tag] = (counts[tag] || 0) + 1;
+        });
       });
       
       setFilters(Array.from(allTags));
+      setFilterCounts(counts);
       
       // Set initial displayed projects
       filterProjects('all', projectsData.data);
@@ -93,14 +105,16 @@ const ProjectsSection = () => {
     setShowLess(false);
   };
 
+  const t = translations?.projects || {};
+
   return (
     <section id="projects" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple relative flex items-center">
-          <span className="relative w-8 h-8 mr-3">
-            <span className="absolute -left-1 -top-1 w-full h-full" style={{ background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, backgroundSize: 'cover' }}></span>
-          </span>
-          Projects
+        <h2 
+          ref={sectionRef}
+          className={`section-title fade-up ${sectionInView ? 'visible' : ''}`}
+        >
+          {t.title || 'Projects'}
         </h2>
         
         {/* Project Filters */}
@@ -113,10 +127,15 @@ const ProjectsSection = () => {
             filters.map((filter, index) => (
               <button
                 key={index}
-                className={`${activeFilter === filter ? 'active' : ''}`}
+                className={`flex items-center ${activeFilter === filter ? 'active' : ''}`}
                 onClick={() => handleFilterClick(filter)}
               >
-                {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                <span>{filter.charAt(0).toUpperCase() + filter.slice(1)}</span>
+                {filterCounts[filter] > 0 && (
+                  <Badge variant="secondary" className="ml-2">
+                    {filterCounts[filter]}
+                  </Badge>
+                )}
               </button>
             ))
           )}
@@ -149,7 +168,7 @@ const ProjectsSection = () => {
                   <img 
                     src={project.mini_image || project.image} 
                     alt={project.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover dummy-image"
                   />
                 </div>
                 <div className="p-4">
@@ -164,21 +183,21 @@ const ProjectsSection = () => {
         {/* View All / Show Less Button */}
         <div className="text-center mt-10">
           {showViewAll && (
-            <Button 
+            <button 
               onClick={handleViewAllClick}
-              className="bg-portfolio-purple hover:bg-portfolio-purple/80 text-white"
+              className="btn-primary"
             >
-              View All
-            </Button>
+              {t.view_all || 'View All'}
+            </button>
           )}
           
           {showLess && (
-            <Button 
+            <button 
               onClick={handleShowLessClick}
-              className="bg-portfolio-purple hover:bg-portfolio-purple/80 text-white"
+              className="btn-primary"
             >
-              Show Less
-            </Button>
+              {t.show_less || 'Show Less'}
+            </button>
           )}
         </div>
       </div>

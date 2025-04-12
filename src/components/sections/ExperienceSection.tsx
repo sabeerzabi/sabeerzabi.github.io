@@ -1,34 +1,41 @@
 
+import { useState } from 'react';
 import { useFetchData } from '@/hooks/useFetchData';
 import { Skeleton } from '@/components/ui/skeleton';
-import { GraduationCap, Briefcase } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-
-interface Education {
-  period: string;
-  cource: string;
-  institute: string;
-  location: string;
-}
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useInView } from 'react-intersection-observer';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Experience {
-  period: string;
   company: string;
-  designation: string;
+  country: string;
+  website: string | null;
+  role: string;
+  duration: string;
+  order: number;
+  sub_role: string | null;
+  tasks: string[];
+  technologies: string[];
+}
+
+interface Education {
+  institute: string;
+  course: string;
+  duration: string;
+  order: number;
   location: string;
-  experience: string;
-  tags: string[];
-  description: string;
+  website: string | null;
+  description: string[];
 }
 
-interface EducationsResponse {
-  success: boolean;
-  data: Education[];
-}
-
-interface ExperiencesResponse {
+interface ExperienceResponse {
   success: boolean;
   data: Experience[];
+}
+
+interface EducationResponse {
+  success: boolean;
+  data: Education[];
 }
 
 interface ConfigResponse {
@@ -41,153 +48,177 @@ interface ConfigResponse {
 }
 
 const ExperienceSection = () => {
-  const { data: educationsData, status: educationsStatus } = useFetchData<EducationsResponse>('/data/educations.json');
-  const { data: experiencesData, status: experiencesStatus } = useFetchData<ExperiencesResponse>('/data/experiences.json');
+  const { data: experiencesData, status: expStatus } = useFetchData<ExperienceResponse>('/data/experiences.json');
+  const { data: educationsData, status: eduStatus } = useFetchData<EducationResponse>('/data/educations.json');
   const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
+  const { translations } = useLanguage();
+  const [activeTab, setActiveTab] = useState('experience');
+  const [sectionRef, sectionInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
-  const isLoading = educationsStatus === 'loading' || experiencesStatus === 'loading';
-  const hasError = educationsStatus === 'error' || experiencesStatus === 'error';
+  // Sort data by order
+  const sortedExperiences = experiencesData?.data
+    ? [...experiencesData.data].sort((a, b) => a.order - b.order)
+    : [];
+  
+  const sortedEducations = educationsData?.data
+    ? [...educationsData.data].sort((a, b) => a.order - b.order)
+    : [];
+
+  const t = translations?.experience || {};
 
   return (
-    <section id="experience" className="py-20 bg-white">
+    <section id="experience" className="py-20 bg-white relative">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple">
-          <span className="relative mr-3">
-            <span className="absolute -left-1 -top-1 w-8 h-8" style={{ 
-              background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, 
-              backgroundSize: 'cover',
-              zIndex: -1
-            }}></span>
-            E
-          </span>
-          ducation & Experience
+        <h2 
+          ref={sectionRef}
+          className={`section-title fade-up ${sectionInView ? 'visible' : ''}`}
+        >
+          {t.title || 'Experience & Education'}
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12">
-          {/* Education */}
-          <Card className="shadow-lg hover:shadow-xl transition-all duration-300">
-            <CardContent className="p-8">
-              <div className="flex items-center mb-6">
-                <div className="w-10 h-10 rounded-full bg-portfolio-purple/10 flex items-center justify-center mr-3">
-                  <GraduationCap className="text-portfolio-purple" size={20} />
-                </div>
-                <h3 className="text-2xl font-bold text-portfolio-purple">Education</h3>
-              </div>
-              
-              <div className="space-y-6">
-                {isLoading ? (
-                  Array(3).fill(0).map((_, index) => (
-                    <div key={index} className="flex gap-3">
-                      <div className="mt-1">
-                        <GraduationCap className="text-portfolio-purple/30" size={16} />
-                      </div>
-                      <div className="flex-1">
-                        <Skeleton className="h-6 w-32 mb-2" />
-                        <Skeleton className="h-6 w-48 mb-1" />
-                        <Skeleton className="h-4 w-40 mb-2" />
-                        <Skeleton className="h-4 w-full" />
-                      </div>
-                    </div>
-                  ))
-                ) : hasError ? (
-                  <div className="text-red-500">
-                    Failed to load education data. Please try again later.
-                  </div>
-                ) : (
-                  <div className="relative">
-                    {educationsData?.data.map((education, index) => (
-                      <div key={index} className="flex gap-3 relative pb-8">
-                        <div className="relative">
-                          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-portfolio-purple z-10 relative">
-                            <GraduationCap className="text-white" size={16} />
-                          </div>
-                          {index < (educationsData.data.length - 1) && (
-                            <div className="absolute left-4 top-8 w-0.5 h-full bg-red-500"></div>
-                          )}
-                        </div>
-                        <div className="flex-1">
-                          <span className="inline-block px-3 py-1 bg-portfolio-pink text-white text-xs rounded-full mb-2">
-                            {education.period}
-                          </span>
-                          <h4 className="text-xl font-semibold">{education.cource}</h4>
-                          <p className="text-gray-600">{education.institute}</p>
-                          <p className="mt-2 text-gray-700">{education.location}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
+        <Tabs 
+          defaultValue="experience" 
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="mt-10"
+        >
+          <TabsList className="grid grid-cols-2 mb-10 w-full sm:w-80 mx-auto">
+            <TabsTrigger value="experience">Experience</TabsTrigger>
+            <TabsTrigger value="education">Education</TabsTrigger>
+          </TabsList>
           
-          {/* Experience */}
-          <Card className="shadow-lg hover:shadow-xl transition-all duration-300">
-            <CardContent className="p-8">
-              <div className="flex items-center mb-6">
-                <div className="w-10 h-10 rounded-full bg-portfolio-purple/10 flex items-center justify-center mr-3">
-                  <Briefcase className="text-portfolio-purple" size={20} />
+          <TabsContent value="experience">
+            <div className="timeline">
+              {expStatus === 'loading' ? (
+                Array(3).fill(0).map((_, index) => (
+                  <div key={index} className="mb-10">
+                    <Skeleton className="h-8 w-64 mb-2" />
+                    <Skeleton className="h-6 w-48 mb-4" />
+                    <Skeleton className="h-4 w-full mb-2" />
+                    <Skeleton className="h-4 w-full mb-2" />
+                    <Skeleton className="h-4 w-3/4" />
+                  </div>
+                ))
+              ) : expStatus === 'error' ? (
+                <div className="text-center text-red-500">
+                  Failed to load experiences. Please try again later.
                 </div>
-                <h3 className="text-2xl font-bold text-portfolio-purple">Experience</h3>
-              </div>
-              
-              <div className="space-y-6">
-                {isLoading ? (
-                  Array(3).fill(0).map((_, index) => (
-                    <div key={index} className="flex gap-3">
-                      <div className="mt-1">
-                        <Briefcase className="text-portfolio-purple/30" size={16} />
+              ) : (
+                <div className="relative">
+                  {/* Red vertical line */}
+                  <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-portfolio-pink"></div>
+                  
+                  {sortedExperiences.map((experience, index) => (
+                    <div key={index} className="relative mb-12 pb-10 pl-12">
+                      {/* Red dot with icon */}
+                      <div className="absolute left-0 top-1.5 w-6 h-6 bg-portfolio-pink rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
                       </div>
-                      <div className="flex-1">
-                        <Skeleton className="h-6 w-32 mb-2" />
-                        <Skeleton className="h-6 w-48 mb-1" />
-                        <Skeleton className="h-4 w-40 mb-2" />
-                        <Skeleton className="h-4 w-full" />
+                      
+                      <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all">
+                        <h3 className="text-xl font-bold text-portfolio-purple mb-1">{experience.role}</h3>
+                        <div className="text-portfolio-pink font-semibold mb-2">
+                          <a href={experience.website || '#'} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                            {experience.company}
+                          </a>
+                          <span className="mx-2">•</span>
+                          <span>{experience.country}</span>
+                        </div>
+                        <p className="text-gray-500 mb-4">{experience.duration}</p>
+                        
+                        {experience.tasks.length > 0 && (
+                          <div className="mb-4">
+                            <p className="text-gray-700 font-medium mb-2">Responsibilities:</p>
+                            <ul className="list-disc pl-5 space-y-1">
+                              {experience.tasks.map((task, i) => (
+                                <li key={i} className="text-gray-600">{task}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {experience.technologies.length > 0 && (
+                          <div>
+                            <p className="text-gray-700 font-medium mb-2">Technologies:</p>
+                            <div className="flex flex-wrap gap-2">
+                              {experience.technologies.map((tech, i) => (
+                                <span key={i} className="bg-portfolio-purple/10 text-portfolio-purple px-3 py-1 rounded-full text-sm">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
-                  ))
-                ) : hasError ? (
-                  <div className="text-red-500">
-                    Failed to load experience data. Please try again later.
+                  ))}
+                </div>
+              )}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="education">
+            <div className="timeline">
+              {eduStatus === 'loading' ? (
+                Array(2).fill(0).map((_, index) => (
+                  <div key={index} className="mb-10">
+                    <Skeleton className="h-8 w-64 mb-2" />
+                    <Skeleton className="h-6 w-48 mb-4" />
+                    <Skeleton className="h-4 w-full mb-2" />
+                    <Skeleton className="h-4 w-full mb-2" />
+                    <Skeleton className="h-4 w-3/4" />
                   </div>
-                ) : (
-                  <div className="relative">
-                    {experiencesData?.data.map((experience, index) => (
-                      <div key={index} className="flex gap-3 relative pb-8">
-                        <div className="relative">
-                          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-portfolio-purple z-10 relative">
-                            <Briefcase className="text-white" size={16} />
-                          </div>
-                          {index < (experiencesData.data.length - 1) && (
-                            <div className="absolute left-4 top-8 w-0.5 h-full bg-red-500"></div>
-                          )}
-                        </div>
-                        <div className="flex-1">
-                          <span className="inline-block px-3 py-1 bg-portfolio-pink text-white text-xs rounded-full mb-2">
-                            {experience.period}
-                          </span>
-                          <h4 className="text-xl font-semibold">{experience.designation}</h4>
-                          <p className="text-gray-600">{experience.company}</p>
-                          <p className="mt-2 text-gray-700">{experience.location}</p>
-                          <div className="mt-2 flex flex-wrap gap-2">
-                            {experience.tags.map((tag, tagIndex) => (
-                              <span 
-                                key={tagIndex}
-                                className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
+                ))
+              ) : eduStatus === 'error' ? (
+                <div className="text-center text-red-500">
+                  Failed to load education information. Please try again later.
+                </div>
+              ) : (
+                <div className="relative">
+                  {/* Red vertical line */}
+                  <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-portfolio-pink"></div>
+                  
+                  {sortedEducations.map((education, index) => (
+                    <div key={index} className="relative mb-12 pb-10 pl-12">
+                      {/* Red dot with graduation cap icon */}
+                      <div className="absolute left-0 top-1.5 w-6 h-6 bg-portfolio-pink rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                          <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                        </svg>
                       </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+                      
+                      <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all">
+                        <h3 className="text-xl font-bold text-portfolio-purple mb-1">{education.course}</h3>
+                        <div className="text-portfolio-pink font-semibold mb-2">
+                          <a href={education.website || '#'} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                            {education.institute}
+                          </a>
+                          <span className="mx-2">•</span>
+                          <span>{education.location}</span>
+                        </div>
+                        <p className="text-gray-500 mb-4">{education.duration}</p>
+                        
+                        {education.description.length > 0 && (
+                          <div>
+                            <ul className="list-disc pl-5 space-y-1">
+                              {education.description.map((desc, i) => (
+                                <li key={i} className="text-gray-600">{desc}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );
