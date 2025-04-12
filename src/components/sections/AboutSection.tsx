@@ -5,7 +5,7 @@ import { useFetchData } from '@/hooks/useFetchData';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useInView } from '@/hooks/useInView';
+import { useInView } from 'react-intersection-observer';
 
 interface AboutData {
   name: string;
@@ -14,6 +14,7 @@ interface AboutData {
   adress: string;
   email: string;
   phone: string;
+  experience: string;
   roles: string[];
   projects: {
     laravel: { count: number; icon: string };
@@ -43,10 +44,19 @@ interface ServicesResponse {
   data: ServiceData[];
 }
 
+interface ConfigResponse {
+  success: boolean;
+  data: {
+    paths: {
+      dotsBg: string;
+    };
+  };
+}
+
 const AboutSection = () => {
   const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>('/data/about.json');
-  const { data: servicesData, status: servicesStatus } = useFetchData<ServicesResponse>('/data/services.json');
-  const { ref: sectionRef, isInView } = useInView({ threshold: 0.1 });
+  const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
+  const { ref: sectionRef, inView } = useInView({ threshold: 0.1, triggerOnce: false });
   
   // For animated counters
   const [counts, setCounts] = useState({
@@ -57,7 +67,7 @@ const AboutSection = () => {
   });
 
   useEffect(() => {
-    if (isInView && aboutData?.data?.projects) {
+    if (inView && aboutData?.data?.projects) {
       const { laravel, codeiginter, 'core-php': corePhp, wordpress } = aboutData.data.projects;
       
       // Reset counts when coming into view
@@ -94,14 +104,14 @@ const AboutSection = () => {
       
       return () => clearInterval(interval);
     }
-  }, [isInView, aboutData]);
+  }, [inView, aboutData]);
 
   return (
     <section id="about" className="py-20 bg-white" ref={sectionRef}>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple relative flex items-center">
           <span className="relative w-8 h-8 mr-3">
-            <img src="/icons/dots-bg.svg" alt="dots" className="absolute -left-1 -top-1 w-full h-full" />
+            <span className="absolute -left-1 -top-1 w-full h-full" style={{ background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, backgroundSize: 'cover' }}></span>
           </span>
           About Me
         </h2>
@@ -112,7 +122,7 @@ const AboutSection = () => {
             {aboutStatus === 'loading' ? (
               <Skeleton className="rounded-full w-64 h-64" />
             ) : (
-              <div className="rounded-full overflow-hidden border-4 border-portfolio-purple/20 w-64 h-64 bg-portfolio-purple/10">
+              <div className="rounded-full overflow-hidden border-4 border-portfolio-purple/20 w-64 h-64 bg-portfolio-purple">
                 <img 
                   src={aboutData?.data?.image || "/lovable-uploads/4247e634-839f-43bf-bb4f-ccd4688dd08b.png"} 
                   alt={aboutData?.data?.name || "Profile image"}
@@ -149,7 +159,7 @@ const AboutSection = () => {
                   <Card key={key} className="hover:shadow-lg transition-shadow">
                     <CardContent className="p-4 text-center">
                       <img src={value.icon} alt={key} className="w-10 h-10 mx-auto mb-2" />
-                      <p className="text-2xl font-bold text-portfolio-purple">{isInView ? counts[key as keyof typeof counts] : 0}</p>
+                      <p className="text-2xl font-bold text-portfolio-purple">{inView ? counts[key as keyof typeof counts] : 0}</p>
                       <p className="text-sm text-gray-500">{key.replace('-', ' ')} projects</p>
                     </CardContent>
                   </Card>
@@ -163,7 +173,7 @@ const AboutSection = () => {
                 <Clock className="text-portfolio-purple" />
                 <div>
                   <h4 className="font-semibold">Experience</h4>
-                  <p className="text-gray-600">5+ Years</p>
+                  <p className="text-gray-600">{aboutData?.data?.experience || "5+ Years"}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">

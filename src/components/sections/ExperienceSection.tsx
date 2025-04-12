@@ -31,9 +31,19 @@ interface ExperiencesResponse {
   data: Experience[];
 }
 
+interface ConfigResponse {
+  success: boolean;
+  data: {
+    paths: {
+      dotsBg: string;
+    };
+  };
+}
+
 const ExperienceSection = () => {
   const { data: educationsData, status: educationsStatus } = useFetchData<EducationsResponse>('/data/educations.json');
   const { data: experiencesData, status: experiencesStatus } = useFetchData<ExperiencesResponse>('/data/experiences.json');
+  const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
 
   const isLoading = educationsStatus === 'loading' || experiencesStatus === 'loading';
   const hasError = educationsStatus === 'error' || experiencesStatus === 'error';
@@ -43,7 +53,7 @@ const ExperienceSection = () => {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple relative flex items-center">
           <span className="relative w-8 h-8 mr-3">
-            <img src="/icons/dots-bg.svg" alt="dots" className="absolute -left-1 -top-1 w-full h-full" />
+            <span className="absolute -left-1 -top-1 w-full h-full" style={{ background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, backgroundSize: 'cover' }}></span>
           </span>
           Education & Experience
         </h2>
@@ -80,9 +90,12 @@ const ExperienceSection = () => {
                   </div>
                 ) : (
                   educationsData?.data.map((education, index) => (
-                    <div key={index} className="flex gap-3">
-                      <div className="mt-1">
+                    <div key={index} className="flex gap-3 relative">
+                      <div className="mt-1 relative">
                         <GraduationCap className="text-portfolio-purple" size={16} />
+                        {index < educationsData.data.length - 1 && (
+                          <div className="absolute left-1.5 top-5 w-0.5 h-24 bg-red-500"></div>
+                        )}
                       </div>
                       <div>
                         <span className="inline-block px-3 py-1 bg-portfolio-pink text-white text-xs rounded-full mb-2">
@@ -130,9 +143,12 @@ const ExperienceSection = () => {
                   </div>
                 ) : (
                   experiencesData?.data.map((experience, index) => (
-                    <div key={index} className="flex gap-3">
-                      <div className="mt-1">
+                    <div key={index} className="flex gap-3 relative">
+                      <div className="mt-1 relative">
                         <Briefcase className="text-portfolio-purple" size={16} />
+                        {index < experiencesData.data.length - 1 && (
+                          <div className="absolute left-1.5 top-5 w-0.5 h-24 bg-red-500"></div>
+                        )}
                       </div>
                       <div>
                         <span className="inline-block px-3 py-1 bg-portfolio-pink text-white text-xs rounded-full mb-2">

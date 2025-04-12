@@ -22,13 +22,24 @@ interface ProjectsResponse {
   data: Project[];
 }
 
+interface ConfigResponse {
+  success: boolean;
+  data: {
+    paths: {
+      dotsBg: string;
+    };
+  };
+}
+
 const ProjectsSection = () => {
   const { data: projectsData, status } = useFetchData<ProjectsResponse>('/data/projects.json');
+  const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
   const [activeFilter, setActiveFilter] = useState('all');
   const [displayedProjects, setDisplayedProjects] = useState<Project[]>([]);
   const [filters, setFilters] = useState<string[]>(['all']);
-  const [visibleCount, setVisibleCount] = useState(20);
+  const [visibleCount, setVisibleCount] = useState(6);
   const [showViewAll, setShowViewAll] = useState(false);
+  const [showLess, setShowLess] = useState(false);
 
   // Set up filters and initial projects
   useEffect(() => {
@@ -58,7 +69,9 @@ const ProjectsSection = () => {
     
     setDisplayedProjects(filtered);
     setActiveFilter(filter);
-    setShowViewAll(filtered.length > visibleCount);
+    setVisibleCount(6);
+    setShowViewAll(filtered.length > 6);
+    setShowLess(false);
   };
 
   // Handle filter click
@@ -68,23 +81,24 @@ const ProjectsSection = () => {
 
   // Handle view all click
   const handleViewAllClick = () => {
-    setVisibleCount(prevCount => prevCount + 20);
-    if (displayedProjects.length <= visibleCount + 20) {
-      setShowViewAll(false);
-    }
+    setVisibleCount(displayedProjects.length);
+    setShowViewAll(false);
+    setShowLess(true);
   };
 
-  // Update showViewAll when visibleCount changes
-  useEffect(() => {
-    setShowViewAll(displayedProjects.length > visibleCount);
-  }, [visibleCount, displayedProjects]);
+  // Handle show less click
+  const handleShowLessClick = () => {
+    setVisibleCount(6);
+    setShowViewAll(true);
+    setShowLess(false);
+  };
 
   return (
     <section id="projects" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple relative flex items-center">
           <span className="relative w-8 h-8 mr-3">
-            <img src="/icons/dots-bg.svg" alt="dots" className="absolute -left-1 -top-1 w-full h-full" />
+            <span className="absolute -left-1 -top-1 w-full h-full" style={{ background: `url(${configData?.data?.paths?.dotsBg || "/icons/dots-bg.svg"})`, backgroundSize: 'cover' }}></span>
           </span>
           Projects
         </h2>
@@ -109,9 +123,9 @@ const ProjectsSection = () => {
         </div>
         
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {status === 'loading' ? (
-            Array(8).fill(0).map((_, index) => (
+            Array(6).fill(0).map((_, index) => (
               <div key={index} className="project-card">
                 <Skeleton className="h-48 w-full rounded-t-xl" />
                 <div className="p-4">
@@ -147,17 +161,26 @@ const ProjectsSection = () => {
           )}
         </div>
         
-        {/* View All Button */}
-        {showViewAll && (
-          <div className="text-center mt-10">
+        {/* View All / Show Less Button */}
+        <div className="text-center mt-10">
+          {showViewAll && (
             <Button 
               onClick={handleViewAllClick}
               className="bg-portfolio-purple hover:bg-portfolio-purple/80 text-white"
             >
               View All
             </Button>
-          </div>
-        )}
+          )}
+          
+          {showLess && (
+            <Button 
+              onClick={handleShowLessClick}
+              className="bg-portfolio-purple hover:bg-portfolio-purple/80 text-white"
+            >
+              Show Less
+            </Button>
+          )}
+        </div>
       </div>
     </section>
   );

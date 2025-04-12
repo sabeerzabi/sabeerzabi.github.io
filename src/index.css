@@ -136,3 +136,23 @@
   to { opacity: 1; }
 }
 
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.section-heading-dots {
+  background-image: url('/icons/dots-bg.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}

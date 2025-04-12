@@ -3,7 +3,13 @@ import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useFetchData } from '@/hooks/useFetchData';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useInView } from '@/hooks/useInView';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+library.add(fab, far, fas);
 
 interface SocialMedia {
   name: string;
@@ -23,9 +29,20 @@ interface AboutResponse {
   };
 }
 
+interface ConfigResponse {
+  success: boolean;
+  data: {
+    paths: {
+      logo: string;
+      dotsBg: string;
+    };
+  };
+}
+
 const HeroSection = () => {
   const { data: socialMediasData, status: socialStatus } = useFetchData<SocialMediaResponse>('/data/social-medias.json');
   const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>('/data/about.json');
+  const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   
@@ -43,6 +60,10 @@ const HeroSection = () => {
     }
   }, [aboutData]);
   
+  const getIconClass = (iconClass: string) => {
+    return iconClass.replace('fa-', '');
+  };
+
   return (
     <section id="hero" className="relative min-h-screen bg-portfolio-purple flex items-center justify-center overflow-hidden pt-16">
       {/* Decorative Shapes */}
@@ -98,7 +119,7 @@ const HeroSection = () => {
                 className="social-icon"
                 title={socialMedia.name}
               >
-                <i className={`fa ${socialMedia.icon_class}`}></i>
+                <FontAwesomeIcon icon={['fab', getIconClass(socialMedia.icon_class) as any]} />
               </a>
             ))
           ) : (

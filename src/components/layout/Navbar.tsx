@@ -1,11 +1,22 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useFetchData } from '@/hooks/useFetchData';
+
+interface ConfigResponse {
+  success: boolean;
+  data: {
+    paths: {
+      logo: string;
+    };
+  };
+}
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,10 +51,18 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="#hero" className="text-white text-2xl font-bold">Sabeer</a>
+        <a href="#hero" className="text-white">
+          <img src={configData?.data?.paths?.logo || "/icons/logo.svg"} alt="Sabeer" className="h-10" />
+        </a>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
+          <a 
+            href="#hero" 
+            className={`nav-link font-bold transition-colors ${activeSection === 'hero' ? 'text-portfolio-yellow' : 'text-white/90 hover:text-portfolio-yellow'}`}
+          >
+            Home
+          </a>
           <a 
             href="#about" 
             className={`nav-link font-bold transition-colors ${activeSection === 'about' ? 'text-portfolio-yellow' : 'text-white/90 hover:text-portfolio-yellow'}`}
@@ -95,6 +114,13 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <nav className="md:hidden bg-portfolio-purple/95 backdrop-blur-sm py-4">
           <div className="container mx-auto px-4 flex flex-col space-y-3">
+            <a 
+              href="#hero" 
+              className={`nav-link font-bold transition-colors ${activeSection === 'hero' ? 'text-portfolio-yellow' : 'text-white/90 hover:text-portfolio-yellow'}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Home
+            </a>
             <a 
               href="#about" 
               className={`nav-link font-bold transition-colors ${activeSection === 'about' ? 'text-portfolio-yellow' : 'text-white/90 hover:text-portfolio-yellow'}`}
