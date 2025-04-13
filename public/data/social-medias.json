@@ -25,31 +25,6 @@
       "name": "Facebook",
       "url": "https://www.facebook.com/sabeer.zabi",
       "icon_class": "fa-facebook"
-    },
-    {
-      "name": "Pinterest",
-      "url": "https://in.pinterest.com/sabeerzabi",
-      "icon_class": "fa-pinterest"
-    },
-    {
-      "name": "Github",
-      "url": "https://github.com/sabeerzabi",
-      "icon_class": "fa-github"
-    },
-    {
-      "name": "Medium",
-      "url": "https://medium.com/@sabeerzabi",
-      "icon_class": "fa-medium"
-    },
-    {
-      "name": "Stack Overflow",
-      "url": "https://stackoverflow.com/users/8893659/sabeerzabi",
-      "icon_class": "fa-stack-overflow"
-    },
-    {
-      "name": "Stack Exchange",
-      "url": "https://stackexchange.com/users/12182672/sabeerzabi?tab=accounts",
-      "icon_class": "fa-stack-exchange"
     }
   ]
 }
