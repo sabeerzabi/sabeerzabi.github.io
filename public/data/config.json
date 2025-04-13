@@ -39,14 +39,14 @@
         "name": "Arabic",
         "code": "ar",
         "flag": "/icons/flags/ar.svg",
-        "enabled": false,
+        "enabled": true,
         "default": false
       },
       "ml": {
         "name": "Malayalam",
         "code": "ml",
         "flag": "/icons/flags/ml.svg",
-        "enabled": false,
+        "enabled": true,
         "default": false
       }
     }
