@@ -23,6 +23,9 @@ const CertificatesSection = () => {
   const { translations } = useLanguage();
   const [selectedSource, setSelectedSource] = useState<string>("All");
   const [sources, setSources] = useState<string[]>([]);
+  const [visibleCount, setVisibleCount] = useState(6);
+  const [showViewAll, setShowViewAll] = useState(false);
+  const [showLess, setShowLess] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -33,6 +36,9 @@ const CertificatesSection = () => {
     if (certificatesData?.data) {
       const uniqueSources = ["All", ...new Set(certificatesData.data.map(cert => cert.source))];
       setSources(uniqueSources);
+      
+      // Set initial state for view more/less buttons
+      setShowViewAll(certificatesData.data.length > 6);
     }
   }, [certificatesData]);
 
@@ -43,10 +49,25 @@ const CertificatesSection = () => {
       : certificatesData.data.filter(cert => cert.source === selectedSource)
     : [];
 
+  // Handle view all click
+  const handleViewAllClick = () => {
+    setVisibleCount(filteredCertificates.length);
+    setShowViewAll(false);
+    setShowLess(true);
+  };
+
+  // Handle show less click
+  const handleShowLessClick = () => {
+    setVisibleCount(6);
+    setShowViewAll(true);
+    setShowLess(false);
+  };
+
   // Get translated content
   const t = translations?.certificates || {
     title: "Certificates",
     view_all: "View All",
+    show_less: "Show Less",
     filter_by: "Filter by source"
   };
 
@@ -65,7 +86,12 @@ const CertificatesSection = () => {
           {sources.map((source, index) => (
             <button
               key={index}
-              onClick={() => setSelectedSource(source)}
+              onClick={() => {
+                setSelectedSource(source);
+                setVisibleCount(6);
+                setShowViewAll(true);
+                setShowLess(false);
+              }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 selectedSource === source
                   ? "bg-portfolio-primary text-white"
@@ -96,7 +122,7 @@ const CertificatesSection = () => {
               Failed to load certificates. Please try again later.
             </div>
           ) : filteredCertificates.length > 0 ? (
-            filteredCertificates.map((certificate, index) => (
+            filteredCertificates.slice(0, visibleCount).map((certificate, index) => (
               <FadeInSection key={index}>
                 <a
                   href={certificate.url}
@@ -126,6 +152,27 @@ const CertificatesSection = () => {
             <div className="col-span-full text-center text-gray-500 py-10">
               No certificates found for the selected filter.
             </div>
+          )}
+        </div>
+
+        {/* View All / Show Less Button */}
+        <div className="text-center mt-10">
+          {showViewAll && filteredCertificates.length > visibleCount && (
+            <button 
+              onClick={handleViewAllClick} 
+              className="bg-portfolio-primary hover:bg-portfolio-primary/90 text-white px-6 py-2 rounded-md transition-colors"
+            >
+              {t.view_all || "View All"}
+            </button>
+          )}
+
+          {showLess && (
+            <button 
+              onClick={handleShowLessClick} 
+              className="bg-portfolio-primary hover:bg-portfolio-primary/90 text-white px-6 py-2 rounded-md transition-colors"
+            >
+              {t.show_less || "Show Less"}
+            </button>
           )}
         </div>
       </div>

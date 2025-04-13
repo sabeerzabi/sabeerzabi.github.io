@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useFetchData } from "@/hooks/useFetchData";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -5,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useInView } from "react-intersection-observer";
 import { useLanguage } from "@/context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLaptopCode, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
 
 interface Experience {
   company: string;
@@ -121,18 +123,23 @@ const ExperienceSection = () => {
                     {sortedExperiences.map((experience, index) => (
                       <div key={index} className="relative mb-12 pb-10 pl-12">
                         {/* Red dot with icon */}
-                        <div className="absolute left-0 top-1.5 w-10 h-10 bg-gray-50  flex items-center justify-center">
+                        <div className="absolute left-0 top-1.5 w-10 h-10 bg-gray-50 flex items-center justify-center">
                           <FontAwesomeIcon
-                            icon="fa-solid fa-laptop-code"
+                            icon={faLaptopCode}
                             className="text-portfolio-pink h-6 w-6"
                           />
                         </div>
 
                         <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all">
-                          <h3 className="text-xl font-bold text-portfolio-primary mb-1">
-                            {experience.designation}
-                          </h3>
-                          <div className="text-portfolio-pink font-semibold mb-2">
+                          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2">
+                            <h3 className="text-xl font-bold text-portfolio-primary mb-1 sm:mb-0">
+                              {experience.designation}
+                            </h3>
+                            <p className="text-gray-500 whitespace-nowrap">
+                              {experience.duration}
+                            </p>
+                          </div>
+                          <div className="text-portfolio-pink font-semibold mb-4">
                             <a
                               href={experience.website || "#"}
                               target="_blank"
@@ -141,11 +148,8 @@ const ExperienceSection = () => {
                             >
                               {experience.company}
                             </a>
-                            <span>{experience.country}</span>
+                            <span className="ml-2">{experience.country}</span>
                           </div>
-                          <p className="text-gray-500 mb-4">
-                            {experience.duration}
-                          </p>
 
                           {experience.tasks?.length > 0 && (
                             <div className="mb-4">
@@ -228,18 +232,23 @@ const ExperienceSection = () => {
                     {sortedEducations.map((education, index) => (
                       <div key={index} className="relative mb-12 pb-10 pl-12">
                         {/* Red dot with graduation cap icon */}
-                        <div className="absolute left-0 top-1.5 w-10 h-10 bg-gray-50  flex items-center justify-center">
+                        <div className="absolute left-0 top-1.5 w-10 h-10 bg-gray-50 flex items-center justify-center">
                           <FontAwesomeIcon
-                            icon="fa-solid fa-user-graduate"
+                            icon={faUserGraduate}
                             className="text-portfolio-pink h-6 w-6"
                           />
                         </div>
 
                         <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all">
-                          <h3 className="text-xl font-bold text-portfolio-primary  mb-1">
-                            {education.course}
-                          </h3>
-                          <div className="text-portfolio-pink font-semibold mb-2">
+                          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2">
+                            <h3 className="text-xl font-bold text-portfolio-primary mb-1 sm:mb-0">
+                              {education.course}
+                            </h3>
+                            <p className="text-gray-500 whitespace-nowrap">
+                              {education.duration}
+                            </p>
+                          </div>
+                          <div className="text-portfolio-pink font-semibold mb-4">
                             <a
                               href={education.website || "#"}
                               target="_blank"
@@ -252,9 +261,6 @@ const ExperienceSection = () => {
                               {education.location}
                             </div>
                           </div>
-                          <p className="text-gray-500 mb-4">
-                            {education.duration}
-                          </p>
 
                           {education.descriptions?.length > 0 && (
                             <div>
