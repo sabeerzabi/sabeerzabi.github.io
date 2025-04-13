@@ -66,7 +66,7 @@ const Footer = () => {
                   <Skeleton key={index} className="w-10 h-10 rounded-full" />
                 ))
             ) : socialMediasData?.data ? (
-              socialMediasData.data.slice(0, 6).map((socialMedia, index) => (
+              socialMediasData.data.map((socialMedia, index) => (
                 <a
                   key={index}
                   href={socialMedia.url}
