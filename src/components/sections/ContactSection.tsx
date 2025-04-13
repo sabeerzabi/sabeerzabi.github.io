@@ -1,4 +1,3 @@
-
 import { useInView } from "react-intersection-observer";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useLanguage } from "@/context/LanguageContext";
@@ -81,18 +80,21 @@ const ContactSection = () => {
         body: JSON.stringify({
           access_key: "68c91983-f329-46e5-99a1-f2918e4b2508",
           subject: data.subject,
-          email: aboutData?.data?.email || "sabeerzabi@gmail.com",
+          name: data.name,
+          email: data.email,
           replyto: data.email,
-          message: `Name: ${data.name}\nEmail: ${data.email}\nSubject: ${data.subject}\nMessage: ${data.message}`,
+          message: data.message,
         }),
       });
 
       const result = await response.json();
-      
+
       if (result.success) {
         toast({
           title: t.message_sent || "Message Sent!",
-          description: t.thank_you || "Thank you for your message. I'll get back to you soon!",
+          description:
+            t.thank_you ||
+            "Thank you for your message. I'll get back to you soon!",
         });
         reset();
       } else {
@@ -101,7 +103,8 @@ const ContactSection = () => {
     } catch (error) {
       toast({
         title: t.error || "Error",
-        description: t.sending_failed || "Failed to send message. Please try again later.",
+        description:
+          t.sending_failed || "Failed to send message. Please try again later.",
         variant: "destructive",
       });
       console.error("Error submitting form:", error);
@@ -213,7 +216,9 @@ const ContactSection = () => {
                   rows={5}
                   placeholder={t.message || "Your Message"}
                   {...register("message", { required: true })}
-                  className={`resize-none ${errors.message ? "border-red-500" : ""}`}
+                  className={`resize-none ${
+                    errors.message ? "border-red-500" : ""
+                  }`}
                 />
                 {errors.message && (
                   <span className="text-red-500 text-sm mt-1">
@@ -222,16 +227,32 @@ const ContactSection = () => {
                 )}
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="btn-primary flex items-center justify-center"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
                   <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
                     </svg>
                     {t.sending || "Sending..."}
                   </>

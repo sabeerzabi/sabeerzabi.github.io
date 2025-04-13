@@ -93,12 +93,12 @@ const AchievementsSection = () => {
                   <div className="flex items-center justify-center mb-4">
                     <div className="text-portfolio-pink font-semibold">
                       <span className="text-base">{achievement.year}</span>
-                      {achievement.latest && (
-                        <span className="ml-2 bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">
-                          Latest
-                        </span>
-                      )}
                     </div>
+                    {achievement.latest && (
+                      <span className="ml-2 mr-2 bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">
+                        Latest
+                      </span>
+                    )}
                   </div>
                   {achievement.link && (
                     <a

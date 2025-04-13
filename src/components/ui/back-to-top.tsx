@@ -1,7 +1,6 @@
-
-import { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useState, useEffect } from "react";
+import { ArrowUp } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,28 +16,23 @@ const BackToTop = () => {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
 
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
-
-  // Don't render on mobile
-  if (isMobile) {
-    return null;
-  }
 
   return (
     <>
       {isVisible && (
-        <div 
+        <div
           onClick={scrollToTop}
           className="back-to-top"
           aria-label="Back to top"

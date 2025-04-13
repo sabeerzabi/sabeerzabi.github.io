@@ -206,7 +206,7 @@ const AboutSection = () => {
 
             {/* Contact Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Clock className="text-portfolio-purple" />
                 <div>
                   <h4 className="font-semibold">Experience</h4>
@@ -215,7 +215,7 @@ const AboutSection = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <MapPin className="text-portfolio-purple" />
                 <div>
                   <h4 className="font-semibold">Location</h4>
@@ -224,7 +224,7 @@ const AboutSection = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Mail className="text-portfolio-purple" />
                 <div>
                   <h4 className="font-semibold">Email</h4>
@@ -233,7 +233,7 @@ const AboutSection = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Phone className="text-portfolio-purple" />
                 <div>
                   <h4 className="font-semibold">Phone</h4>

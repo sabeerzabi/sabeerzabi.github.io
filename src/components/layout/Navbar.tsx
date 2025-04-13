@@ -121,8 +121,8 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-1">
-          <nav className="flex items-center space-x-1">
+        <div className="hidden md:flex items-center space-x-1 rtl:space-x-reverse">
+          <nav className="flex items-center space-x-1 rtl:space-x-reverse">
             <a
               href="#hero"
               className={`nav-link font-bold transition-colors ${

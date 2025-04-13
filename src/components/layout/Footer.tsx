@@ -60,7 +60,7 @@ const Footer = () => {
             )}
           </div>
 
-          <div className="flex space-x-3">
+          <div className="flex space-x-3 rtl:space-x-reverse">
             {socialStatus === "loading" ? (
               Array(6)
                 .fill(0)
@@ -68,7 +68,7 @@ const Footer = () => {
                   <Skeleton key={index} className="w-10 h-10 rounded-full" />
                 ))
             ) : socialMediasData?.data ? (
-              socialMediasData.data.map((socialMedia, index) => (
+              socialMediasData.data.slice(0, 5).map((socialMedia, index) => (
                 <a
                   key={index}
                   href={socialMedia.url}

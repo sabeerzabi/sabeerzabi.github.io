@@ -159,14 +159,14 @@ const HeroSection = () => {
       </div>
 
       <div className="container mx-auto px-4 text-white relative z-10 md:w-1/2">
-        <h2 className="text-2xl md:text-3xl font-light mb-2">
+        <h2 className="text-2xl md:text-3xl text-center md:text-left font-light mb-2">
           {t.hello || "Hello, I'm"}
         </h2>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          {aboutData.data.name || "Sabeer C A"}
+        <h1 className="text-5xl md:text-7xl text-center md:text-left font-bold mb-6">
+          {aboutData?.data?.name || "Sabeer C A"}
         </h1>
 
-        <div className="h-16 flex items-center justify-center md:justify-start">
+        <div className="h-16 flex items-center justify-center md:justify-start text-center md:text-left">
           {aboutStatus === "loading" ? (
             <Skeleton className="h-8 w-48 mx-auto md:mx-0" />
           ) : aboutData?.data?.roles ? (
@@ -228,9 +228,11 @@ const HeroSection = () => {
           )}
         </div>
 
-        <a href="#contact" className="btn-primary inline-block">
-          {t.hire_me || "Hire Me"}
-        </a>
+        <div className="text-center md:text-left">
+          <a href="#contact" className="btn-primary inline-block">
+            {t.hire_me || "Hire Me"}
+          </a>
+        </div>
 
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/80 animate-bounce">
           <a href="#about">
