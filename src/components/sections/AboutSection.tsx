@@ -191,7 +191,10 @@ const AboutSection = () => {
                               : 0}
                           </p>
                           <p className="text-sm text-gray-500">
-                            {key.replace("-", " ")} projects
+                            {key.charAt(0).toUpperCase() +
+                              key.slice(1).replace("-", " ") +
+                              " "}
+                            projects
                           </p>
                         </CardContent>
                       </Card>

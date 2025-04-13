@@ -62,7 +62,9 @@ const ServicesSection = () => {
       <div className="container mx-auto px-6">
         <h2
           ref={sectionRef}
-          className={`section-title fade-up font-rubik font-bold ${sectionInView ? "visible" : ""}`}
+          className={`section-title fade-up font-rubik font-bold ${
+            sectionInView ? "visible" : ""
+          }`}
         >
           {t.title || "Services"}
         </h2>
@@ -109,10 +111,10 @@ const ServicesSection = () => {
                   <p className="mb-6 opacity-90">{service.description}</p>
                   <div className="flex items-center gap-2">
                     <div className="flex-1">
-                      <Progress 
-                        value={service.percentage} 
-                        animateOnScroll={true} 
-                        className="bg-white/20"
+                      <Progress
+                        value={service.percentage}
+                        animateOnScroll={true}
+                        className="bg-pink/20"
                         style={{ backgroundColor: service.progress_bg_color }}
                       />
                     </div>
