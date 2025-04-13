@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useFetchData } from "@/hooks/useFetchData";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -6,7 +5,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useInView } from "react-intersection-observer";
 import { useLanguage } from "@/context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLaptopCode, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLaptopCode,
+  faUserGraduate,
+} from "@fortawesome/free-solid-svg-icons";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Experience {
@@ -53,9 +55,9 @@ interface ConfigResponse {
 
 const ExperienceSection = () => {
   const { data: experiencesData, status: expStatus } =
-    useFetchData<ExperienceResponse>("/data/experiences.json");
+    useFetchData<ExperienceResponse>("/data/en/experiences.json");
   const { data: educationsData, status: eduStatus } =
-    useFetchData<EducationResponse>("/data/educations.json");
+    useFetchData<EducationResponse>("/data/en/educations.json");
   const { data: configData } =
     useFetchData<ConfigResponse>("/data/config.json");
   const { translations } = useLanguage();

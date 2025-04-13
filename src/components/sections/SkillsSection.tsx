@@ -19,14 +19,15 @@ interface SkillsResponse {
 }
 
 const SkillsSection = () => {
-  const { data: skillsData, status } =
-    useFetchData<SkillsResponse>("/data/skills.json");
+  const { data: skillsData, status } = useFetchData<SkillsResponse>(
+    "/data/en/skills.json"
+  );
   const { translations } = useLanguage();
   const [sectionRef, sectionInView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   });
-  
+
   // Sort skills by percentage in descending order
   const sortedSkills = skillsData?.data
     ? [...skillsData.data].sort((a, b) => b.percentage - a.percentage)
@@ -39,7 +40,9 @@ const SkillsSection = () => {
       <div className="container mx-auto px-6">
         <h2
           ref={sectionRef}
-          className={`section-title fade-up font-rubik font-bold ${sectionInView ? "visible" : ""}`}
+          className={`section-title fade-up font-rubik font-bold ${
+            sectionInView ? "visible" : ""
+          }`}
         >
           {t.title || "Technical Skills"}
         </h2>
@@ -90,7 +93,10 @@ const SkillsSection = () => {
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">
                         {skill.message}
                       </p>
-                      <Progress value={skill.percentage} animateOnScroll={true} />
+                      <Progress
+                        value={skill.percentage}
+                        animateOnScroll={true}
+                      />
                     </div>
                   </div>
                 ))}

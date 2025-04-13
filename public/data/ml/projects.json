@@ -1,0 +1,187 @@
+{
+  "success": true,
+  "data": [
+    {
+      "name": "എഐ സ്മാർട്ട്",
+      "image": "/images/projects/ai-smart.webp",
+      "image-mini": "/images/projects/mini/ai-smart.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "അൽ ഫുത്തൈം",
+      "image": "/images/projects/al-futtiam.webp",
+      "image-mini": "/images/projects/mini/al-futtiam.webp",
+      "tags": ["javascript", "application"],
+      "company": "ഫ്രീലാൻസ്"
+    },
+    {
+      "name": "അമേഡ എംഇ",
+      "image": "/images/projects/ameda-me.webp",
+      "image-mini": "/images/projects/mini/ameda-me.webp",
+      "tags": ["wordpress", "application"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ബ്ലിങ്ക്വിസ ബ്ലോഗ്",
+      "image": "/images/projects/blinkvisa-blog.webp",
+      "image-mini": "/images/projects/mini/blinkvisa-blog.webp",
+      "tags": ["wordpress", "blog"],
+      "company": "2ബേസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ബ്ലിങ്ക്വിസ",
+      "image": "/images/projects/blinkvisa.webp",
+      "image-mini": "/images/projects/mini/blinkvisa.webp",
+      "tags": ["laravel", "application"],
+      "company": "2ബേസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "സിഎബി",
+      "image": "/images/projects/cab.webp",
+      "image-mini": "/images/projects/mini/cab.webp",
+      "tags": ["core-php", "application"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ചിംസ്",
+      "image": "/images/projects/chims.webp",
+      "image-mini": "/images/projects/mini/chims.webp",
+      "tags": ["laravel", "application"],
+      "company": "2ബേസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ഡിജിറ്റൽ ലിങ്ക്",
+      "image": "/images/projects/digital-link.webp",
+      "image-mini": "/images/projects/mini/digital-link.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "എലൈറ്റ് ടെക്",
+      "image": "/images/projects/elitetech.webp",
+      "image-mini": "/images/projects/mini/elitetech.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ഏതൻസ്",
+      "image": "/images/projects/ethans.webp",
+      "image-mini": "/images/projects/mini/ethans.webp",
+      "tags": ["wordpress", "application"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ഫെറോ എഫ്പിഎഫ്",
+      "image": "/images/projects/ferro-fpf.webp",
+      "image-mini": "/images/projects/mini/ferro-fpf.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ഫ്ലോബോട്ട്",
+      "image": "/images/projects/flowbot.webp",
+      "image-mini": "/images/projects/mini/flowbot.webp",
+      "tags": ["laravel", "application"],
+      "company": "2ബേസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ഫ്ലൈ ഹൈ കിഡ്‌സ്",
+      "image": "/images/projects/fly-high-kids.webp",
+      "image-mini": "/images/projects/mini/fly-high-kids.webp",
+      "tags": ["codeigniter", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ജിയോകെം",
+      "image": "/images/projects/geochem.webp",
+      "image-mini": "/images/projects/mini/geochem.webp",
+      "tags": ["codeigniter", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ഹൈപ്പർഡിസ്റ്റ്",
+      "image": "/images/projects/hiperdist.webp",
+      "image-mini": "/images/projects/mini/hiperdist.webp",
+      "tags": ["laravel", "application"],
+      "company": "ഫ്രീലാൻസ്"
+    },
+    {
+      "name": "ഇറ്റാലിയ സ്റ്റാർ ബെനെ",
+      "image": "/images/projects/italiastarbene.webp",
+      "image-mini": "/images/projects/mini/italiastarbene.webp",
+      "tags": ["core-php", "application"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "ലാന്റേൺ ഇലക്ട്രിക്കൽസ്",
+      "image": "/images/projects/lantern-electricals.webp",
+      "image-mini": "/images/projects/mini/lantern-electricals.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "മാസ് മീഡിയ",
+      "image": "/images/projects/mas-media.webp",
+      "image-mini": "/images/projects/mini/mas-media.webp",
+      "tags": ["codeigniter", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "മീഡ്",
+      "image": "/images/projects/meed.webp",
+      "image-mini": "/images/projects/mini/meed.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "വൺ ഓട്ടോമേഷൻ",
+      "image": "/images/projects/one-automation.webp",
+      "image-mini": "/images/projects/mini/one-automation.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "പ്രോമിഡ്",
+      "image": "/images/projects/promid.webp",
+      "image-mini": "/images/projects/mini/promid.webp",
+      "tags": ["core-php", "application"],
+      "company": "ഫ്രീലാൻസ്"
+    },
+    {
+      "name": "ആർഎൻബി",
+      "image": "/images/projects/rnb.webp",
+      "image-mini": "/images/projects/mini/rnb.webp",
+      "tags": ["codeigniter", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "സഫായോജൽ",
+      "image": "/images/projects/safaogel.webp",
+      "image-mini": "/images/projects/mini/safaogel.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "സ്മാർട്ട് കൺസ്ട്രക്റ്റ്",
+      "image": "/images/projects/smart-construct.webp",
+      "image-mini": "/images/projects/mini/smart-construct.webp",
+      "tags": ["core-php", "application"],
+      "company": "ഫ്രീലാൻസ്"
+    },
+    {
+      "name": "സിസ്‌കോം ഇൻ്റർനാഷണൽ",
+      "image": "/images/projects/syscom-international.webp",
+      "image-mini": "/images/projects/mini/syscom-international.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    },
+    {
+      "name": "വിൻമാക്സ്",
+      "image": "/images/projects/winmax.webp",
+      "image-mini": "/images/projects/mini/winmax.webp",
+      "tags": ["core-php", "cms-page"],
+      "company": "ഫോർടിയസ് ടെക്നോളജീസ്"
+    }
+  ]
+}

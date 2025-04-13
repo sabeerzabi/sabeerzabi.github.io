@@ -35,8 +35,9 @@ interface ConfigResponse {
 }
 
 const ContactSection = () => {
-  const { data: aboutData, status: aboutStatus } =
-    useFetchData<AboutResponse>("/data/about.json");
+  const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>(
+    "/data/en/about.json"
+  );
   const { data: configData } =
     useFetchData<ConfigResponse>("/data/config.json");
   const { translations } = useLanguage();

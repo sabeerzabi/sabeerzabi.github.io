@@ -41,8 +41,9 @@ interface ConfigResponse {
 }
 
 const AboutSection = () => {
-  const { data: aboutData, status: aboutStatus } =
-    useFetchData<AboutResponse>("/data/about.json");
+  const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>(
+    "/data/en/about.json"
+  );
   const { data: configData } =
     useFetchData<ConfigResponse>("/data/config.json");
   const [sectionRef, sectionInView] = useInView({

@@ -30,7 +30,7 @@ interface ConfigResponse {
 
 const AchievementsSection = () => {
   const { data: achievementsData, status } = useFetchData<AchievementsResponse>(
-    "/data/achivements.json"
+    "/data/en/achivements.json"
   );
   const { data: configData } =
     useFetchData<ConfigResponse>("/data/config.json");

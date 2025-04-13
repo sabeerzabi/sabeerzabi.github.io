@@ -32,8 +32,10 @@ interface ConfigResponse {
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { data: socialMediasData, status: socialStatus } =
-    useFetchData<SocialMediaResponse>("/data/social-medias.json");
-  const { data: aboutData } = useFetchData<AboutResponse>("/data/about.json");
+    useFetchData<SocialMediaResponse>("/data/en/social-medias.json");
+  const { data: aboutData } = useFetchData<AboutResponse>(
+    "/data/en/about.json"
+  );
   const { data: configData } =
     useFetchData<ConfigResponse>("/data/config.json");
 

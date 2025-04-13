@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useFetchData } from "@/hooks/useFetchData";
@@ -51,20 +50,26 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      languageMenuRef.current &&
+      !languageMenuRef.current.contains(event.target as Node) &&
+      !event.target.closest(".language-switcher")
+    ) {
+      setIsLanguageMenuOpen(false);
+    }
+  };
+
   // Close language menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        languageMenuRef.current &&
-        !languageMenuRef.current.contains(event.target as Node)
-      ) {
-        setIsLanguageMenuOpen(false);
-      }
-    };
+    if (isLanguageMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
 
-    document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [isLanguageMenuOpen]);
 
   // Apply RTL to document body
   useEffect(() => {
@@ -82,7 +87,7 @@ const Navbar = () => {
   };
 
   const handleLanguageSelect = (code: string) => {
-    if (code === 'en' || code === 'ar' || code === 'ml') {
+    if (code === "en" || code === "ar" || code === "ml") {
       setLanguage(code);
       setIsLanguageMenuOpen(false);
     }
@@ -219,27 +224,25 @@ const Navbar = () => {
 
             {isLanguageMenuOpen && (
               <div className="language-menu">
-                {Object.entries(languages || {}).map(
-                  ([code, langInfo]) => {
-                    const lang = langInfo as any;
-                    return lang && lang.enabled ? (
-                      <div
-                        key={code}
-                        className={`language-item ${
-                          currentLanguage === code ? "bg-gray-100" : ""
-                        }`}
-                        onClick={() => handleLanguageSelect(code)}
-                      >
-                        <img
-                          src={lang.flag}
-                          alt={lang.name}
-                          className="language-flag"
-                        />
-                        <span>{lang.name}</span>
-                      </div>
-                    ) : null;
-                  }
-                )}
+                {Object.entries(languages || {}).map(([code, langInfo]) => {
+                  const lang = langInfo as any;
+                  return lang && lang.enabled ? (
+                    <div
+                      key={code}
+                      className={`language-item ${
+                        currentLanguage === code ? "bg-gray-100" : ""
+                      }`}
+                      onClick={() => handleLanguageSelect(code)}
+                    >
+                      <img
+                        src={lang.flag}
+                        alt={lang.name}
+                        className="language-flag"
+                      />
+                      <span>{lang.name}</span>
+                    </div>
+                  ) : null;
+                })}
               </div>
             )}
           </div>
@@ -262,27 +265,25 @@ const Navbar = () => {
 
             {isLanguageMenuOpen && (
               <div className="language-menu">
-                {Object.entries(languages || {}).map(
-                  ([code, langInfo]) => {
-                    const lang = langInfo as any;
-                    return lang && lang.enabled ? (
-                      <div
-                        key={code}
-                        className={`language-item ${
-                          currentLanguage === code ? "bg-gray-100" : ""
-                        }`}
-                        onClick={() => handleLanguageSelect(code)}
-                      >
-                        <img
-                          src={lang.flag}
-                          alt={lang.name}
-                          className="language-flag"
-                        />
-                        <span>{lang.name}</span>
-                      </div>
-                    ) : null;
-                  }
-                )}
+                {Object.entries(languages || {}).map(([code, langInfo]) => {
+                  const lang = langInfo as any;
+                  return lang && lang.enabled ? (
+                    <div
+                      key={code}
+                      className={`language-item ${
+                        currentLanguage === code ? "bg-gray-100" : ""
+                      }`}
+                      onClick={() => handleLanguageSelect(code)}
+                    >
+                      <img
+                        src={lang.flag}
+                        alt={lang.name}
+                        className="language-flag"
+                      />
+                      <span>{lang.name}</span>
+                    </div>
+                  ) : null;
+                })}
               </div>
             )}
           </div>

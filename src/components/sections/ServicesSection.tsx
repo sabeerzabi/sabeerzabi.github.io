@@ -41,7 +41,7 @@ interface ConfigResponse {
 
 const ServicesSection = () => {
   const { data: servicesData, status } = useFetchData<ServicesResponse>(
-    "/data/services.json"
+    "/data/en/services.json"
   );
   const { data: configData } =
     useFetchData<ConfigResponse>("/data/config.json");

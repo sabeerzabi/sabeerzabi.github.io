@@ -26,12 +26,6 @@
       "url": "https://www.hackerrank.com/certificates/089e64a00ab4"
     },
     {
-      "name": "JavaScript Basic",
-      "image": "/images/certificates/javascript-basic.png",
-      "source": "HackerRank",
-      "url": "https://www.hackerrank.com/certificates/e81d49dc16b6"
-    },
-    {
       "name": "JavaScript Intermediate",
       "image": "/images/certificates/javascript-intermediate.png",
       "source": "HackerRank",
@@ -48,6 +42,12 @@
       "image": "/images/certificates/css-basic.png",
       "source": "HackerRank",
       "url": "https://www.hackerrank.com/certificates/075160a23e06"
+    },
+    {
+      "name": "JavaScript Basic",
+      "image": "/images/certificates/javascript-basic.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/e81d49dc16b6"
     },
     {
       "name": "Python Basic",

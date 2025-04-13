@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useFetchData } from "@/hooks/useFetchData";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -21,7 +20,7 @@ interface CertificatesResponse {
 
 const CertificatesSection = () => {
   const { data: certificatesData, status } = useFetchData<CertificatesResponse>(
-    "/data/certificates.json"
+    "/data/en/certificates.json"
   );
   const { translations } = useLanguage();
   const [selectedSource, setSelectedSource] = useState<string>("All");

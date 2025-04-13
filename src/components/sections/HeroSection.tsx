@@ -41,9 +41,10 @@ interface ConfigResponse {
 
 const HeroSection = () => {
   const { data: socialMediasData, status: socialStatus } =
-    useFetchData<SocialMediaResponse>("/data/social-medias.json");
-  const { data: aboutData, status: aboutStatus } =
-    useFetchData<AboutResponse>("/data/about.json");
+    useFetchData<SocialMediaResponse>("/data/en/social-medias.json");
+  const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>(
+    "/data/en/about.json"
+  );
   const { data: configData } =
     useFetchData<ConfigResponse>("/data/config.json");
   const { translations } = useLanguage();
@@ -162,7 +163,7 @@ const HeroSection = () => {
           {t.hello || "Hello, I'm"}
         </h2>
         <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          {t.name || "Sabeer C A"}
+          {aboutData.data.name || "Sabeer C A"}
         </h1>
 
         <div className="h-16 flex items-center justify-center md:justify-start">
