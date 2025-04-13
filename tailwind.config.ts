@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import animatePlugin from "tailwindcss-animate";
@@ -6,10 +5,10 @@ import animatePlugin from "tailwindcss-animate";
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -35,6 +34,8 @@ const config = {
           purple: "#7E5FEC",
           pink: "#FF3365",
           yellow: "#FFD166",
+          primary: "#6441a5",
+          black: "#454360",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",

@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -45,22 +44,27 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Rubik', sans-serif;
+    font-family: "Rubik", sans-serif;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold;
-    font-family: 'Rubik', sans-serif;
+    font-family: "Rubik", sans-serif;
     font-weight: 700;
   }
 }
 
 @layer components {
   .section-title {
-    @apply relative text-3xl md:text-4xl font-bold mb-10 text-portfolio-purple;
+    @apply relative text-3xl md:text-4xl font-bold mb-10 text-portfolio-black;
   }
-  
+
   .section-title::before {
     content: "";
     @apply absolute bg-no-repeat bg-cover;
@@ -69,53 +73,53 @@
     left: -14px;
     top: -14px;
     z-index: -1;
-    background-image: url('/icons/dots-bg.svg');
+    background-image: url("/icons/dots-bg.svg");
   }
-  
+
   .service-card {
     @apply p-6 rounded-xl transition-all duration-300 hover:shadow-lg;
   }
-  
+
   .timeline-item {
     @apply relative pl-8 pb-8 border-l-2 border-portfolio-pink last:border-l-0;
   }
-  
+
   .timeline-dot {
     @apply absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-portfolio-pink;
   }
-  
+
   .contact-input {
     @apply w-full px-4 py-3 bg-white/50 rounded-lg border border-gray-200 focus:outline-none focus:border-portfolio-purple;
   }
-  
+
   .btn-primary {
     @apply px-6 py-3 bg-portfolio-pink text-white rounded-full font-semibold transition-all hover:bg-portfolio-purple;
   }
-  
+
   .nav-link {
     @apply px-4 py-2 text-white/90 hover:text-yellow-300 transition-colors font-bold;
   }
-  
+
   .social-icon {
     @apply w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition-colors;
   }
-  
+
   .project-card {
     @apply overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg;
   }
-  
+
   .project-card img {
     @apply w-full transition-transform duration-300;
   }
-  
+
   .project-card:hover img {
     @apply scale-110;
   }
-  
+
   .project-filters button {
     @apply px-4 py-2 rounded-full border border-portfolio-purple/20 text-sm mx-1 my-1 transition-colors;
   }
-  
+
   .project-filters button.active {
     @apply bg-portfolio-purple text-white;
   }
@@ -186,18 +190,31 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .animate-float {
@@ -218,4 +235,7 @@
 [dir="rtl"] .section-title::before {
   left: auto;
   right: -14px;
+}
+
+.split {
 }

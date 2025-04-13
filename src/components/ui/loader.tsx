@@ -1,6 +1,5 @@
-
-import { useState, useEffect } from 'react';
-import { useFetchData } from '@/hooks/useFetchData';
+import { useState, useEffect } from "react";
+import { useFetchData } from "@/hooks/useFetchData";
 
 interface ConfigResponse {
   success: boolean;
@@ -13,7 +12,8 @@ interface ConfigResponse {
 }
 
 export function Loader() {
-  const { data: configData } = useFetchData<ConfigResponse>('/data/config.json');
+  const { data: configData } =
+    useFetchData<ConfigResponse>("/data/config.json");
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
@@ -26,15 +26,18 @@ export function Loader() {
 
   if (!showLoader) return null;
 
-  const spinnerColorClass = configData?.data?.loader?.spinner || '#FFFFFF';
-  const bgColor = configData?.data?.loader?.background || '#7E5FEC';
+  const spinnerColorClass = configData?.data?.loader?.spinner || "#FFFFFF";
+  const bgColor = configData?.data?.loader?.background || "#6441a5";
 
   return (
-    <div 
-      className="fixed inset-0 flex items-center justify-center z-50" 
+    <div
+      className="fixed inset-0 flex items-center justify-center z-50"
       style={{ backgroundColor: bgColor }}
     >
-      <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4" style={{ borderColor: spinnerColorClass }}></div>
+      <div
+        className="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4"
+        style={{ borderColor: spinnerColorClass }}
+      ></div>
     </div>
   );
 }

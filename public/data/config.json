@@ -1,4 +1,3 @@
-
 {
   "success": true,
   "data": {
@@ -10,7 +9,7 @@
       "mapBg": "/icons/map.svg"
     },
     "colors": {
-      "primary": "#7E5FEC",
+      "primary": "#6441a5",
       "secondary": "#FF3365",
       "tertiary": "#FFD166",
       "background": "#F5F5F5",
@@ -25,7 +24,7 @@
       }
     },
     "loader": {
-      "background": "#7E5FEC",
+      "background": "#6441a5",
       "spinner": "#FFFFFF"
     },
     "languages": {
