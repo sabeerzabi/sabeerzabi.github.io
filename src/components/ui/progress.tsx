@@ -11,7 +11,7 @@ interface ProgressProps
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressProps
->(({ className, value, animateOnScroll = false, ...props }, ref) => {
+>(({ className, value, animateOnScroll = true, ...props }, ref) => {
   const [progressValue, setProgressValue] = React.useState(0);
   const { ref: inViewRef, inView } = useInView({
     triggerOnce: true,
