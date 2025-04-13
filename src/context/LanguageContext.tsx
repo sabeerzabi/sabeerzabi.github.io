@@ -1,13 +1,26 @@
+
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
-interface LanguageContextProps {
-  currentLanguage: string;
-  translations: any;
-  setLanguage: (language: SupportedLanguage) => void;
-  isRtl: boolean;
+// Define the structure for language configuration
+interface LanguageConfig {
+  name: string;
+  code: string;
+  flag: string;
+  enabled: boolean;
+  default?: boolean;
 }
 
-type SupportedLanguage = 'en' | 'ar';
+// Define the supported language codes
+export type SupportedLanguage = 'en' | 'ar' | 'ml';
+
+// Interface for language context props
+interface LanguageContextProps {
+  currentLanguage: SupportedLanguage;
+  translations: any;
+  setLanguage: (language: SupportedLanguage | { code: string }) => void;
+  isRtl: boolean;
+  languages: Record<string, LanguageConfig>;
+}
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 
@@ -19,6 +32,25 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const [currentLanguage, setCurrentLanguage] = useState<SupportedLanguage>('en');
   const [translations, setTranslations] = useState<any>(null);
   const [isRtl, setIsRtl] = useState(false);
+  const [languages, setLanguages] = useState<Record<string, LanguageConfig>>({});
+
+  // Fetch language configurations from config.json
+  useEffect(() => {
+    const fetchLanguageConfig = async () => {
+      try {
+        const response = await fetch('/data/config.json');
+        if (!response.ok) {
+          throw new Error('Failed to load config');
+        }
+        const data = await response.json();
+        setLanguages(data.data.languages || {});
+      } catch (error) {
+        console.error("Error fetching language config:", error);
+      }
+    };
+    
+    fetchLanguageConfig();
+  }, []);
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem('selectedLanguage') as SupportedLanguage || 'en';
@@ -38,26 +70,30 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     }
   };
 
-  const setLanguage = (language: SupportedLanguage) => {
-    if (typeof language === 'object' && language !== null && 'code' in language) {
-      // This handles the case where language might be passed as an object
-      const langCode = language.code as string;
-      localStorage.setItem('selectedLanguage', langCode);
-      setCurrentLanguage(langCode as SupportedLanguage);
-      document.documentElement.lang = langCode;
-      document.documentElement.dir = langCode === 'ar' ? 'rtl' : 'ltr';
-      setIsRtl(langCode === 'ar');
-      fetchTranslations(langCode);
+  const setLanguage = (language: SupportedLanguage | { code: string }) => {
+    if (language === null) {
+      // Fallback to default language if null
+      const langCode = 'en' as SupportedLanguage;
+      applyLanguageSettings(langCode);
+    } else if (typeof language === 'object' && language !== null && 'code' in language) {
+      // Handle case where language is passed as an object
+      const langCode = language.code as SupportedLanguage;
+      applyLanguageSettings(langCode);
     } else {
-      // This handles the direct string code case
-      const langCode = language as string;
-      localStorage.setItem('selectedLanguage', langCode);
-      setCurrentLanguage(langCode as SupportedLanguage);
-      document.documentElement.lang = langCode;
-      document.documentElement.dir = langCode === 'ar' ? 'rtl' : 'ltr';
-      setIsRtl(langCode === 'ar');
-      fetchTranslations(langCode);
+      // Handle direct string code case
+      const langCode = language as SupportedLanguage;
+      applyLanguageSettings(langCode);
     }
+  };
+
+  // Helper function to apply language settings
+  const applyLanguageSettings = (langCode: SupportedLanguage) => {
+    localStorage.setItem('selectedLanguage', langCode);
+    setCurrentLanguage(langCode);
+    document.documentElement.lang = langCode;
+    document.documentElement.dir = langCode === 'ar' ? 'rtl' : 'ltr';
+    setIsRtl(langCode === 'ar');
+    fetchTranslations(langCode);
   };
 
   const value: LanguageContextProps = {
@@ -65,6 +101,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     translations,
     setLanguage,
     isRtl,
+    languages,
   };
 
   return (
