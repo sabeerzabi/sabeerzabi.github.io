@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useFetchData } from '@/hooks/useFetchData';
 
@@ -31,12 +30,10 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [translations, setTranslations] = useState<any>({});
   const [isRtl, setIsRtl] = useState<boolean>(false);
 
-  // Initialize languages from config
   useEffect(() => {
     if (configData?.data?.languages) {
       setLanguages(configData.data.languages);
       
-      // Set default language
       const defaultLang = Object.values(configData.data.languages).find(
         (lang: any) => lang.default && lang.enabled
       );
@@ -47,7 +44,6 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     }
   }, [configData]);
 
-  // Load translations for current language
   useEffect(() => {
     const fetchTranslations = async () => {
       try {
@@ -55,7 +51,6 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
         const data = await response.json();
         setTranslations(data.data);
         
-        // Set RTL for Arabic
         setIsRtl(currentLanguage === 'ar');
       } catch (error) {
         console.error('Failed to load translations:', error);

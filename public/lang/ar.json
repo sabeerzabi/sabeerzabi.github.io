@@ -9,7 +9,8 @@
       "experience": "الخبرة",
       "projects": "المشاريع",
       "skills": "المهارات",
-      "contact": "اتصل بي"
+      "contact": "اتصل بي",
+      "certificates": "الشهادات"
     },
     "hero": {
       "hello": "مرحبا، أنا",
@@ -38,6 +39,11 @@
     },
     "skills": {
       "title": "المهارات التقنية"
+    },
+    "certificates": {
+      "title": "الشهادات",
+      "filter_by": "تصفية حسب المصدر",
+      "view_all": "عرض الكل"
     },
     "contact": {
       "title": "تواصل معي",

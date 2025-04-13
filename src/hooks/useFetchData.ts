@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 
-type FetchStatus = 'idle' | 'loading' | 'success' | 'error';
+export type FetchStatus = 'loading' | 'success' | 'error' | 'idle';
 
 export function useFetchData<T>(url: string) {
   const [data, setData] = useState<T | null>(null);

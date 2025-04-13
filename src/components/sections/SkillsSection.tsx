@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useFetchData } from "@/hooks/useFetchData";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useInView } from "react-intersection-observer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useLanguage } from "@/context/LanguageContext";
+import { Progress } from "@/components/ui/progress";
 
 interface Skill {
   name: string;
@@ -17,47 +18,28 @@ interface SkillsResponse {
   data: Skill[];
 }
 
-interface ConfigResponse {
-  success: boolean;
-  data: {
-    paths: {
-      dotsBg: string;
-    };
-  };
-}
-
 const SkillsSection = () => {
   const { data: skillsData, status } =
     useFetchData<SkillsResponse>("/data/skills.json");
   const { translations } = useLanguage();
   const [sectionRef, sectionInView] = useInView({
-    threshold: 1,
+    threshold: 0.1,
     triggerOnce: true,
   });
-  const [progressValues, setProgressValues] = useState<{
-    [key: string]: number;
-  }>({});
+  
   // Sort skills by percentage in descending order
   const sortedSkills = skillsData?.data
     ? [...skillsData.data].sort((a, b) => b.percentage - a.percentage)
     : [];
 
-  useEffect(() => {
-    const initialValues: { [key: string]: number } = {};
-    sortedSkills.forEach((skill, index) => {
-      initialValues[index] = skill.percentage;
-    });
-    setProgressValues(initialValues);
-  }, [sectionRef, skillsData]);
-
   const t = translations?.skills || {};
 
   return (
     <section id="skills" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6">
         <h2
           ref={sectionRef}
-          className={`section-title fade-up ${sectionInView ? "visible" : ""}`}
+          className={`section-title fade-up font-rubik font-bold ${sectionInView ? "visible" : ""}`}
         >
           {t.title || "Technical Skills"}
         </h2>
@@ -102,20 +84,13 @@ const SkillsSection = () => {
                       <div className="flex justify-between mb-1">
                         <h3 className="font-semibold">{skill.name}</h3>
                         <span className="text-sm text-gray-500">
-                          {progressValues[index] || 0}%
+                          {skill.percentage}%
                         </span>
                       </div>
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">
                         {skill.message}
                       </p>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-portfolio-primary h-2 rounded-full transition-all duration-1000 ease-out"
-                          style={{
-                            width: `${progressValues[index] || 0}%`,
-                          }}
-                        ></div>
-                      </div>
+                      <Progress value={skill.percentage} animateOnScroll={true} />
                     </div>
                   </div>
                 ))}

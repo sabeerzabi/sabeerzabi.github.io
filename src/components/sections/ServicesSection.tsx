@@ -1,8 +1,8 @@
 import { useFetchData } from "@/hooks/useFetchData";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useInView } from "react-intersection-observer";
-import { useState, useEffect } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { Progress } from "@/components/ui/progress";
 
 interface ServiceData {
   name: string;
@@ -46,9 +46,6 @@ const ServicesSection = () => {
   const { data: configData } =
     useFetchData<ConfigResponse>("/data/config.json");
   const { translations } = useLanguage();
-  const [progressValues, setProgressValues] = useState<{
-    [key: string]: number;
-  }>({});
   const [sectionRef, sectionInView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -56,33 +53,16 @@ const ServicesSection = () => {
 
   // Get only the visible services
   const visibleServices =
-    servicesData?.data.filter((service) => service.visible) || [];
-
-  // Get progress colors from config
-  const progressColors = configData?.data?.colors?.progress || {
-    green: "#48BB78",
-    blue: "#4299E1",
-    pink: "#ED64A6",
-    yellow: "#ECC94B",
-    violet: "#9F7AEA",
-  };
-
-  useEffect(() => {
-    const initialValues: { [key: string]: number } = {};
-    visibleServices.forEach((service, index) => {
-      initialValues[index] = service.percentage;
-    });
-    setProgressValues(initialValues);
-  }, [sectionInView]);
+    servicesData?.data?.filter((service) => service.visible) || [];
 
   const t = translations?.services || {};
 
   return (
     <section id="services" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6">
         <h2
           ref={sectionRef}
-          className={`section-title fade-up ${sectionInView ? "visible" : ""}`}
+          className={`section-title fade-up font-rubik font-bold ${sectionInView ? "visible" : ""}`}
         >
           {t.title || "Services"}
         </h2>
@@ -128,19 +108,16 @@ const ServicesSection = () => {
                   <h3 className="text-xl font-bold mb-3">{service.name}</h3>
                   <p className="mb-6 opacity-90">{service.description}</p>
                   <div className="flex items-center gap-2">
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div
-                        className="h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{
-                          width: `${
-                            sectionRef ? progressValues[index] || 0 : 0
-                          }%`,
-                          backgroundColor: service.progress_color,
-                        }}
-                      ></div>
+                    <div className="flex-1">
+                      <Progress 
+                        value={service.percentage} 
+                        animateOnScroll={true} 
+                        className="bg-white/20"
+                        style={{ backgroundColor: service.progress_bg_color }}
+                      />
                     </div>
                     <span className="text-xs font-medium whitespace-nowrap">
-                      {sectionRef ? progressValues[index] || 0 : 0}%
+                      {service.percentage}%
                     </span>
                   </div>
                 </div>

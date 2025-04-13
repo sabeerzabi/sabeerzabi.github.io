@@ -9,7 +9,8 @@
       "experience": "Experience",
       "projects": "Projects",
       "skills": "Skills",
-      "contact": "Contact"
+      "contact": "Contact",
+      "certificates": "Certificates"
     },
     "hero": {
       "hello": "Hello, I'm",
@@ -38,6 +39,11 @@
     },
     "skills": {
       "title": "Technical Skills"
+    },
+    "certificates": {
+      "title": "Certificates",
+      "filter_by": "Filter by Source",
+      "view_all": "View All"
     },
     "contact": {
       "title": "Contact Me",

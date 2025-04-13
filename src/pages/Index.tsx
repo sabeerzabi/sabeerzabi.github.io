@@ -9,6 +9,7 @@ import ExperienceSection from '@/components/sections/ExperienceSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import AchievementsSection from '@/components/sections/AchievementsSection';
 import SkillsSection from '@/components/sections/SkillsSection';
+import CertificatesSection from '@/components/sections/CertificatesSection';
 import ContactSection from '@/components/sections/ContactSection';
 import BackToTop from '@/components/ui/back-to-top';
 import Loader from '@/components/ui/loader';
@@ -51,6 +52,7 @@ const Index = () => {
       <ProjectsSection />
       <AchievementsSection />
       <SkillsSection />
+      <CertificatesSection />
       <ContactSection />
       <BackToTop />
       <Footer />
