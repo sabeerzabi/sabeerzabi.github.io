@@ -1,5 +1,6 @@
 
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { useConfig } from './ConfigContext';
 
 // Define the structure for language configuration
 interface LanguageConfig {
@@ -17,7 +18,7 @@ export type SupportedLanguage = 'en' | 'ar' | 'ml';
 interface LanguageContextProps {
   currentLanguage: SupportedLanguage;
   translations: any;
-  setLanguage: (language: SupportedLanguage | { code: string }) => void;
+  setLanguage: (language: SupportedLanguage | { code: string } | null) => void;
   isRtl: boolean;
   languages: Record<string, LanguageConfig>;
 }
@@ -32,25 +33,8 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const [currentLanguage, setCurrentLanguage] = useState<SupportedLanguage>('en');
   const [translations, setTranslations] = useState<any>(null);
   const [isRtl, setIsRtl] = useState(false);
-  const [languages, setLanguages] = useState<Record<string, LanguageConfig>>({});
-
-  // Fetch language configurations from config.json
-  useEffect(() => {
-    const fetchLanguageConfig = async () => {
-      try {
-        const response = await fetch('/data/config.json');
-        if (!response.ok) {
-          throw new Error('Failed to load config');
-        }
-        const data = await response.json();
-        setLanguages(data.data.languages || {});
-      } catch (error) {
-        console.error("Error fetching language config:", error);
-      }
-    };
-    
-    fetchLanguageConfig();
-  }, []);
+  const { config } = useConfig();
+  const languages = config?.languages || {};
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem('selectedLanguage');
@@ -59,7 +43,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     } else {
       setLanguage('en');
     }
-  }, []);
+  }, [config]);
 
   const fetchTranslations = async (language: SupportedLanguage) => {
     try {
@@ -74,7 +58,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     }
   };
 
-  const setLanguage = (language: SupportedLanguage | { code: string }) => {
+  const setLanguage = (language: SupportedLanguage | { code: string } | null) => {
     if (language === null) {
       // Fallback to default language if null
       const langCode = 'en' as SupportedLanguage;

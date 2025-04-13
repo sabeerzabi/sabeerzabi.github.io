@@ -1,6 +1,12 @@
+
 import { useInView } from "react-intersection-observer";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useLanguage } from "@/context/LanguageContext";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 interface AboutData {
   name: string;
@@ -34,19 +40,75 @@ interface ConfigResponse {
   };
 }
 
+interface FormValues {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 const ContactSection = () => {
-  const { data: aboutData, status: aboutStatus } = useFetchData<AboutResponse>(
+  const { data: aboutData } = useFetchData<AboutResponse>(
     "/data/en/about.json"
   );
   const { data: configData } =
     useFetchData<ConfigResponse>("/data/config.json");
-  const { translations } = useLanguage();
+  const { translations, currentLanguage } = useLanguage();
   const [sectionRef, sectionInView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const t = translations?.contact || {};
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "68c91983-f329-46e5-99a1-f2918e4b2508",
+          subject: data.subject,
+          email: aboutData?.data?.email || "sabeerzabi@gmail.com",
+          replyto: data.email,
+          message: `Name: ${data.name}\nEmail: ${data.email}\nSubject: ${data.subject}\nMessage: ${data.message}`,
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        toast({
+          title: t.message_sent || "Message Sent!",
+          description: t.thank_you || "Thank you for your message. I'll get back to you soon!",
+        });
+        reset();
+      } else {
+        throw new Error(result.message || "Something went wrong");
+      }
+    } catch (error) {
+      toast({
+        title: t.error || "Error",
+        description: t.sending_failed || "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-20 bg-gray-50 relative overflow-hidden">
@@ -73,7 +135,7 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
           <div className="md:col-span-2">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label
@@ -82,12 +144,17 @@ const ContactSection = () => {
                   >
                     {t.name || "Your Name"}
                   </label>
-                  <input
-                    type="text"
+                  <Input
                     id="name"
-                    className="contact-input"
                     placeholder={t.name || "Your Name"}
+                    {...register("name", { required: true })}
+                    className={errors.name ? "border-red-500" : ""}
                   />
+                  {errors.name && (
+                    <span className="text-red-500 text-sm mt-1">
+                      {t.name_required || "Name is required"}
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -96,12 +163,21 @@ const ContactSection = () => {
                   >
                     {t.email || "Your Email"}
                   </label>
-                  <input
+                  <Input
                     type="email"
                     id="email"
-                    className="contact-input"
                     placeholder={t.email || "Your Email"}
+                    {...register("email", {
+                      required: true,
+                      pattern: /^\S+@\S+$/i,
+                    })}
+                    className={errors.email ? "border-red-500" : ""}
                   />
+                  {errors.email && (
+                    <span className="text-red-500 text-sm mt-1">
+                      {t.valid_email || "Valid email is required"}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -112,12 +188,17 @@ const ContactSection = () => {
                 >
                   {t.subject || "Subject"}
                 </label>
-                <input
-                  type="text"
+                <Input
                   id="subject"
-                  className="contact-input"
                   placeholder={t.subject || "Subject"}
+                  {...register("subject", { required: true })}
+                  className={errors.subject ? "border-red-500" : ""}
                 />
+                {errors.subject && (
+                  <span className="text-red-500 text-sm mt-1">
+                    {t.subject_required || "Subject is required"}
+                  </span>
+                )}
               </div>
 
               <div>
@@ -127,16 +208,36 @@ const ContactSection = () => {
                 >
                   {t.message || "Your Message"}
                 </label>
-                <textarea
+                <Textarea
                   id="message"
                   rows={5}
-                  className="contact-input resize-none"
                   placeholder={t.message || "Your Message"}
-                ></textarea>
+                  {...register("message", { required: true })}
+                  className={`resize-none ${errors.message ? "border-red-500" : ""}`}
+                />
+                {errors.message && (
+                  <span className="text-red-500 text-sm mt-1">
+                    {t.message_required || "Message is required"}
+                  </span>
+                )}
               </div>
 
-              <button type="submit" className="btn-primary">
-                {t.send_message || "Send Message"}
+              <button 
+                type="submit" 
+                className="btn-primary flex items-center justify-center"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {t.sending || "Sending..."}
+                  </>
+                ) : (
+                  t.send_message || "Send Message"
+                )}
               </button>
             </form>
           </div>
