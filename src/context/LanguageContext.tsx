@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-export interface Language {
+interface Language {
   name: string;
   code: string;
   flag: string;
@@ -9,7 +9,7 @@ export interface Language {
   default: boolean;
 }
 
-export interface LanguageConfig {
+interface LanguageConfig {
   [key: string]: Language;
 }
 
