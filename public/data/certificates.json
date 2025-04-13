@@ -66,6 +66,12 @@
       "image": "/images/certificates/react.png",
       "source": "HackerRank",
       "url": "https://www.hackerrank.com/certificates/9c0ead80f7de"
+    },
+    {
+      "name": "Advanced Python",
+      "image": "/images/certificates/advanced-python.jpg",
+      "source": "Udemy",
+      "url": "https://www.udemy.com/certificate/UC-7490dfdb-0e16-44ac-83d9-c1129aa5cd4b/"
     }
   ]
 }
