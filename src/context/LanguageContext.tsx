@@ -53,8 +53,12 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   }, []);
 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem('selectedLanguage') as SupportedLanguage || 'en';
-    setLanguage(storedLanguage);
+    const storedLanguage = localStorage.getItem('selectedLanguage');
+    if (storedLanguage && ['en', 'ar', 'ml'].includes(storedLanguage)) {
+      setLanguage(storedLanguage as SupportedLanguage);
+    } else {
+      setLanguage('en');
+    }
   }, []);
 
   const fetchTranslations = async (language: SupportedLanguage) => {
@@ -77,8 +81,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       applyLanguageSettings(langCode);
     } else if (typeof language === 'object' && language !== null && 'code' in language) {
       // Handle case where language is passed as an object
-      const langCode = language.code as SupportedLanguage;
-      applyLanguageSettings(langCode);
+      const code = language.code;
+      if (code === 'en' || code === 'ar' || code === 'ml') {
+        const langCode = code as SupportedLanguage;
+        applyLanguageSettings(langCode);
+      }
     } else {
       // Handle direct string code case
       const langCode = language as SupportedLanguage;

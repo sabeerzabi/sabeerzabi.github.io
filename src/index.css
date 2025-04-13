@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
@@ -102,6 +103,17 @@
 
   .social-icon {
     @apply w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition-colors;
+  }
+
+  /* Adjust social media icons to display in rows of 5 on mobile */
+  @media (max-width: 640px) {
+    .social-icons-container {
+      @apply grid grid-cols-5 gap-2;
+    }
+    
+    .social-icon {
+      @apply w-8 h-8;
+    }
   }
 
   .project-card {

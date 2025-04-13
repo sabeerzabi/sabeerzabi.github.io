@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { useLanguage } from "@/context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLaptopCode, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Experience {
   company: string;
@@ -63,6 +64,7 @@ const ExperienceSection = () => {
     threshold: 0.1,
     triggerOnce: true,
   });
+  const isMobile = useIsMobile();
 
   // Sort data by order
   const sortedExperiences = experiencesData?.data
@@ -135,7 +137,7 @@ const ExperienceSection = () => {
                             <h3 className="text-xl font-bold text-portfolio-primary mb-1 sm:mb-0">
                               {experience.designation}
                             </h3>
-                            <p className="text-gray-500 whitespace-nowrap">
+                            <p className="text-gray-500 whitespace-nowrap text-sm mt-1 sm:mt-0">
                               {experience.duration}
                             </p>
                           </div>
@@ -151,7 +153,7 @@ const ExperienceSection = () => {
                             <span className="ml-2">{experience.country}</span>
                           </div>
 
-                          {experience.tasks?.length > 0 && (
+                          {!isMobile && experience.tasks?.length > 0 && (
                             <div className="mb-4">
                               <p className="text-gray-700 font-medium mb-2">
                                 Responsibilities:
@@ -166,7 +168,7 @@ const ExperienceSection = () => {
                             </div>
                           )}
 
-                          {experience.descriptions?.length > 0 && (
+                          {!isMobile && experience.descriptions?.length > 0 && (
                             <div className="mb-5">
                               <ul className="list-disc pl-5 space-y-1">
                                 {experience.descriptions.map((desc, i) => (
@@ -244,7 +246,7 @@ const ExperienceSection = () => {
                             <h3 className="text-xl font-bold text-portfolio-primary mb-1 sm:mb-0">
                               {education.course}
                             </h3>
-                            <p className="text-gray-500 whitespace-nowrap">
+                            <p className="text-gray-500 whitespace-nowrap text-sm mt-1 sm:mt-0">
                               {education.duration}
                             </p>
                           </div>
@@ -262,7 +264,7 @@ const ExperienceSection = () => {
                             </div>
                           </div>
 
-                          {education.descriptions?.length > 0 && (
+                          {!isMobile && education.descriptions?.length > 0 && (
                             <div>
                               <ul className="list-disc pl-5 space-y-1">
                                 {education.descriptions.map((desc, i) => (

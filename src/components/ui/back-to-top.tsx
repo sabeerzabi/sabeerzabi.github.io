@@ -1,9 +1,11 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const isMobile = useIsMobile();
 
   // Show button when page is scrolled down
   useEffect(() => {
@@ -27,6 +29,11 @@ const BackToTop = () => {
       behavior: 'smooth'
     });
   };
+
+  // Don't render on mobile
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <>

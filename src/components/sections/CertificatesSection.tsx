@@ -1,9 +1,11 @@
+
 import { useState, useEffect } from "react";
 import { useFetchData } from "@/hooks/useFetchData";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useInView } from "react-intersection-observer";
 import { useLanguage } from "@/context/LanguageContext";
 import FadeInSection from "@/components/ui/fade-in-section";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Certificate {
   name: string;
@@ -31,6 +33,7 @@ const CertificatesSection = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const isMobile = useIsMobile();
 
   // Extract unique sources from certificates
   useEffect(() => {
@@ -77,7 +80,7 @@ const CertificatesSection = () => {
 
   return (
     <section id="certificates" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <h2
           ref={ref}
           className={`section-title fade-up font-rubik font-bold ${
@@ -88,7 +91,7 @@ const CertificatesSection = () => {
         </h2>
 
         {/* Source Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mt-8 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 mt-8 mb-10">
           {sources.map((source, index) => (
             <button
               key={index}
@@ -98,7 +101,7 @@ const CertificatesSection = () => {
                 setShowViewAll(true);
                 setShowLess(false);
               }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                 selectedSource === source
                   ? "bg-portfolio-primary text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -110,7 +113,7 @@ const CertificatesSection = () => {
         </div>
 
         {/* Certificates Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8">
           {status === "loading" ? (
             Array(6)
               .fill(0)
@@ -141,15 +144,15 @@ const CertificatesSection = () => {
                     rel="noopener noreferrer"
                     className="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                   >
-                    <div className="relative h-48 bg-gray-100">
+                    <div className="relative h-40 sm:h-48 bg-gray-100">
                       <img
                         src={certificate.image}
                         alt={certificate.name}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-medium text-lg mb-1">
+                    <div className="p-3 sm:p-4">
+                      <h3 className="font-medium text-base sm:text-lg mb-1 line-clamp-2">
                         {certificate.name}
                       </h3>
                       <p className="text-sm text-gray-600">

@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useLanguage, SupportedLanguage } from "@/context/LanguageContext";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,6 +14,7 @@ const Navbar = () => {
   const { currentLanguage, setLanguage, translations, languages, isRtl } =
     useLanguage();
   const languageMenuRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +32,7 @@ const Navbar = () => {
         "experience",
         "projects",
         "skills",
+        "certificates",
         "contact",
       ];
       for (const sectionId of sections) {
@@ -79,8 +82,10 @@ const Navbar = () => {
   };
 
   const handleLanguageSelect = (code: string) => {
-    setLanguage(code as SupportedLanguage);
-    setIsLanguageMenuOpen(false);
+    if (code === 'en' || code === 'ar' || code === 'ml') {
+      setLanguage(code);
+      setIsLanguageMenuOpen(false);
+    }
   };
 
   const t = translations?.navbar || {};
@@ -174,6 +179,16 @@ const Navbar = () => {
               {t.skills || "Skills"}
             </a>
             <a
+              href="#certificates"
+              className={`nav-link font-bold transition-colors ${
+                activeSection === "certificates"
+                  ? "text-portfolio-yellow"
+                  : "text-white/90 hover:text-portfolio-yellow"
+              }`}
+            >
+              {t.certificates || "Certificates"}
+            </a>
+            <a
               href="#contact"
               className={`nav-link font-bold transition-colors ${
                 activeSection === "contact"
@@ -205,9 +220,9 @@ const Navbar = () => {
             {isLanguageMenuOpen && (
               <div className="language-menu">
                 {Object.entries(languages || {}).map(
-                  ([code, lang]) => {
-                    const langConfig = lang as any;
-                    return langConfig.enabled ? (
+                  ([code, langInfo]) => {
+                    const lang = langInfo as any;
+                    return lang && lang.enabled ? (
                       <div
                         key={code}
                         className={`language-item ${
@@ -216,11 +231,11 @@ const Navbar = () => {
                         onClick={() => handleLanguageSelect(code)}
                       >
                         <img
-                          src={langConfig.flag}
-                          alt={langConfig.name}
+                          src={lang.flag}
+                          alt={lang.name}
                           className="language-flag"
                         />
-                        <span>{langConfig.name}</span>
+                        <span>{lang.name}</span>
                       </div>
                     ) : null;
                   }
@@ -248,9 +263,9 @@ const Navbar = () => {
             {isLanguageMenuOpen && (
               <div className="language-menu">
                 {Object.entries(languages || {}).map(
-                  ([code, lang]) => {
-                    const langConfig = lang as any;
-                    return langConfig.enabled ? (
+                  ([code, langInfo]) => {
+                    const lang = langInfo as any;
+                    return lang && lang.enabled ? (
                       <div
                         key={code}
                         className={`language-item ${
@@ -259,11 +274,11 @@ const Navbar = () => {
                         onClick={() => handleLanguageSelect(code)}
                       >
                         <img
-                          src={langConfig.flag}
-                          alt={langConfig.name}
+                          src={lang.flag}
+                          alt={lang.name}
                           className="language-flag"
                         />
-                        <span>{langConfig.name}</span>
+                        <span>{lang.name}</span>
                       </div>
                     ) : null;
                   }
@@ -350,6 +365,17 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t.skills || "Skills"}
+            </a>
+            <a
+              href="#certificates"
+              className={`nav-link font-bold transition-colors ${
+                activeSection === "certificates"
+                  ? "text-portfolio-yellow"
+                  : "text-white/90 hover:text-portfolio-yellow"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {t.certificates || "Certificates"}
             </a>
             <a
               href="#contact"
