@@ -1,6 +1,5 @@
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useFetchData } from '@/hooks/useFetchData';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 interface Language {
   name: string;
@@ -10,72 +9,75 @@ interface Language {
   default: boolean;
 }
 
+interface LanguageConfig {
+  [key: string]: Language;
+}
+
 interface LanguageContextType {
-  currentLanguage: string;
-  setLanguage: (code: string) => void;
+  language: string;
   translations: any;
-  languages: Record<string, Language>;
   isRtl: boolean;
+  setLanguage: (language: string) => void;
+  availableLanguages: LanguageConfig;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-interface LanguageProviderProps {
-  children: ReactNode;
-}
-
-export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const { data: configData } = useFetchData<any>('/data/config.json');
-  const [languages, setLanguages] = useState<Record<string, Language>>({});
-  const [currentLanguage, setCurrentLanguage] = useState<string>('en');
-  const [translations, setTranslations] = useState<any>({});
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguage] = useState<string>("en");
+  const [translations, setTranslations] = useState<any>(null);
   const [isRtl, setIsRtl] = useState<boolean>(false);
+  const [availableLanguages, setAvailableLanguages] = useState<LanguageConfig>({});
 
-  // Initialize languages from config
   useEffect(() => {
-    if (configData?.data?.languages) {
-      setLanguages(configData.data.languages);
-      
-      // Set default language
-      const defaultLang = Object.values(configData.data.languages).find(
-        (lang: any) => lang.default && lang.enabled
-      );
-      
-      if (defaultLang) {
-        setCurrentLanguage(defaultLang.code);
-      }
-    }
-  }, [configData]);
-
-  // Load translations for current language
-  useEffect(() => {
-    const fetchTranslations = async () => {
+    // Fetch languages from config
+    const fetchLanguages = async () => {
       try {
-        const response = await fetch(`/lang/${currentLanguage}.json`);
+        const response = await fetch('/data/config.json');
         const data = await response.json();
-        setTranslations(data.data);
         
-        // Set RTL for Arabic
-        setIsRtl(currentLanguage === 'ar');
+        if (data.success && data.data.languages) {
+          setAvailableLanguages(data.data.languages);
+          
+          // Find default language
+          const defaultLang = Object.values(data.data.languages as LanguageConfig).find(
+            (lang) => lang.default === true && lang.enabled === true
+          ) as Language;
+          
+          if (defaultLang && defaultLang.code) {
+            setLanguage(defaultLang.code);
+          }
+        }
       } catch (error) {
-        console.error('Failed to load translations:', error);
+        console.error("Error fetching languages:", error);
       }
     };
+    
+    fetchLanguages();
+  }, []);
 
-    if (currentLanguage) {
+  useEffect(() => {
+    // Load translations for selected language
+    const fetchTranslations = async () => {
+      try {
+        const response = await fetch(`/lang/${language}.json`);
+        const data = await response.json();
+        setTranslations(data);
+        
+        // Set RTL based on language
+        setIsRtl(language === "ar");
+      } catch (error) {
+        console.error(`Error fetching translations for ${language}:`, error);
+      }
+    };
+    
+    if (language) {
       fetchTranslations();
     }
-  }, [currentLanguage]);
-
-  const setLanguage = (code: string) => {
-    if (languages[code] && languages[code].enabled) {
-      setCurrentLanguage(code);
-      localStorage.setItem('preferredLanguage', code);
-    }
-  };
+  }, [language]);
 
   return (
-    <LanguageContext.Provider value={{ currentLanguage, setLanguage, translations, languages, isRtl }}>
+    <LanguageContext.Provider value={{ language, translations, isRtl, setLanguage, availableLanguages }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -84,7 +86,7 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 };
