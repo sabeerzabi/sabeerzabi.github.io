@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "data": [
+    {
+      "name": "ലിങ്ക്ഡ്ഇൻ",
+      "url": "https://www.linkedin.com/in/sabeer-zabi-02125097",
+      "icon_class": "fa-linkedin"
+    },
+    {
+      "name": "WhatsApp",
+      "url": "https://wa.me/919633743391",
+      "icon_class": "fa-whatsapp"
+    },
+    {
+      "name": "X",
+      "url": "https://x.com/sabeerzabi",
+      "icon_class": "fa-x-twitter"
+    },
+    {
+      "name": "ഇൻസ്റ്റാഗ്രാം",
+      "url": "https://www.instagram.com/sabeerzabi",
+      "icon_class": "fa-instagram"
+    },
+    {
+      "name": "ഫേസ്ബുക്ക്",
+      "url": "https://www.facebook.com/sabeer.zabi",
+      "icon_class": "fa-facebook"
+    },
+    {
+      "name": "Pinterest",
+      "url": "https://in.pinterest.com/sabeerzabi",
+      "icon_class": "fa-pinterest"
+    },
+    {
+      "name": "Github",
+      "url": "https://github.com/sabeerzabi",
+      "icon_class": "fa-github"
+    },
+    {
+      "name": "Medium",
+      "url": "https://medium.com/@sabeerzabi",
+      "icon_class": "fa-medium"
+    },
+    {
+      "name": "സ്റ്റാക്ക് ഓവർഫ്ലോ",
+      "url": "https://stackoverflow.com/users/8893659/sabeerzabi",
+      "icon_class": "fa-stack-overflow"
+    },
+    {
+      "name": "സ്റ്റാക്ക് എക്സ്ചേഞ്ച്",
+      "url": "https://stackexchange.com/users/12182672/sabeerzabi?tab=accounts",
+      "icon_class": "fa-stack-exchange"
+    }
+  ]
+}

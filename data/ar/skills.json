@@ -1,0 +1,83 @@
+{
+  "success": true,
+  "data": [
+    {
+      "name": "كوديجنتر",
+      "image": "/icons/skills/codeiginter.svg",
+      "message": "عملت عليه لمدة 7 سنوات قبل، أحتاج إلى تحديث مهاراتي.",
+      "percentage": 25
+    },
+    {
+      "name": "سي إس إس",
+      "image": "/icons/skills/css.svg",
+      "message": "تناولت جميع أنواع سي إس إس ولكن لم أنشئ أسلوب من الصفر.",
+      "percentage": 65
+    },
+    {
+      "name": "دوكر",
+      "image": "/icons/skills/docker.svg",
+      "message": "أنشأت دوكرز مخصصة لعدة تطبيقات وشاركتها مع أعضاء الفريق.",
+      "percentage": 85
+    },
+    {
+      "name": "إتش تي إم إل",
+      "image": "/icons/skills/html.svg",
+      "message": "معروف جيداً بجميع أنواع علامات إتش تي إم إل.",
+      "percentage": 80
+    },
+    {
+      "name": "جافا سكريبت",
+      "image": "/icons/skills/javascript.svg",
+      "message": "سأنشئ أي نوع من السكريبتات باستخدام جافا سكريبت.",
+      "percentage": 85
+    },
+    {
+      "name": "جيكويري",
+      "image": "/icons/skills/jquery.svg",
+      "message": "كثير من الخبرة في جيكويري، معظم تطبيقاتي عملت عليها.",
+      "percentage": 90
+    },
+    {
+      "name": "لارافيل",
+      "image": "/icons/skills/laravel.svg",
+      "message": "7 سنوات من الخبرة في إطار لارافيل.",
+      "percentage": 90
+    },
+    {
+      "name": "ماي إس كيو إل",
+      "image": "/icons/skills/mysql.svg",
+      "message": "معروف جيداً بماي إس كيو إل 5.6 وماي إس كيو إل 8، قمت بتحسين كثير من الاستعلامات وأنشأت استعلامات معقدة.",
+      "percentage": 95
+    },
+    {
+      "name": "بي إتش بي",
+      "image": "/icons/skills/php.svg",
+      "message": "8 سنوات من الخبرة في بي إتش بي عملت على بي إتش بي 5.6، بي إتش بي 7.4 وبي إتش بي 8.3.",
+      "percentage": 95
+    },
+    {
+      "name": "بايثون",
+      "image": "/icons/skills/python.svg",
+      "message": "4 سنوات عملت على بايثون في خدمات لامدا أمازون.",
+      "percentage": 85
+    },
+    {
+      "name": "أوبونتو",
+      "image": "/icons/skills/ubuntu.svg",
+      "message": "عملت على عدة أنظمة تشغيل لينكس بما في ذلك أوبونتو.",
+      "percentage": 80
+    },
+    {
+      "name": "فيو جيه إس",
+      "image": "/icons/skills/vue-js.svg",
+      "message": "أصلحت مشكلات فيو جيه إس الأمامية المتعددة. لم أنشئ أي تطبيق من الصفر.",
+      "percentage": 80
+    },
+    {
+      "name": "ووردبريس",
+      "image": "/icons/skills/wordpress.svg",
+      "message": "عملت عليه لمدة 7 سنوات قبل، أحتاج إلى تحديث مهاراتي.",
+      "percentage": 25
+    }
+  ]
+}

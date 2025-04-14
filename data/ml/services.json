@@ -1,0 +1,60 @@
+{
+  "success": true,
+  "data": [
+    {
+      "name": "പ്രോജക്റ്റ് മാനേജ്മെന്റ്",
+      "description": "ആദരവോടെയും പ്രൊഫഷണൽ രീതിയിലും തന്റെ ഒന്നിലധികം കടമകൾ നിർവഹിക്കുകയും ഏൽപ്പിക്കുകയും ചെയ്യുന്ന കഠിനാധ്വാനിയായ ടീം ലീഡർ.",
+      "icon": "/icons/services/project-management.svg",
+      "bg_color": "purple",
+      "visible": true,
+      "color": "white",
+      "percentage": 80,
+      "progress_color": "deeppink",
+      "progress_bg_color": "grey"
+    },
+    {
+      "name": "വെബ് ഡെവലപ്‌മെന്റ്",
+      "description": "ഇന്ററാക്ടീവ്, ഉപയോക്തൃ-സൗഹൃദ, ഫീച്ചർ-റിച്ച് വെബ്‌സൈറ്റുകൾ വികസിപ്പിക്കുന്നതിനും ഒപ്റ്റിമൈസ് ചെയ്യുന്നതിനും വേണ്ടി സമർപ്പിക്കപ്പെട്ട ക്രിയേറ്റീവ് വെബ് ഡെവലപ്പർമാർ.",
+      "icon": "/icons/services/web-development.svg",
+      "bg_color": "chocolate",
+      "visible": true,
+      "color": "white",
+      "percentage": 95,
+      "progress_color": "darkorange",
+      "progress_bg_color": "grey"
+    },
+    {
+      "name": "HTML പരിവർത്തനം",
+      "description": "JavaScript, HTML, Ajax, CSS, XML എന്നിവ ഉപയോഗിച്ച് ശ്രദ്ധേയമായ അനുഭവം. JavaScript/ AJAX, ഫ്രണ്ട് എൻഡ് ഫ്രെയിംവർക്കുകൾ എന്നിവയിൽ പ്രാവീണ്യം.",
+      "icon": "/icons/services/html-conversion.svg",
+      "bg_color": "crimson",
+      "visible": true,
+      "color": "white",
+      "percentage": 60,
+      "progress_color": "hotpink",
+      "progress_bg_color": "grey"
+    },
+    {
+      "name": "ടീം മാനേജ്മെന്റ്",
+      "description": "ആദരവോടെയും പ്രൊഫഷണൽ രീതിയിലും തന്റെ ഒന്നിലധികം കടമകൾ നിർവഹിക്കുകയും ഏൽപ്പിക്കുകയും ചെയ്യുന്ന കഠിനാധ്വാനിയായ ടീം ലീഡർ.",
+      "icon": "/icons/services/team-management.svg",
+      "bg_color": "green",
+      "visible": false,
+      "color": "white",
+      "percentage": 80,
+      "progress_color": "yellow",
+      "progress_bg_color": "grey"
+    },
+    {
+      "name": "ക്ലയിന്റ് മാനേജ്മെന്റ്",
+      "description": "ആദരവോടെയും പ്രൊഫഷണൽ രീതിയിലും തന്റെ ഒന്നിലധികം കടമകൾ നിർവഹിക്കുകയും ഏൽപ്പിക്കുകയും ചെയ്യുന്ന കഠിനാധ്വാനിയായ ടീം ലീഡർ.",
+      "icon": "/icons/services/client-management.svg",
+      "bg_color": "blue",
+      "visible": false,
+      "color": "white ",
+      "percentage": 75,
+      "progress_color": "violet",
+      "progress_bg_color": "grey"
+    }
+  ]
+}

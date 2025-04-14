@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "data": [
+    {
+      "duration": "Feb, 2021 - Mar, 2025",
+      "company": "Litebreeze Infotech",
+      "designation": "Senior Software Engineer",
+      "location": "SmartCity Kochi, Infopark road, Kakkand, Kerala, India.",
+      "experience": "4.1 years",
+      "technologies": [
+        "laravel",
+        "aws lambda",
+        "python",
+        "docker",
+        "elasticsearch",
+        "redis",
+        "mysql"
+      ],
+      "descriptions": [
+        "Designed and implemented scalable backend systems for large-scale applications with Laravel and AWS Lambda, managing over 100 million documents and enhancing system efficiency.",
+        "Optimized Elasticsearch indexing to manage millions of documents, reducing data retrieval time by 40% and improving query performance for large-scale applications.",
+        "Created and maintained containerized development environments using Docker, streamlining development workflows and improving deployment consistency.",
+        "Conducted code reviews to ensure adherence to SOLID principles, PSR-12 standards, and best practices.",
+        "Directed sub-projects such as building a Google Drive–style cloud storage platform, managing end-to-end architecture and implementation.",
+        "Developed reusable PHP packages encapsulating critical business logic, ensuring 90%+ test coverage and reducing feature development time by 25% through improved code modularity.",
+        "Utilized AI-assisted coding tools (Codeium, Cursor IDE) to accelerate development workflows, improving code quality and cutting development time by 30%"
+      ]
+    },
+    {
+      "duration": "Aug, 2018 - Feb, 2021",
+      "company": "2Base Technologies",
+      "designation": "Software Engineer",
+      "location": "Palakkad, Kerala, India",
+      "experience": "2.5 years",
+      "technologies": ["laravel", "scrapy", "python", "git"],
+      "descriptions": [
+        "Led and developed two major projects, managing backend architecture, integrations, and team collaboration.",
+        "Built and launched a travel booking platform integrating hotel, flight, and activity APIs with PayPal and PayUmoney payment gateways, processing over ₹1 crore in transactions monthly and improving payment success rates by 25%.",
+        "Implemented multi-channel notification systems (Email, SMS, WhatsApp), enabling real-time customer communication and handling over 300 notifications per day with high reliability.",
+        "Integrated the backend for an IoT application using Django and REST APIs, enabling real-time sensor monitoring across devices with data refresh rates under 5 seconds."
+      ]
+    },
+    {
+      "duration": "Jul, 2017 - Aug, 2018",
+      "company": "Fortius Technologies",
+      "designation": "Web developer",
+      "location": "Ayyathol, Thrissur, Kerala, India",
+      "experience": "1 year",
+      "technologies": ["core-php", "codeigniter", "wordpress", "mysql"],
+      "descriptions": [
+        "Initiated and delivered over 25 CMS-based web projects utilizing Core PHP, CodeIgniter, and WordPress."
+      ]
+    }
+  ]
+}

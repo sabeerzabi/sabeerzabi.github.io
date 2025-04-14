@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "data": [
+    {
+      "duration": "2014 - 2017",
+      "course": "കമ്പ്യൂട്ടർ സയൻസിലെ Bsc.",
+      "institute": "കാലിക്കറ്റ് സർവകലാശാല, CAS അയലൂർ",
+      "location": "അയലൂർ, കേരളം, ഇന്ത്യ",
+      "description": []
+    },
+    {
+      "duration": "2012 - 2014",
+      "course": "കമ്പ്യൂട്ടർ സയൻസിലെ പ്ലസ് ടു",
+      "institute": "നെമ്മാര ഗവ. ബോയ്സ് HSS",
+      "location": "നെമ്മാര, പാലക്കാട് കേരളം",
+      "description": []
+    },
+    {
+      "duration": "2011 - 2012",
+      "course": "SSLC",
+      "institute": "അയലൂർ SMHSS",
+      "location": "അയലൂർ, പാലക്കാട് കേരളം",
+      "description": []
+    }
+  ]
+}
