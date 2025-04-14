@@ -1,0 +1,72 @@
+
+{
+  "success": true,
+  "data": {
+    "navbar": {
+      "home": "الرئيسية",
+      "about": "حول",
+      "services": "الخدمات",
+      "experience": "الخبرة",
+      "projects": "المشاريع",
+      "skills": "المهارات",
+      "contact": "اتصل بي",
+      "certificates": "الشهادات"
+    },
+    "hero": {
+      "hello": "مرحبا، أنا",
+      "name": "صابر سي ايه",
+      "hire_me": "وظفني"
+    },
+    "about": {
+      "title": "عني",
+      "description": "أنا مطور شغوف بسنوات من الخبرة في تطوير الويب والبرمجيات."
+    },
+    "services": {
+      "title": "الخدمات"
+    },
+    "experience": {
+      "title": "الخبرة والتعليم"
+    },
+    "projects": {
+      "title": "المشاريع",
+      "view_all": "مشاهدة الكل",
+      "show_less": "عرض أقل"
+    },
+    "achievements": {
+      "title": "الإنجازات",
+      "download_resume": "تحميل السيرة الذاتية",
+      "view_more": "عرض المزيد"
+    },
+    "skills": {
+      "title": "المهارات التقنية"
+    },
+    "certificates": {
+      "title": "الشهادات",
+      "filter_by": "تصفية حسب المصدر",
+      "view_all": "عرض الكل"
+    },
+    "contact": {
+      "title": "تواصل معي",
+      "name": "اسمك",
+      "email": "بريدك الإلكتروني",
+      "subject": "الموضوع",
+      "message": "رسالتك",
+      "send_message": "إرسال الرسالة",
+      "sending": "جاري الإرسال...",
+      "name_required": "الاسم مطلوب",
+      "valid_email": "البريد الإلكتروني الصحيح مطلوب",
+      "subject_required": "الموضوع مطلوب",
+      "message_required": "الرسالة مطلوبة",
+      "message_sent": "تم إرسال الرسالة!",
+      "thank_you": "شكرا لرسالتك. سأعود إليك قريبا!",
+      "error": "خطأ",
+      "sending_failed": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى لاحقًا.",
+      "address": "العنوان",
+      "phone": "الهاتف",
+      "email_label": "البريد الإلكتروني"
+    },
+    "footer": {
+      "copyright": "© 2024 صابر سي ايه. جميع الحقوق محفوظة."
+    }
+  }
+}

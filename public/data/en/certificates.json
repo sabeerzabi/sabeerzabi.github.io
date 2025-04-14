@@ -1,0 +1,77 @@
+{
+  "success": true,
+  "data": [
+    {
+      "name": "SQL Advanced",
+      "image": "/images/certificates/sql-advanced.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/d5c5c50c378a"
+    },
+    {
+      "name": "React",
+      "image": "/images/certificates/react.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/9c0ead80f7de"
+    },
+    {
+      "name": "Advanced Python",
+      "image": "/images/certificates/advanced-python.jpg",
+      "source": "Udemy",
+      "url": "https://www.udemy.com/certificate/UC-7490dfdb-0e16-44ac-83d9-c1129aa5cd4b/"
+    },
+    {
+      "name": "Problem Solving Intermediate",
+      "image": "/images/certificates/problem-soving-intermediate.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/089e64a00ab4"
+    },
+    {
+      "name": "JavaScript Intermediate",
+      "image": "/images/certificates/javascript-intermediate.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/13945bd5aadb"
+    },
+    {
+      "name": "Node Basic",
+      "image": "/images/certificates/node-basic.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/274f21dad408"
+    },
+    {
+      "name": "CSS Basic",
+      "image": "/images/certificates/css-basic.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/075160a23e06"
+    },
+    {
+      "name": "JavaScript Basic",
+      "image": "/images/certificates/javascript-basic.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/e81d49dc16b6"
+    },
+    {
+      "name": "Python Basic",
+      "image": "/images/certificates/python-basic.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/55f8b5a85751"
+    },
+    {
+      "name": "Problem Solving Basic",
+      "image": "/images/certificates/problem-soving-basic.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/87998abc4e98"
+    },
+    {
+      "name": "SQL Basic",
+      "image": "/images/certificates/sql-basic.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/276f25725063"
+    },
+    {
+      "name": "SQL Intermediate",
+      "image": "/images/certificates/sql-intermediate.png",
+      "source": "HackerRank",
+      "url": "https://www.hackerrank.com/certificates/c22466c994b7"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "data": [
+    {
+      "duration": "2014 - 2017",
+      "course": "Bsc. Computer Science",
+      "institute": "University of calicut, CAS Ayalur",
+      "location": "Ayalur, Kerala, India",
+      "description": []
+    },
+    {
+      "duration": "2012 - 2014",
+      "course": "Plus Two - Computer Science",
+      "institute": "Govt. Boys HSS Nemmara",
+      "location": "Nemmara, Palakkad Kerala",
+      "description": []
+    },
+    {
+      "duration": "2011 - 2012",
+      "course": "SSLC",
+      "institute": "SMHSS Ayalur",
+      "location": "Ayalur, Palakkad Kerala",
+      "description": []
+    }
+  ]
+}

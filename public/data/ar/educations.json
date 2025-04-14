@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "data": [
+    {
+      "duration": "2014 - 2017",
+      "course": "بكالوريوس في علوم الكمبيوتر",
+      "institute": "جامعة كاليكوت، كاس أيالور",
+      "location": "أيالور، كيرالا، الهند",
+      "description": []
+    },
+    {
+      "duration": "2012 - 2014",
+      "course": "بلاس تو - علوم الكمبيوتر",
+      "institute": "مدرسة حكومية للبنين HSS نيمارا",
+      "location": "نيمارا، بالاكاد كيرالا",
+      "description": []
+    },
+    {
+      "duration": "2011 - 2012",
+      "course": "إس إس إل سي",
+      "institute": "SMHSS أيالور",
+      "location": "أيالور، بالاكاد كيرالا",
+      "description": []
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "success": true,
+  "data": [
+    {
+      "name": "CodeIgniter",
+      "image": "/icons/skills/codeiginter.svg",
+      "message": "7 വർഷം മുമ്പ് പ്രവർത്തിച്ചു, വീണ്ടും പഠിക്കേണ്ടതുണ്ട്.",
+      "percentage": 25
+    },
+    {
+      "name": "CSS",
+      "image": "/icons/skills/css.svg",
+      "message": "എല്ലാത്തരം CSS കൈകാര്യം ചെയ്യും, പക്ഷേ ആദ്യം മുതൽ ഒരു ശൈലി ഉണ്ടാക്കിയിട്ടില്ല",
+      "percentage": 65
+    },
+    {
+      "name": "Docker",
+      "image": "/icons/skills/docker.svg",
+      "message": "ഒന്നിലധികം ആപ്ലിക്കേഷനുകൾക്കായി ഇഷ്ടമുള്ള ഡോക്കറുകൾ ഉണ്ടാക്കുകയും ടീം അംഗങ്ങളുമായി പങ്കിടുകയും ചെയ്തു",
+      "percentage": 85
+    },
+    {
+      "name": "HTML",
+      "image": "/icons/skills/html.svg",
+      "message": "എല്ലാത്തരം HTML ടാഗുകളും നന്നായി അറിയാം",
+      "percentage": 80
+    },
+    {
+      "name": "JavaScript",
+      "image": "/icons/skills/javascript.svg",
+      "message": "ജാവാസ്ക്രിപ്റ്റ് ഉപയോഗിച്ച് ഏത് തരത്തിലുള്ള സ്ക്രിപ്റ്റും ഉണ്ടാക്കും.",
+      "percentage": 85
+    },
+    {
+      "name": "jQuery",
+      "image": "/icons/skills/jquery.svg",
+      "message": "jQuery-ൽ ധാരാളം പരിചയമുണ്ട്, എന്റെ മിക്ക ആപ്ലിക്കേഷനുകളും അതിലാണ് പ്രവർത്തിച്ചത്",
+      "percentage": 90
+    },
+    {
+      "name": "Laravel",
+      "image": "/icons/skills/laravel.svg",
+      "message": "Laravel ഫ്രെയിംവർക്കുകളിൽ 7 വർഷത്തെ പരിചയം",
+      "percentage": 90
+    },
+    {
+      "name": "MySQL",
+      "image": "/icons/skills/mysql.svg",
+      "message": "MySQL 5.6, MySQL8 എന്നിവയെക്കുറിച്ച് നന്നായി അറിയാം, ധാരാളം ചോദ്യങ്ങൾ ഒപ്റ്റിമൈസ് ചെയ്യുകയും സങ്കീർണ്ണമായ ചോദ്യങ്ങൾ ഉണ്ടാക്കുകയും ചെയ്തു",
+      "percentage": 95
+    },
+    {
+      "name": "PHP",
+      "image": "/icons/skills/php.svg",
+      "message": "PHP-യിൽ 8 വർഷത്തെ പരിചയം PHP5.6, PHP7.4, PHP8.3 പതിപ്പുകളിൽ പ്രവർത്തിച്ചു.",
+      "percentage": 95
+    },
+    {
+      "name": "Python",
+      "image": "/icons/skills/python.svg",
+      "message": "4 വർഷം പൈത്തൺ AWS ലാംഡ സേവനങ്ങളിൽ പ്രവർത്തിച്ചു.",
+      "percentage": 85
+    },
+    {
+      "name": "Ubuntu",
+      "image": "/icons/skills/ubuntu.svg",
+      "message": "Ubuntu ഉൾപ്പെടെ നിരവധി ലിനക്സ് ഓഎസുകളിൽ പ്രവർത്തിച്ചു",
+      "percentage": 80
+    },
+    {
+      "name": "Vue.js",
+      "image": "/icons/skills/vue-js.svg",
+      "message": "നിരവധി ഫ്രണ്ട്എൻഡ് Vue.js പ്രശ്നങ്ങൾ പരിഹരിച്ചു. ആദ്യം മുതൽ ഒരു ആപ്ലിക്കേഷനും ഉണ്ടാക്കിയിട്ടില്ല.",
+      "percentage": 80
+    },
+    {
+      "name": "WordPress",
+      "image": "/icons/skills/wordpress.svg",
+      "message": "7 വർഷം മുമ്പ് പ്രവർത്തിച്ചു, വീണ്ടും പഠിക്കേണ്ടതുണ്ട്.",
+      "percentage": 25
+    }
+  ]
+}

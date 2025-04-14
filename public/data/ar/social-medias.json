@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "data": [
+    {
+      "name": "لينكد إن",
+      "url": "https://www.linkedin.com/in/sabeer-zabi-02125097",
+      "icon_class": "fa-linkedin"
+    },
+    {
+      "name": "واتساب",
+      "url": "https://wa.me/919633743391",
+      "icon_class": "fa-whatsapp"
+    },
+    {
+      "name": "إكس",
+      "url": "https://x.com/sabeerzabi",
+      "icon_class": "fa-x-twitter"
+    },
+    {
+      "name": "إنستاغرام",
+      "url": "https://www.instagram.com/sabeerzabi",
+      "icon_class": "fa-instagram"
+    },
+    {
+      "name": "فيسبوك",
+      "url": "https://www.facebook.com/sabeer.zabi",
+      "icon_class": "fa-facebook"
+    },
+    {
+      "name": "بينتريست",
+      "url": "https://in.pinterest.com/sabeerzabi",
+      "icon_class": "fa-pinterest"
+    },
+    {
+      "name": "جيت هاب",
+      "url": "https://github.com/sabeerzabi",
+      "icon_class": "fa-github"
+    },
+    {
+      "name": "ميديوم",
+      "url": "https://medium.com/@sabeerzabi",
+      "icon_class": "fa-medium"
+    },
+    {
+      "name": "ستاك أوفرفلو",
+      "url": "https://stackoverflow.com/users/8893659/sabeerzabi",
+      "icon_class": "fa-stack-overflow"
+    },
+    {
+      "name": "ستاك إكستشينج",
+      "url": "https://stackexchange.com/users/12182672/sabeerzabi?tab=accounts",
+      "icon_class": "fa-stack-exchange"
+    }
+  ]
+}
