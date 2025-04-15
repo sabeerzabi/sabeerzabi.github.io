@@ -1,4 +1,3 @@
-
 {
   "success": true,
   "data": {
@@ -19,34 +18,53 @@
     },
     "about": {
       "title": "About Me",
-      "description": "I'm a passionate developer with years of experience in web and software development."
+      "description": "I'm a passionate developer with years of experience in web and software development.",
+      "address_label": "Address",
+      "phone_label": "Phone",
+      "email_label": "Email",
+      "experience_label": "Experience"
     },
     "services": {
-      "title": "Services"
+      "title": "Services",
+      "subtitle": "What I Offer",
+      "description": "Here are the services I offer to help businesses achieve their digital goals."
     },
     "experience": {
-      "title": "Experience & Education"
+      "title": "Experience & Education",
+      "experience_tab": "Experience",
+      "education_tab": "Education",
+      "technologies": "Technologies:"
     },
     "projects": {
       "title": "Projects",
+      "subtitle": "My Recent Work",
       "view_all": "View All",
-      "show_less": "Show Less"
+      "show_less": "Show Less",
+      "project_details": "Project Details",
+      "technologies_used": "Technologies Used",
+      "visit_site": "Visit Site"
     },
     "achievements": {
       "title": "Achievements",
+      "subtitle": "Milestones & Recognition",
       "download_resume": "Download Resume",
       "view_more": "View More"
     },
     "skills": {
-      "title": "Technical Skills"
+      "title": "Technical Skills",
+      "subtitle": "My Expertise",
+      "years_experience": "Years Experience"
     },
     "certificates": {
       "title": "Certificates",
+      "subtitle": "Professional Development",
       "filter_by": "Filter by Source",
-      "view_all": "View All"
+      "view_all": "View All",
+      "view_certificate": "View Certificate"
     },
     "contact": {
       "title": "Contact Me",
+      "subtitle": "Get In Touch",
       "name": "Your Name",
       "email": "Your Email",
       "subject": "Subject",
@@ -66,7 +84,17 @@
       "email_label": "Email"
     },
     "footer": {
-      "copyright": "© 2024 Sabeer C A. All rights reserved."
+      "copyright": "© 2025 Sabeer C A. All rights reserved.",
+      "designed_by": "Designed & Developed by",
+      "follow_me": "Follow Me"
+    },
+    "chat": {
+      "title": "Chat with AI Assistant",
+      "placeholder": "Ask me anything...",
+      "send": "Send",
+      "welcome": "Hello! I'm Sabeer's AI assistant. How can I help you today?",
+      "typing": "AI is typing...",
+      "error": "Sorry, I couldn't process your request. Please try again."
     }
   }
 }
