@@ -9,3 +9,5 @@ rm -rf -- !("cleanup.sh"|"Backup"|"dist"|".gitignore"|".git"|"node_modules")
 if [ -d "dist" ]; then
   mv dist/* ./
 fi
+
+php -S localhost:8034
