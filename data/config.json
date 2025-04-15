@@ -39,16 +39,18 @@
         "name": "Arabic",
         "code": "ar",
         "flag": "/icons/flags/ar.svg",
-        "enabled": false,
+        "enabled": true,
         "default": false
       },
       "ml": {
         "name": "Malayalam",
         "code": "ml",
         "flag": "/icons/flags/ml.svg",
-        "enabled": false,
+        "enabled": true,
         "default": false
       }
-    }
+    },
+    "gm_key": "U2FsdGVkX18lOtp5xNNiLWwDyv3LzXPz2z4G7I3yj5RixkM905Rdbq5MePUdADHYWG1SXDhl/qIxGLKNMt0jBA==",
+    "gm_path": "U2FsdGVkX19YqlY6Ql6CsZwK3w+xVWxT370rzhR8vK+B3d2CTZwshLypzM8+FxXPclFgYLcwuRMkmIPlObRohezvw/S8kYfBGe1qb52l68E44IxVGeIDRDM2M6bIXAtiHBBo61i1tvN9geP2E09OZg=="
   }
 }
