@@ -9,7 +9,7 @@
       "visible": true,
       "color": "white",
       "percentage": 80,
-      "progress_color": "deeppink",
+      "progress_color": "#6441a5",
       "progress_bg_color": "grey"
     },
     {
