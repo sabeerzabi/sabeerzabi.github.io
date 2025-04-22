@@ -72,6 +72,30 @@
       "image": "/images/certificates/sql-intermediate.png",
       "source": "HackerRank",
       "url": "https://www.hackerrank.com/certificates/c22466c994b7"
+    },
+    {
+      "name": "Jumpstart Python & Gen AI",
+      "image": "/images/certificates/gen-ai.jpg",
+      "source": "Udemy",
+      "url": "https://www.udemy.com/certificate/UC-a8675ffd-6ddf-4cfc-aab5-07825ab3ce2e"
+    },
+    {
+      "name": "Effective Leadership",
+      "image": "/images/certificates/effective-leadership.png",
+      "source": "HP",
+      "url": "https://www.life-global.org/certificate/9436a195-8a03-4686-ad95-3f0593a102f3"
+    },
+    {
+      "name": "Agile Project Management",
+      "image": "/images/certificates/agile-project-management.png",
+      "source": "HP",
+      "url": "https://www.life-global.org/certificate/7983cfc3-5992-43cb-bbea-bdb43b502efe"
+    },
+    {
+      "name": "AI for Beginners",
+      "image": "/images/certificates/ai-for-beginners.png",
+      "source": "HP",
+      "url": "https://www.life-global.org/certificate/328a69a4-3cc4-41e4-9dbb-fc422b6ec6a6"
     }
   ]
 }

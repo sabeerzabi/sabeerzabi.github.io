@@ -72,6 +72,30 @@
       "image": "/images/certificates/sql-intermediate.png",
       "source": "هاكر رانك",
       "url": "https://www.hackerrank.com/certificates/c22466c994b7"
+    },
+    {
+      "name": "بايثون وجنرال AI للمبتدئين",
+      "image": "/images/certificates/gen-ai.jpg",
+      "source": "أوديمي",
+      "url": "https://www.udemy.com/certificate/UC-a8675ffd-6ddf-4cfc-aab5-07825ab3ce2e"
+    },
+    {
+      "name": "القيادة الفعالة",
+      "image": "/images/certificates/effective-leadership.png",
+      "source": "إتش بي",
+      "url": "https://www.life-global.org/certificate/9436a195-8a03-4686-ad95-3f0593a102f3"
+    },
+    {
+      "name": "إدارة المشاريع الرشيقة",
+      "image": "/images/certificates/agile-project-management.png",
+      "source": "إتش بي",
+      "url": "https://www.life-global.org/certificate/7983cfc3-5992-43cb-bbea-bdb43b502efe"
+    },
+    {
+      "name": "الذكاء الاصطناعي للمبتدئين",
+      "image": "/images/certificates/ai-for-beginners.png",
+      "source": "إتش بي",
+      "url": "https://www.life-global.org/certificate/328a69a4-3cc4-41e4-9dbb-fc422b6ec6a6"
     }
   ]
 }

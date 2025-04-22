@@ -72,6 +72,30 @@
       "image": "/images/certificates/sql-intermediate.png",
       "source": "ഹാക്കർറാങ്ക്",
       "url": "https://www.hackerrank.com/certificates/c22466c994b7"
+    },
+    {
+      "name": "ജംപ്‌സ്റ്റാർട്ട് പൈത്തൺ & ജെൻ എഐ",
+      "image": "/images/certificates/gen-ai.jpg",
+      "source": "ഉഡിമി",
+      "url": "https://www.udemy.com/certificate/UC-a8675ffd-6ddf-4cfc-aab5-07825ab3ce2e"
+    },
+    {
+      "name": "പ്രഭാവശാലിയായ നേതൃപാടവം",
+      "image": "/images/certificates/effective-leadership.png",
+      "source": "എച്ച്പി",
+      "url": "https://www.life-global.org/certificate/9436a195-8a03-4686-ad95-3f0593a102f3"
+    },
+    {
+      "name": "ആജൈൽ പ്രോജക്റ്റ് മാനേജ്മെന്റ്",
+      "image": "/images/certificates/agile-project-management.png",
+      "source": "എച്ച്പി",
+      "url": "https://www.life-global.org/certificate/7983cfc3-5992-43cb-bbea-bdb43b502efe"
+    },
+    {
+      "name": "ആർട്ടിഫിഷ്യൽ ഇന്റലിജൻസ് ബിഗിന്നേഴ്സ്",
+      "image": "/images/certificates/ai-for-beginners.png",
+      "source": "എച്ച്പി",
+      "url": "https://www.life-global.org/certificate/328a69a4-3cc4-41e4-9dbb-fc422b6ec6a6"
     }
   ]
 }
