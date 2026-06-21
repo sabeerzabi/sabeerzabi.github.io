@@ -1,6 +1,7 @@
 {
   "active": true,
   "errorCode": "ERR_409",
+  "subscription_end": "2026-06-21 16:10:00",
   "errors": {
     "ERR_400": "Invalid request parameters",
     "ERR_401": "Subscription authentication failed",
