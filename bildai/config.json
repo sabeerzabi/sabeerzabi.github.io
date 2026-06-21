@@ -1,0 +1,17 @@
+{
+  "active": true,
+  "errorCode": "ERR_409",
+  "errors": {
+    "ERR_400": "Invalid request parameters",
+    "ERR_401": "Subscription authentication failed",
+    "ERR_402": "Subscription payment required",
+    "ERR_403": "Current plan does not allow this action",
+    "ERR_404": "Subscription not found",
+    "ERR_408": "Request timed out while processing",
+    "ERR_409": "Quota exceeded for current subscription",
+    "ERR_413": "Bandwidth limit exceeded",
+    "ERR_429": "Too many API requests",
+    "ERR_500": "Unexpected server error",
+    "ERR_503": "Service temporarily unavailable"
+  }
+}
