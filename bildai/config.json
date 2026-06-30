@@ -4,7 +4,14 @@
   "subscription_end": "2026-07-30 16:30:00",
   "use_config_env": false,
   "env": {
-    "DATABASE": "sqlite"
+    "DATABASE": "sqlite",
+    "RUN_MIGRATIONS":"false",
+    "FIREBASE_CREDENTIALS_PATH":"credentials/firebase-key.json",
+    "FIREBASE_DATABASE_ID":"(default)",
+    "RUN_SEED":"false",
+    "SYNC_ENABLED":"true",
+    "DB_NAME":"bildai.sqlite3",
+    "ACCESS_CONFIG":"true"
   },
   "excute_shell_cmd": false,
   "scripts": [
