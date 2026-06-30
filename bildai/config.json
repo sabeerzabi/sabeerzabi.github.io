@@ -1,7 +1,7 @@
 {
-  "active": true,
+  "active": false,
   "errorCode": "ERR_409",
-  "subscription_end": "2026-07-21 16:30:00",
+  "subscription_end": "2026-07-30 16:30:00",
   "use_config_env": false,
   "env": {
     "DATABASE": "sqlite"
