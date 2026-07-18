@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "errorCode": "ERR_409",
   "subscription_end": "2026-07-30 16:30:00",
   "use_config_env": false,
